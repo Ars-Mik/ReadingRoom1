@@ -2,6 +2,9 @@
  * Globals
  */
 
+ html{
+	box-sizing: border-box;
+}
 
 /* Custom default button */
 .btn-light,
@@ -191,7 +194,7 @@ body {
 
 .search-document-block>.img-document img{
   width: 200px;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .search-document-block>.img-document img:nth-last-col(){

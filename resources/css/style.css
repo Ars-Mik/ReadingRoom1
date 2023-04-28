@@ -25,14 +25,6 @@ html{
 	background: radial-gradient(88.22% 88.22% at 33.7% 11.78%, rgba(94, 168, 255, 0.79) 0%, rgba(77, 74, 249, 0.9) 100%);
 }
 
-body{
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 600;
-	font-size: 40px;
-	line-height: 150%;
-	background: #fffff;
-}
 .title1{
 	position: absolute;
 	width: 652px;
@@ -473,4 +465,9 @@ select::-ms-expand {
 }
 .table{
 	margin:20px;
+}
+
+.header_menu h3{
+	width: 410px;
+    display: flex;
 }

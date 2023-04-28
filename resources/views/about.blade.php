@@ -2,66 +2,26 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, instal-scale=1.0">
-	<meta http-equiv="X-UA-COmpatible" content="ie=edge">
-	<meta name="robots" content="noindex">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	@vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/reset.css', 'resources/css/style.css'])
 	<title>Электронный читальный зал</title>
-    @vite(['resources/css/reset.css', 'resources/js/app.js'])
-	@vite(['resources/css/style.css', 'resources/js/app.js'])
-	<link rel="stylesheet" href="./css/reset.css">
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="http://ваш_сайт/css/font-awesome.css">
-
-
 </head>
-<body>
+
+<body class="h-100">
 	<header class="header">
 		<div class="header_wrapper">
-			<div class="wrapper">
-				<div class="header_logo">
-					<a href ="/" class="header_logo-link"></a>
-						<img src="{{ Vite::asset('resources/img/logo.svg') }}" alt="Электронный читальный" class="header_logo-pic">
-				</div>
-				<h1 class="title1">Электронный читальный зал архивных документов Московской области</h1>
-			</div>
-			<div class="navigation">
-				<nav class "header_nav">
-				<tr>
-					<td>
-						<a href="/"  style="text-decoration: none; "class="header_link">ГЛАВНАЯ</a>
-					</td>
-					<td>
-						<a href="#!"  style="text-decoration: none; " class="header_link">ДОКУМЕНТЫ</a>
-					</td>
-					<td>
-						<a href="#!"  style="text-decoration: none; " class="header_link">FAQ</a>
-					</td>
-					<td>
-						<a href="#!"  style="text-decoration: none; " class="header_link">Контакты</a>
-					</td>
-					<td>
-						<button class="strochki"><img src="{{ Vite::asset('resources/img/svg/ara.svg') }}" alt="-"></button>
-					</td>
-				</tr>								
-				</nav>
-			</div>
-		</div>
-		
-		<div class="d3">
-			<form class="formd3">
-						<input class="inputd3" type="text" placeholder="Поиск...">
-						<button class="buttond3" type="submit"></button>
-			</form>
-		
-						<button class="button32"><p class="colorW">Расширенный поиск</p></button>
+			<x-header title="Электронный читальный зал архивных документов Московской области" : search=true/>
 		</div>
 	</header>
+
 	<div class="text1box">
 		<h1 class="text1">Дело</h1>
 	</div>
 	<hr class="line">
-	<div class="bottom_box">
+	<div class="container bottom_box">
 		<table >
 			<tr>
 				<td class="optionn">
@@ -218,3 +178,27 @@
 </body>
 </html>
 
+
+
+  {{-- <body class="text-center h-100">
+
+  
+
+  
+  
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                
+            </div>
+        </div>
+    </div>
+  
+
+
+  <footer class="footer">
+    <x-footer/>
+  </footer>
+
+  </body>
+</html> --}}
