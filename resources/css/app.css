@@ -195,8 +195,9 @@ body {
 .search-document-block>.img-document img{
   width: 200px;
   /* position: absolute; */
+  position: relative;
 }
 
-.search-document-block>.img-document img:nth-last-col(){
-  left: 0;
+.search-document-block>.img-document img:nth-child(2){
+  left: 50px;
 }
