@@ -1,0 +1,238 @@
+.header_cover_about{
+    background: radial-gradient(88.22% 88.22% at 33.7% 11.78%, rgba(94, 168, 255, 0.79) 0%, rgba(77, 74, 249, 0.9) 100%);
+    margin-bottom: 42px;
+}
+
+.header_menu h3{
+    font-weight: 600;
+    font-size: 22px;
+    color: #000000;
+    width: 30rem;
+    text-align: left;
+    line-height: 150%;
+}
+
+.search{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    column-gap: 15px;
+    margin-bottom: 5rem;
+    position: relative;
+    right: 3.7rem;
+}
+
+.form-search{
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.input-search{
+    width: 491.7px;
+    padding: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    color: #AFADAD;
+    border: 2px solid rgba(238, 238, 238, 0.55);
+    border-radius: 9px;
+}
+
+
+.icon-search{
+    width: 62px;
+    height: 55.56px;
+    outline: none;
+    border: 0;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 0 9px 9px 0;
+}
+
+
+.icon-search>i{
+    color: #001018;
+    font-size: 31px;
+}
+
+.submit-search{
+    background: #0066FF;
+    border-radius: 9px;
+    color: #fff;
+    outline: none;
+    border: 0;
+    width: 220px;
+    height: 60px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Case-Block{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.Case-Block>h3{
+    text-align: left;
+    margin-left: 111px;
+    margin-bottom: 2rem;
+}
+
+.Case-Block>form{
+    padding-bottom: 60px;
+    padding-top: 60px;
+    border-top: 2px solid rgba(0, 0, 0, 0.24);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.24);
+    display: flex;
+    flex-direction: column;
+    row-gap: 21px;
+}
+
+
+.line_search{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+.Case-Block .line_search .select select{
+    width: 427.22px;
+    height: 60px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 21px;
+    color: #000000;
+    border: 2px solid rgba(0, 108, 204, 0.6);
+    border-radius: 9px;
+    padding-left: 76px;
+}
+
+
+.Case-Block .line_search .search-dictionary input{
+    width: 480px;
+    height: 60px;
+    background: rgba(238, 238, 238, 0.3);
+    border-radius: 9px;
+    border: 2px solid rgba(0, 108, 204, 0.6);
+
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: #AFADAD;
+    padding-left: 47px;
+}
+
+
+
+
+.Case-Block .line_search .dictionary select{
+    width: 337.83px;
+    height: 64px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: #000000;
+    background: #d9d9d94d;
+    border-radius: 9px;
+    padding-left: 76px;
+    border: 0;
+}
+
+.line_search>.function button{
+    width: 109px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    font-weight: 900;
+    font-size: 22px;
+}
+
+.line_search>.function button:hover{
+    color: #fff;
+}
+
+.function_button{
+    display: flex;
+    justify-content: space-between;
+}
+
+.function_button .btn-search{
+    width: 258px;
+    height: 64px;
+}
+
+.function_button .btn-category{
+    width: 427.22px;
+    height: 64px;
+    color: #000000;
+}
+
+.function_button .btn-category:hover{
+    color: #fff;
+}
+
+
+/*? custom-arrow */
+
+.custom-arrow{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.custom-arrow::before {
+    content: "▶";
+    padding: 0 8px;
+    font-size: 12px;
+    position: absolute;
+    transform: rotate(90deg);
+    margin-right: 1rem;
+    z-index: 1;
+    text-align: center;
+    width: 10%;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+.custom-arrow>select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/*? custom-arrow */
+
+.options .line_search:nth-last-child(-n+2){
+    margin-bottom: 44px;
+}
+
+.line_search>.function{
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+}

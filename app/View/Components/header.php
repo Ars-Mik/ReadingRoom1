@@ -13,9 +13,9 @@ class header extends Component
      */
     public $title;
 
-    /**
+        /**
      *
-     * @var boolean
+     * @var bool
      */
     public $search;
 
@@ -24,9 +24,11 @@ class header extends Component
      * 
      * 
      * @param  string  $title
-     * @param  boolean  $search
+     * @param  bool  $search
      * @return void
      */
+
+    
 
 
     public function __construct($title = '', $search = false)

@@ -2,6 +2,27 @@
  * Globals
  */
 
+
+  
+ @font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-SemiBold.ttf');
+}
+p {
+  font-size: '20px';
+}
+div {
+  font-size: '20px';
+}
+
+select{
+  cursor: pointer;
+}
+
+*,*::before, *::after{
+  box-sizing: inherit;
+}
+
  html{
 	box-sizing: border-box;
 }
@@ -21,8 +42,8 @@
 
 body {
   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
   overflow-x: hidden;
+  font-family: 'Inter' !important;
 }
 
 .header_cover{
@@ -30,13 +51,17 @@ body {
   background-size: cover;
   background-attachment: fixed;
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 7rem;
 }
 
 .header_menu{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 11rem;
+  margin-bottom: 3rem;
   font-size: 22px;
   padding: 0 60px;
 }
@@ -46,7 +71,7 @@ body {
   border: 3px solid #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
-  padding-left: 61px;
+  padding-left: 61px !important;
   padding-right: 115px;
   position: relative;
   display: flex;
@@ -56,13 +81,16 @@ body {
 }
 
 .nav-style a{
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 800;
   font-size: 16px;
   line-height: 19px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.nav-style a:hover{
+  color: #fff;
 }
 
 .nav-style::before{
@@ -96,6 +124,11 @@ body {
 .btn-center{
   display: flex;
   justify-content: center;
+}
+
+.btn-center a{
+  display: flex;
+  align-items: center;
 }
 
 .header_cover h1{
@@ -147,7 +180,6 @@ body {
 }
 
 .text_footer span{
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -167,7 +199,6 @@ body {
 }
 
 .search-document-block h2{
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 40px;
@@ -176,7 +207,6 @@ body {
 
 .search-document-block p{
   margin-top: 30px;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -198,6 +228,152 @@ body {
   position: relative;
 }
 
-.search-document-block>.img-document img:nth-child(2){
+.search-document-block>.img-document>img:nth-of-type(2n){
   left: 50px;
+  background-color: #333;
+  z-index: 9999;
+}
+
+
+.footer{
+	display: flex;
+	justify-content: space-around;
+    padding: 50px 0;
+    background: #F2F4FA;
+	align-items: center;
+	height: 400px;
+}
+.title_footer{
+	font-style: normal;
+	font-weight: 700;
+	font-size: 50px;
+	line-height: 77px;
+	letter-spacing: -0.1em;
+	color: #323543;
+}
+.description{
+	width: 281px;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 170%;
+	text-align: left;
+	color: #686F81;
+}
+.info{
+	padding-left: 129px;
+	text-align: left;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.mail_href{
+	top:1px;
+	vertical-align: text-top;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 30px;
+	text-decoration-line: underline;
+	color: #323543;
+	transition: color 0.5s ease-in-out;
+}
+
+.address{
+	font-size: 15px;
+	line-height: 170%;
+	color: #686F81;
+}
+
+.social_network {
+	display: flex;
+	flex-direction: row;
+	column-gap: 20px;
+}
+
+.social_network>a{
+	font-style: normal;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 18px;
+	text-transform: uppercase;
+	color: #323543;
+	transition: color 0.5s ease-in-out;
+}
+
+.social_network>a:hover{
+	color: #0066FF;
+}
+
+.text7{
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 21px;
+	display: flex;
+	align-items: center;
+}
+.table{
+	margin:20px;
+}
+
+.header_menu h3{
+	width: 410px;
+    display: flex;
+	align-items: center;
+}
+
+.does-electronic-archive {
+  display: flex;
+  align-items: center;
+  margin-top: 10rem;
+  column-gap: 3rem;
+  flex-direction: column;
+  row-gap: 3rem;
+}
+
+.does-container {
+  display: flex;
+  align-items: center;
+  column-gap: 3rem;
+}
+
+.does_block{
+	background: #FFCF87;
+	border-radius: 15px;
+    width: 567px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: flex-start;
+	row-gap: 2rem;
+	padding: 31px;
+}
+
+.does_block h4{
+	font-style: normal;
+	font-weight: 700;
+	color: #323243;
+}
+
+.does_block p{
+	font-style: normal;
+	font-weight: 400;
+	line-height: 170%;
+	color: #251f1af7;
+	text-align: left;
+}
+
+.does_block>a{
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	color: #4D3427;
+	text-decoration: none;
+	transition: color 0.5s ease-in-out;
+}
+
+.does_block>a:hover{
+	color: #0066FF;
 }
