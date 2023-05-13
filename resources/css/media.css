@@ -1,0 +1,13 @@
+@media screen and (max-width: 1380px) {
+    .Case-Block .line_search .search-dictionary input{
+        width: 270px;
+    }
+
+    .Case-Block .line_search .select select{
+        width: 300px;
+    }
+
+    .Case-Block .line_search .dictionary select{
+        width: 300px;
+    }
+}
