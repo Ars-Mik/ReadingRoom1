@@ -19,7 +19,7 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string('documentName');
-            $table->string('file');
+            $table->string('fileName');
             $table->bigInteger('fund_id')->unsigned();            
             $table->date('date')->nullable();
             $table->boolean('access');
