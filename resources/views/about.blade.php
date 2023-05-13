@@ -40,42 +40,59 @@
 				<h3 class="fs-3">Дело</h3>
 				<form class="options" action="" method="get">
 					<div class="block-form-container">
-						<div class="line_search">
+
+						<div class="line_search" id="line_1">
 							<div class="select">
 								<div class="custom-arrow">
 									<select name="" id="">
-										<option value="value1" selected>Фонд</option>
+										<option value="value1" selected>Название документа </option>
+										<option value="value2" >Фонд</option>
+										<option value="value3" >Географический индекс</option>
+										<option value="value4" >Тематический индекс</option>
+										<option value="value5" >Именной индекс</option>
 									</select>
 								</div>
 							</div>
 							<div class="dictionary">
 								<div class="custom-arrow">
 									<select name="" id="">
-										<option value="value1" selected>Содержит слово</option>
+										<option value="value1" selected>Содержит</option>
+										<option value="value2" >Не содержит</option>
+										<option value="value2" >Равно</option>
+										<option value="value3" >Слово начинается</option>
+										<option value="value4" >Не заполнено</option>
 									</select>
 								</div>
 							</div>
 							<div class="search-dictionary">
-								<input type="search" placeholder="Поиск...">
+								<input id="search" type="search" placeholder="Поиск...">
 							</div>
 							<div class="function">
-								<button class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></button>
-								<button class="btn btn-outline-primary"><i class="bi bi-trash3"></i></button>
+								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
 							</div>
 						</div>
 
-						<div class="line_search">
+						<div class="line_search" id="line_2">
 							<div class="select">
 								<div class="custom-arrow">
 									<select name="" id="">
-										<option value="value1" selected>Фонд</option>
+										<option value="value1" selected>Название документа </option>
+										<option value="value2" >Фонд</option>
+										<option value="value3" >Географический индекс</option>
+										<option value="value4" >Тематический индекс</option>
+										<option value="value5" >Именной индекс</option>
 									</select>
 								</div>
 							</div>
 							<div class="dictionary">
 								<div class="custom-arrow">
 									<select name="" id="">
-										<option value="value1" selected>Содержит слово</option>
+										<option value="value1" selected>Содержит</option>
+										<option value="value2" >Не содержит</option>
+										<option value="value2" >Равно</option>
+										<option value="value3" >Слово начинается</option>
+										<option value="value4" >Не заполнено</option>
 									</select>
 								</div>
 							</div>
@@ -83,14 +100,47 @@
 								<input type="search" placeholder="Поиск...">
 							</div>
 							<div class="function">
-								<button class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></button>
-								<button class="btn btn-outline-primary"><i class="bi bi-trash3"></i></button>
+								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
 							</div>
 						</div>
+
+						<div class="line_search" id="line_3">
+							<div class="select">
+								<div class="custom-arrow">
+									<select name="" id="">
+										<option value="value1" selected>Название документа </option>
+										<option value="value2" >Фонд</option>
+										<option value="value3" >Географический индекс</option>
+										<option value="value4" >Тематический индекс</option>
+										<option value="value5" >Именной индекс</option>
+									</select>
+								</div>
+							</div>
+							<div class="dictionary">
+								<div class="custom-arrow">
+									<select name="" id="">
+										<option value="value1" selected>Содержит</option>
+										<option value="value2" >Не содержит</option>
+										<option value="value2" >Равно</option>
+										<option value="value3" >Слово начинается</option>
+										<option value="value4" >Не заполнено</option>
+									</select>
+								</div>
+							</div>
+							<div class="search-dictionary">
+								<input type="search" placeholder="Поиск...">
+							</div>
+							<div class="function">
+								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
+							</div>
+						</div>
+
 					</div>
 					
 					<div class="function_button mx-4">
-						<input class="btn btn-outline-primary btn-lg btn-category" id="add_category" type="submit" value="Добавить новый критерий">
+						<a href="#" class="btn btn-outline-primary btn-lg btn-category" id="add_category">Добавить новый критерий</a>
 						<input class="btn btn-primary btn-lg btn-search" id="search" type="submit" value="Поиск">
 					</div>
 				</form>

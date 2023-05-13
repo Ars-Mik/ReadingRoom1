@@ -179,7 +179,7 @@
     color: #000000;
     border: 2px solid rgba(0, 108, 204, 0.6);
     border-radius: 9px;
-    padding-left: 76px;
+    text-align: center;
 }
 
 
@@ -225,7 +225,7 @@
     border: 0;
 }
 
-.line_search>.function button{
+.line_search>.function a{
     width: 75px;
     height: 53px;
     display: flex;
@@ -236,12 +236,12 @@
     font-size: 20px;
 }
 
-.line_search>.function button>.bi-plus-lg{
+.line_search>.function a>.bi-plus-lg{
     transform: rotate(-46.18deg);
     font-size: 20px;
 }
 
-.line_search>.function button:hover{
+.line_search>.function a:hover{
     color: #fff;
 }
 
@@ -260,6 +260,10 @@
     width: 427.22px;
     height: 64px;
     color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: none;
 }
 
 .function_button .btn-category:hover{
