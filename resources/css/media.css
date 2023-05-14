@@ -10,4 +10,8 @@
     .Case-Block .line_search .dictionary select{
         width: 300px;
     }
+
+    .Case-Block .line_search .search-dictionary select{
+        width: 300px;
+    }
 }

@@ -197,6 +197,20 @@
     padding-left: 47px;
 }
 
+.Case-Block .line_search .search-dictionary select{
+    width: 530px;
+    height: 45px;
+    background: rgba(238, 238, 238, 0.3);
+    border-radius: 9px;
+    border: 2px solid rgba(0, 108, 204, 0.6);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    color: #000000;
+    padding-left: 47px;
+}
+
 .Case-Block .line_search .search-dictionary input::-webkit-input-placeholder {
     color: #AFADAD;
   }
