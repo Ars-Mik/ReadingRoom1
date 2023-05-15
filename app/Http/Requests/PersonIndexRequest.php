@@ -14,7 +14,7 @@ class PersonIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'personName' => ['required']
+            'personIndex.personName' => ['required']
         ];
     }
 }

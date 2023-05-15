@@ -14,7 +14,7 @@ class Document extends Model
     use AsSource;
     use Filterable;
 
-    protected $fillable = ['id', 'documentName', 'file', 'fund_id', 'date', 'access',];
+    protected $fillable = ['id', 'documentName', 'fileName', 'fund_id', 'date', 'access',];
 
     protected $allowedSorts = [
         'documentName', 'date'

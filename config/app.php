@@ -54,8 +54,6 @@ return [
     |
     */
 
-    'Vite' => \Illuminate\Support\Facades\Vite::class,
-
     'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL'),

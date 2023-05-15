@@ -29,7 +29,7 @@ class GeoIndexListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            ModalToggle::make('Создать индекс')->modal('createGeoIndex')->method('create')->icon('plus')
+            ModalToggle::make('Создать индекс')->modal('createGeoIndex')->method('createOrUpdateGeoIndex')->icon('plus')
         ];
     }
 
@@ -37,13 +37,37 @@ class GeoIndexListScreen extends Screen
     {
         return [
             GeoIndexListTable::class,
+
             Layout::modal('createGeoIndex', Layout::rows([
-                Input::make('geoName')->required()->title('Название географического индекса')
-            ]))->title('Создание географического индекса')->applyButton('Создать')
+                Input::make('geoIndex.geoName')->required()->title('Название географического индекса')
+            ]))->title('Создание географического индекса')->applyButton('Создать'),
+
+            Layout::modal('editGeoIndex', Layout::rows([
+                Input::make('geoIndex.id')->type('hidden'),
+                Input::make('geoIndex.geoName')->required()->title('Название географического индекса')
+            ]))->async('asyncGetGeoIndex')
         ];
     }
 
-    public function create(GeoIndexRequest $request): void {
-        GeoIndex::create(array_merge($request->validated(),[]));
+    public function asyncGetGeoIndex(GeoIndex $geoIndex): array {
+        return [
+            'geoIndex' => $geoIndex
+        ];
+    }
+
+    public function createOrUpdateGeoIndex(GeoIndexRequest $request): void {
+        $geoIndexId = $request->input('geoIndex.id');
+        GeoIndex::updateOrCreate([
+            'id' => $geoIndexId
+        ], $request->validated()['geoIndex']);
+
+        is_null($geoIndexId) ? Toast::info('Географический индекс добавлен') : ('Географический индекс обновлён');
+    }
+
+    public function removeGeoIndex(Request $request): void
+    {
+        GeoIndex::findOrFail($request->get('id'))->delete();
+
+        Toast::info('Географический индекс удалён');
     }
 }

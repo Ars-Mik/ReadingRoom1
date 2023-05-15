@@ -14,7 +14,7 @@ class GeoIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'geoName' => ['required']
+            'geoIndex.geoName' => ['required']
         ];
     }
 }

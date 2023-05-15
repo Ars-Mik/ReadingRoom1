@@ -2,6 +2,10 @@
 
 namespace App\Orchid\Layouts\GeoIndex;
 
+use App\Models\GeoIndex;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\DropDown;
+use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -14,7 +18,30 @@ class GeoIndexListTable extends Table
         return [
             TD::make('geoName', 'Название')->sort()->filter(TD::FILTER_TEXT),
             TD::make('created_at', 'Дата создания')->defaultHidden(),
-            TD::make('updated_at', 'Дата обновления')->defaultHidden()
+            TD::make('updated_at', 'Дата обновления')->defaultHidden(),
+            TD::make('action', 'Действия')
+                ->align(TD::ALIGN_CENTER)
+                ->width('100px')
+                ->render(fn (GeoIndex $geoIndex) => DropDown::make()
+                    ->icon('options-vertical')
+                    ->list([
+
+                        ModalToggle::make('Редактировать')
+                            ->modal('editGeoIndex')
+                            ->method('createOrUpdateGeoIndex')
+                            ->modalTitle('Редактирование географического индекса')
+                            ->icon('pencil')
+                            ->asyncParameters([
+                                'geoIndex' => $geoIndex->id
+                            ]),
+
+                        Button::make('Удалить')
+                            ->icon('trash')
+                            ->confirm('Вы уверены, что хотите удалить данный географический индекс?')
+                            ->method('removeGeoIndex', [
+                                'id' => $geoIndex->id
+                            ]),
+                    ])),
         ];
     }
 }

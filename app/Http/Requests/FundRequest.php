@@ -14,8 +14,8 @@ class FundRequest extends FormRequest
     public function rules()
     {
         return [
-            'fundName' => ['required'],
-            'numberFund' => ['required']
+            'fund.fundName' => ['required'],
+            'fund.numberFund' => ['required']
         ];
     }
 }

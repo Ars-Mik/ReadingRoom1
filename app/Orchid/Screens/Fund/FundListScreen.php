@@ -29,7 +29,7 @@ class FundListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            ModalToggle::make('Добавить фонд')->modal('createFund')->method('create')->icon('plus')
+            ModalToggle::make('Добавить фонд')->modal('createFund')->method('createOrUpdateFund')->icon('plus')
         ];
     }
 
@@ -37,14 +37,39 @@ class FundListScreen extends Screen
     {
         return [
             FundListTable::class,
+
             Layout::modal('createFund', Layout::rows([
-                Input::make('fundName')->required()->title('Название фонда'),
-                Input::make('numberFund')->required()->title('Номер фонда')                
-            ]))->title('Создание фонда')->applyButton('Создать')
+                Input::make('fund.fundName')->required()->title('Название фонда'),
+                Input::make('fund.numberFund')->required()->title('Номер фонда')                
+            ]))->title('Создание фонда')->applyButton('Создать'),
+
+            Layout::modal('editFund', Layout::rows([
+                Input::make('fund.id')->type('hidden'),
+                Input::make('fund.fundName')->required()->title('Название фонда'),
+                Input::make('fund.numberFund')->required()->title('Номер фонда')
+            ]))->async('asyncGetFund')
         ];
     }
 
-    public function create(FundRequest $request): void {
-        Fund::create(array_merge($request->validated(),[]));
+    public function asyncGetFund(Fund $fund): array {
+        return [
+            'fund' => $fund
+        ];
+    }
+
+    public function createOrUpdateFund(FundRequest $request): void {
+        $fundId = $request->input('fund.id');
+        Fund::updateOrCreate([
+            'id' => $fundId
+        ], $request->validated()['fund']);
+
+        is_null($fundId) ? Toast::info('Фонд добавлен') : ('Фонд обновлён');
+    }
+
+    public function removeFund(Request $request): void
+    {
+        Fund::findOrFail($request->get('id'))->delete();
+
+        Toast::info('Фонд удалён');
     }
 }

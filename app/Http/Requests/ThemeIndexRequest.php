@@ -14,7 +14,7 @@ class ThemeIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'themeName' => ['required']
+            'themeIndex.themeName' => ['required']
         ];
     }
 }

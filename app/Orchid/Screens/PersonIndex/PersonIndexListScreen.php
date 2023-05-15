@@ -29,7 +29,7 @@ class PersonIndexListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            ModalToggle::make('Создать индекс')->modal('createPersonIndex')->method('create')->icon('plus')
+            ModalToggle::make('Создать индекс')->modal('createPersonIndex')->method('createOrUpdatePersonIndex')->icon('plus')
         ];
     }
 
@@ -37,13 +37,37 @@ class PersonIndexListScreen extends Screen
     {
         return [
             PersonIndexListTable::class,
+
             Layout::modal('createPersonIndex', Layout::rows([
-                Input::make('personName')->required()->title('Название именного индекса'),
-            ]))->title('Создание именного индекса')->applyButton('Создать')
+                Input::make('personIndex.personName')->required()->title('Название именного индекса'),
+            ]))->title('Создание именного индекса')->applyButton('Создать'),
+
+            Layout::modal('editPersonIndex', Layout::rows([
+                Input::make('personIndex.id')->type('hidden'),
+                Input::make('personIndex.personName')->required()->title('Название именного индекса'),
+            ]))->async('asyncGetPersonIndex')
         ];
     }
 
-    public function create(PersonIndexRequest $request): void {
-        PersonIndex::create(array_merge($request->validated(),[]));
+    public function asyncGetPersonIndex(PersonIndex $personIndex): array {
+        return [
+            'personIndex' => $personIndex
+        ];
+    }
+
+    public function createOrUpdatePersonIndex(PersonIndexRequest $request): void {
+        $personIndexId = $request->input('personIndex.id');
+        PersonIndex::updateOrCreate([
+            'id' => $personIndexId
+        ], $request->validated()['personIndex']);
+
+        is_null($personIndexId) ? Toast::info('Именной индекс добавлен') : ('Именной индекс обновлён');
+    }
+
+    public function removePersonIndex(Request $request): void
+    {
+        PersonIndex::findOrFail($request->get('id'))->delete();
+
+        Toast::info('Именной индекс удалён');
     }
 }

@@ -29,7 +29,7 @@ class ThemeIndexListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            ModalToggle::make('Создать индекс')->modal('createThemeIndex')->method('create')->icon('plus')
+            ModalToggle::make('Создать индекс')->modal('createThemeIndex')->method('createOrUpdateThemeIndex')->icon('plus')
         ];
     }
 
@@ -37,13 +37,37 @@ class ThemeIndexListScreen extends Screen
     {
         return [
             ThemeIndexListTable::class,
+
             Layout::modal('createThemeIndex', Layout::rows([
-                Input::make('themeName')->required()->title('Название тематического индекса'),
-            ]))->title('Создание тематического индекса')->applyButton('Создать')
+                Input::make('themeIndex.themeName')->required()->title('Название тематического индекса'),
+            ]))->title('Создание тематического индекса')->applyButton('Создать'),
+            
+            Layout::modal('editThemeIndex', Layout::rows([
+                Input::make('themeIndex.id')->type('hidden'),
+                Input::make('themeIndex.themeName')->required()->title('Название тематического индекса'),
+            ]))->async('asyncGetThemeIndex')
         ];
     }
 
-    public function create(ThemeIndexRequest $request): void {
-        ThemeIndex::create(array_merge($request->validated(),[]));
+    public function asyncGetThemeIndex(ThemeIndex $themeIndex): array {
+        return [
+            'themeIndex' => $themeIndex
+        ];
+    }
+
+    public function createOrUpdateThemeIndex(ThemeIndexRequest $request): void {
+        $themeIndexId = $request->input('themeIndex.id');
+        ThemeIndex::updateOrCreate([
+            'id' => $themeIndexId
+        ], $request->validated()['themeIndex']);
+
+        is_null($themeIndexId) ? Toast::info('Тематический индекс добавлен') : ('Тематический индекс обновлён');
+    }
+
+    public function removeThemeIndex(Request $request): void
+    {
+        ThemeIndex::findOrFail($request->get('id'))->delete();
+
+        Toast::info('Тематический индекс удалён');
     }
 }

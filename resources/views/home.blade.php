@@ -11,9 +11,9 @@
 
   <body class="text-center h-100">
     <div class="header_cover h-100 text-bg-dark">
-      
+
         <x-header title="Электронный архив"/>
-    
+
         <div class="container-fluid no-padding">
           <div class="row" style="position: relative;">
             <div class="col">
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="footer_header">
           <div class="fs-6 text_footer">
             <img src="{{ Vite::asset('resources/img/svg/icon_footer_header/dokumenty_o193ramc6pcf_512 1.svg') }}" alt="icon">
@@ -39,10 +39,10 @@
             <span>13 Фондов</span>
           </div>
         </div>
-    
+
     </div>
-  
-  
+
+
     <div class="container">
         <div class="row">
             <div class="col">
@@ -64,7 +64,7 @@
 
               <section class="does-electronic-archive">
                 <h3>Как работает электронный архив?</h3>
-                
+
                 <div class="container does-container">
                   <div class="does_block">
                     <h4 class="fs-4">Оцифровка документов</h4>
@@ -82,7 +82,7 @@
                       <a href="#">ПОДРОБНЕЕ >></a>
                   </div>
                 </div>
-                  
+
               </section>
             </div>
         </div>
