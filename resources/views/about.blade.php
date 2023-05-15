@@ -9,7 +9,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+	  
   </head>
 
   <body class="text-center h-100">
@@ -31,10 +31,10 @@
 				</div>
 			</div>
 			</div>
-		</div>
+		</div>	
     </div>
-
-
+  
+  
 	<div class="row">
 		<div class="col">
 			<div class="Case-Block">
@@ -114,7 +114,7 @@
 										<option value="value2" >Фонд</option>
 										<option value="value3" >Географический индекс</option>
 										<option value="value4" >Тематический индекс</option>
-										<option value="value5" >Именной индекс</option>
+										<option value="value5" >Именной индекс</option>		
 									</select>
 								</div>
 							</div>
@@ -139,7 +139,7 @@
 						</div>
 
 					</div>
-
+					
 					<div class="function_button mx-4">
 						<a href="#" class="btn btn-outline-primary btn-lg btn-category" id="add_category">Добавить новый критерий</a>
 						<input class="btn btn-primary btn-lg btn-search" id="search" type="submit" value="Поиск">
@@ -174,7 +174,7 @@
 			<x-table/>
 		</div>
 	</div>
-
+	
 
   <footer class="footer">
     <x-footer/>
@@ -234,9 +234,9 @@
 			var line_search = $('.line_search');
 			for (let i = 0; i < line_search.length; i++) {
 				const btn_trush = $(line_search[i]).find('a');
-				$(btn_trush[1]).click(function (e) {
+				$(btn_trush[1]).click(function (e) { 
 					e.preventDefault();
-
+					
 					$(line_search[i]).remove();
 					Isline_search = $('.line_search');
 					if (Isline_search.length === 0) {
@@ -246,13 +246,13 @@
 
 					return true;
 				});
-
+			
 			}
-
+			
 			//очистка поля критерий
 			for (let i = 0; i < line_search.length; i++) {
 				const btn_trush = $(line_search[i]).find('a');
-				$(btn_trush[0]).click(function (e) {
+				$(btn_trush[0]).click(function (e) { 
 					e.preventDefault();
 					let search = $(line_search[i]).find('div')[4];
 					$(search).find('input').val('');
@@ -262,7 +262,7 @@
 			//очистка поля критерий
 			for (let i = 0; i < line_search.length; i++) {
 				const btn_trush = $(line_search[i]).find('a');
-				$(btn_trush[0]).click(function (e) {
+				$(btn_trush[0]).click(function (e) { 
 					e.preventDefault();
 					let search = $(line_search[i]).find('div')[4];
 					$(search).find('input').val('');
@@ -289,10 +289,10 @@
 				let search_dictionary = $(line_search[i]).find('div');
 				if ($(search_dictionary).attr('class') == 'select') {
 					var select = $(search_dictionary).find('select');
-
-					$(select[0]).change(function (e) {
+					
+					$(select[0]).change(function (e) { 
 						e.preventDefault();
-
+						
 						var optionSelected = $(this).find("option:selected");
 						var valueSelected  = optionSelected.val();
 						let appendDictionary = $($($(line_search)[i]).find('div')[4]);
@@ -306,7 +306,7 @@
 										<select name="" id="">
 											@foreach ($funds as $fund)
 												<option value='{{$fund->id}}'>{{$fund->fundName}}</option>
-											@endforeach
+											@endforeach	
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
@@ -315,7 +315,7 @@
 										<select name="" id="">
 											@foreach ($geo_indices as $geo)
 												<option value='{{$geo->id}}'>{{$geo->geoName}}</option>
-											@endforeach
+											@endforeach	
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
@@ -324,7 +324,7 @@
 										<select name="" id="">
 											@foreach ($theme_indices as $theme)
 												<option value='{{$theme->id}}'>{{$theme->themeName}}</option>
-											@endforeach
+											@endforeach	
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
@@ -333,12 +333,12 @@
 										<select name="" id="">
 											@foreach ($person_indices as $person)
 												<option value='{{$person->id}}'>{{$person->personName}}</option>
-											@endforeach
+											@endforeach	
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								}
-
+								
 								$(appendDictionary).append(templateSelect);
 						}else{
 							if (select.length > 0) {
@@ -347,7 +347,7 @@
 									<input id="search" type="search" placeholder="Поиск...">
 								`);
 							}
-
+							
 						}
 					});
 				}
@@ -358,9 +358,9 @@
 		for (let i = 0; i < line_search.length; i++) {
 
 			const btn_trush = $(line_search[i]).find('a');
-			$(btn_trush[1]).click(function (e) {
+			$(btn_trush[1]).click(function (e) { 
 				e.preventDefault();
-
+				
 				$(line_search[i]).remove();
 				var Isline_search = $('.line_search');
 				if (Isline_search.length == 0) {
@@ -368,13 +368,13 @@
 					console.log(Isline_search.length);
 				}
 			});
-
+			
 		}
 
 		//очистка поля критерий
 		for (let i = 0; i < line_search.length; i++) {
 			const btn_trush = $(line_search[i]).find('a');
-			$(btn_trush[0]).click(function (e) {
+			$(btn_trush[0]).click(function (e) { 
 				e.preventDefault();
 				let search = $(line_search[i]).find('div')[4];
 				$(search).find('input').val('');
@@ -401,10 +401,10 @@
 			let search_dictionary = $(line_search[i]).find('div');
 				if ($(search_dictionary).attr('class') == 'select') {
 					var select = $(search_dictionary).find('select');
-
-					$(select[0]).change(function (e) {
+					
+					$(select[0]).change(function (e) { 
 						e.preventDefault();
-
+						
 						var optionSelected = $(this).find("option:selected");
 						var valueSelected  = optionSelected.val();
 						let appendDictionary = $($($(line_search)[i]).find('div')[4]);
@@ -419,7 +419,7 @@
 										<select name="" id="">
 											@foreach ($funds as $fund)
 												<option value='{{$fund->id}}'>{{$fund->fundName}}</option>
-											@endforeach
+											@endforeach	
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
@@ -428,7 +428,7 @@
 										<select name="" id="">
 											@foreach ($geo_indices as $geo)
 												<option value='{{$geo->id}}'>{{$geo->geoName}}</option>
-											@endforeach
+											@endforeach	
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
@@ -437,7 +437,7 @@
 										<select name="" id="">
 											@foreach ($theme_indices as $theme)
 												<option value='{{$theme->id}}'>{{$theme->themeName}}</option>
-											@endforeach
+											@endforeach	
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
@@ -446,12 +446,12 @@
 										<select name="" id="">
 											@foreach ($person_indices as $person)
 												<option value='{{$person->id}}'>{{$person->personName}}</option>
-											@endforeach
+											@endforeach	
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								}
-
+								
 								$(appendDictionary).append(templateSelect);
 						}else{
 							$($($(line_search)[i]).find('div')[4]).find('select').remove();
@@ -466,7 +466,7 @@
 
 	});
   </script>
-
+ 
 
   </body>
 </html>
