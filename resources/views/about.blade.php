@@ -4,6 +4,7 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta name="csrf-token" content="{{ csrf_token() }}" />
       @vite(['resources/js/app.js'])
       <title>Электронный архив</title>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -39,9 +40,9 @@
 		<div class="col">
 			<div class="Case-Block">
 				<h3 class="fs-3">Дело</h3>
-				<form class="options" action="" method="get">
+				<form class="options" action="/about" method="post">
+					@csrf
 					<div class="block-form-container">
-
 						<div class="line_search" id="line_1">
 							<div class="select">
 								<div class="custom-arrow">
@@ -59,14 +60,13 @@
 									<select name="" id="">
 										<option value="value1" selected>Содержит</option>
 										<option value="value2" >Не содержит</option>
-										<option value="value2" >Равно</option>
 										<option value="value3" >Слово начинается</option>
 										<option value="value4" >Не заполнено</option>
 									</select>
 								</div>
 							</div>
 							<div class="search-dictionary">
-								<input id="search" type="search" placeholder="Поиск...">
+								<input name="search" type="search" placeholder="Поиск...">
 							</div>
 							<div class="function">
 								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
@@ -91,14 +91,13 @@
 									<select name="" id="">
 										<option value="value1" selected>Содержит</option>
 										<option value="value2" >Не содержит</option>
-										<option value="value2" >Равно</option>
 										<option value="value3" >Слово начинается</option>
 										<option value="value4" >Не заполнено</option>
 									</select>
 								</div>
 							</div>
 							<div class="search-dictionary">
-								<input id="search" type="search" placeholder="Поиск...">
+								<input name="search" type="search" placeholder="Поиск...">
 							</div>
 							<div class="function">
 								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
@@ -123,14 +122,13 @@
 									<select name="" id="">
 										<option value="value1" selected>Содержит</option>
 										<option value="value2" >Не содержит</option>
-										<option value="value2" >Равно</option>
 										<option value="value3" >Слово начинается</option>
 										<option value="value4" >Не заполнено</option>
 									</select>
 								</div>
 							</div>
 							<div class="search-dictionary">
-								<input id="search" type="search" placeholder="Поиск...">
+								<input name="search" type="search" placeholder="Поиск...">
 							</div>
 							<div class="function">
 								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
@@ -155,7 +153,7 @@
 	<div class="row">
 		<div class="col">
 			<div class="pagination-result">
-				<p>Найдено объектов: <span>100</span></p>
+				<p>Найдено объектов: <span></span></p>
 
 				<div class="pagination">
 					<span class="previous-pagination number"><img src="{{ Vite::asset('resources/img/left.svg') }}" alt="left"></span>
@@ -171,11 +169,11 @@
 					<a href="#" class="next-pagination number"><img src="{{ Vite::asset('resources/img/right.svg') }}" alt="right"></a>
 				</div>
 			</div>
-			<x-table/>
+			<x-table :json="array($documentSelect, $documentSelectName)"/>
 		</div>
 	</div>
 	
-
+	
   <footer class="footer">
     <x-footer/>
   </footer>
@@ -186,7 +184,19 @@
 		var line_search = $('.line_search');
 		const from_container = $('.block-form-container');
 		var Isline_search = $('.line_search');
+		var dictionaryNameDocument = `
+		<select name="" id="">
+			<option value="value1" selected>Содержит</option>
+			<option value="value2" >Не содержит</option>
+			<option value="value3" >Слово начинается</option>
+			<option value="value4" >Не заполнено</option>
+		</select>`;
 
+		var dictionaryOtherСriteria = `
+		<select name="" id="">
+			<option value="value2" >Равно</option>
+			<option value="value3" >Не равно</option>
+		</select>`;
 
 		//добавление новых критерий
 		$('#add_category').click((e) =>{
@@ -212,14 +222,13 @@
 							<select name="" id="">
 								<option value="value1" selected>Содержит</option>
 								<option value="value2" >Не содержит</option>
-								<option value="value2" >Равно</option>
 								<option value="value3" >Слово начинается</option>
 								<option value="value4" >Не заполнено</option>
 							</select>
 						</div>
 					</div>
 					<div class="search-dictionary">
-						<input type="search" placeholder="Поиск...">
+						<input name="search" type="search" placeholder="Поиск...">
 					</div>
 					<div class="function">
 						<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
@@ -272,6 +281,10 @@
 
 					let select = $(line_search[i]).find('div')[0];
 					$(select).find('select').val('value1');
+					if ($(select).find('select').val() == 'value1') {
+						$($($(line_search)[i]).find('div')[3]).find('select').remove();
+						$($($(line_search)[i]).find('div')[3]).append(dictionaryNameDocument);
+					}
 
 					let appendDictionary = $($($(line_search)[i]).find('div')[4]);
 					let test = $($($(line_search)[i]).find('div')[4]).find('input');
@@ -284,7 +297,7 @@
 				});
 			}
 
-
+			//добавление пуктов с базы данных в поле Фонды, Географисекий индекс и тд
 			for (let i = 0; i < $(line_search).length; i++) {
 				let search_dictionary = $(line_search[i]).find('div');
 				if ($(search_dictionary).attr('class') == 'select') {
@@ -344,10 +357,34 @@
 							if (select.length > 0) {
 								$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								$(appendDictionary).append(`
-									<input id="search" type="search" placeholder="Поиск...">
+									<input name="search" type="search" placeholder="Поиск...">
 								`);
 							}
 							
+						}
+					});
+				}
+			}
+
+			for (let i = 0; i < $(line_search).length; i++) {
+				let search_dictionary = $(line_search[i]).find('div');
+				if ($(search_dictionary).attr('class') == 'select') {
+					var select = $(search_dictionary).find('select');
+					
+					$(select[0]).change(function (e) { 
+						e.preventDefault();
+						
+						var optionSelected = $(this).find("option:selected");
+						var valueSelected  = optionSelected.val();
+						let appendDictionary = $($($(line_search)[i]).find('div')[4]);
+						let select = $($($(line_search)[i]).find('div')[4]).find('select');
+
+						if (valueSelected == 'value1') {
+							$($($(line_search)[i]).find('div')[3]).find('select').remove();
+							$($($(line_search)[i]).find('div')[3]).append(dictionaryNameDocument);
+						}else{
+							$($($(line_search)[i]).find('div')[3]).find('select').remove();
+							$($($(line_search)[i]).find('div')[3]).append(dictionaryOtherСriteria);
 						}
 					});
 				}
@@ -384,6 +421,10 @@
 
 				let select = $(line_search[i]).find('div')[0];
 				$(select).find('select').val('value1');
+				if ($(select).find('select').val() == 'value1') {
+					$($($(line_search)[i]).find('div')[3]).find('select').remove();
+					$($($(line_search)[i]).find('div')[3]).append(dictionaryNameDocument);
+				}
 
 				let appendDictionary = $($($(line_search)[i]).find('div')[4]);
 				let test = $($($(line_search)[i]).find('div')[4]).find('input');
@@ -461,6 +502,31 @@
 						}
 					});
 				}
+		}
+
+
+		for (let i = 0; i < $(line_search).length; i++) {
+			let search_dictionary = $(line_search[i]).find('div');
+			if ($(search_dictionary).attr('class') == 'select') {
+				var select = $(search_dictionary).find('select');
+				
+				$(select[0]).change(function (e) { 
+					e.preventDefault();
+					
+					var optionSelected = $(this).find("option:selected");
+					var valueSelected  = optionSelected.val();
+					let appendDictionary = $($($(line_search)[i]).find('div')[4]);
+					let select = $($($(line_search)[i]).find('div')[4]).find('select');
+
+					if (valueSelected == 'value1') {
+						$($($(line_search)[i]).find('div')[3]).find('select').remove();
+						$($($(line_search)[i]).find('div')[3]).append(dictionaryNameDocument);
+					}else{
+						$($($(line_search)[i]).find('div')[3]).find('select').remove();
+						$($($(line_search)[i]).find('div')[3]).append(dictionaryOtherСriteria);
+					}
+				});
+			}
 		}
 
 

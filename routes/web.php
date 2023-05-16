@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/about', [AboutController::class, 'index']);
+Route::post('/about', [AboutController::class, 'index']);
 
 Route::get('/contact', function () {
     return view('contact');

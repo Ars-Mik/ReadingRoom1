@@ -4,16 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $funds = DB::table('funds')->get();
         $geo_indices = DB::table('geo_indices')->get();
         $theme_indices = DB::table('theme_indices')->get();
         $person_indices = DB::table('person_indices')->get();
 
-        return view('about', compact(['funds', 'geo_indices', 'theme_indices', 'person_indices']));
+        $documentSelect = DB::table('documents')
+                            ->join('funds', 'documents.fund_id', '=', 'funds.id')
+                            ->select('documents.id', 'documentName', 'fileName', 'funds.numberFund', 'access')
+                            ->get();
+        
+        $documentSelectName = DB::table('documents')
+                            ->join('funds', 'documents.fund_id', '=', 'funds.id')
+                            ->where('documentName', '=', $request->input('search'))
+                            ->select('documents.id', 'documentName', 'fileName', 'funds.numberFund', 'access')
+                            ->get();
+        
+        
+       
+
+        return view('about', ['funds' => $funds, 'geo_indices' => $geo_indices, 'theme_indices' => $theme_indices, 'person_indices' => $person_indices, 'documentSelect' => $documentSelect, 'documentSelectName' => $documentSelectName]);
     }
 }
