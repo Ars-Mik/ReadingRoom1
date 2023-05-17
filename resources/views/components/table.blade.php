@@ -9,47 +9,45 @@
     </tr>
   </table>
 
+<script>
+  $(window).on("load", function() {
+    let count = 1;
 
-  <script>
-    $(window).on("load", function() {
-      $($('.pagination-result').find('p')).find('span').html({{$json[0]->max('id')}})
-      let count = 1;
-      $('.list-books').append(`
-          @foreach ($json[0] as $item)
-            <tr>
-              <td>${count++}</td>
-              <td>Ф. {{$item->numberFund}} Оп. 4 Д. 3</td>
-              <td>{{$item->numberFund}}</td>
-              <td>Ф.716 Оп. 4</td>
-              <td>{{$item->documentName}}</td>
-              <td><a href="{{$item->fileName}}">Открыть документ</a></td>
-            </tr>
-          @endforeach
-      `);
-
-      var test = <?php echo $json[1]?>;
-      if (test[0]) {     
-        $($('.pagination-result').find('p')).find('span').html({{$json[1]->max('id')}}) 
-        let count = 1;
-        $('.list-books').html(`
-          @foreach ($json[1] as $item)
-            <tr>
-              <td>${count++}</td>
-              <td>Ф. {{$item->numberFund}} Оп. 4 Д. 3</td>
-              <td>{{$item->numberFund}}</td>
-              <td>Ф.716 Оп. 4</td>
-              <td>{{$item->documentName}}</td>
-              <td><a href="{{$item->fileName}}">Открыть документ</a></td>
-            </tr>
-          @endforeach
-        `);
-      }
-    });
-  </script>
-
+    $($('.pagination-result').find('p')).find('span').html(<?php echo count($json[0])?>);
+    $('.list-books').append(`
+        @foreach ($json[0] as $item)
+          <tr>
+            <td>${count++}</td>
+            <td>Ф. {{$item->numberFund}} Оп. 4 Д. 3</td>
+            <td>{{$item->numberFund}}</td>
+            <td>Ф.716 Оп. 4</td>
+            <td>{{$item->documentName}}</td>
+            <td><a href="">Открыть документ</a></td>
+          </tr>
+        @endforeach
+    `);
     
+        
+    if ('<?php $json1 = json_encode($json[1]); echo $json1 ?>' !== '[]') {
+      $($('.pagination-result').find('p')).find('span').html(<?php echo count($json[1])?>);    
+      let count = 1;
+      $('.list-books').html(`
+        @foreach ($json[1] as $item)
+          <tr>
+            <td>${count++}</td>
+            <td>Ф. {{$item->numberFund}} Оп. 4 Д. 3</td>
+            <td>{{$item->numberFund}}</td>
+            <td>Ф.716 Оп. 4</td>
+            <td>{{$item->documentName}}</td>
+            <td><a href="{{$item->fileName}}">Открыть документ</a></td>
+          </tr>
+        @endforeach
+      `);
+    }
 
-
+  });
+</script>
+  
 
   <div class="list-pagination">
     <div class="pagination">

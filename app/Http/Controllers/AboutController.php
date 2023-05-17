@@ -20,19 +20,36 @@ class AboutController extends Controller
                             ->select('documents.id', 'documentName', 'fileName', 'funds.numberFund', 'access')
                             ->get();
         
-        if ($request->method('post')) {
-            dd($request);
-        }
+        // $documentFilter = DB::select('SELECT DISTINCT `documentName`, `fileName`, `numberFund`, `date`, `access` FROM `documents`,`funds`, `document_geo_indices`, `geo_indices`, `person_indices`,`theme_indices`,`document_theme_indices`, `document_person_indices` WHERE fund_id = funds.id AND theme_indices.id = document_theme_indices.theme_index_id AND document_theme_indices.document_id = documents.id AND theme_indices.themeName = "'.$request->input('themeName').'" AND geo_indices.geoName = "'.$request->input('geoName').'"');
 
-        $documentSelectName = DB::table('documents')
-                            ->join('funds', 'documents.fund_id', '=', 'funds.id')
-                            ->where('documentName', '=', $request->input('documentName'))
-                            ->select('documents.id', 'documentName', 'fileName', 'funds.numberFund', 'access')
-                            ->get();
-        
-        
-       
+        $documentFilter = DB::table('documents')
+                                ->join('funds', 'documents.fund_id', '=', 'funds.id')
+                                ->join('document_theme_indices', 'document_theme_indices.document_id', '=', 'documents.id')
+                                ->join('theme_indices', 'theme_indices.id', '=', 'document_theme_indices.theme_index_id')
+                                ->join('document_geo_indices', 'document_geo_indices.document_id', '=', 'documents.id')
+                                ->join('geo_indices', 'geo_indices.id', '=', 'document_geo_indices.geo_index_id')
+                                ->join('document_person_indices', 'document_person_indices.document_id', '=', 'documents.id')
+                                ->join('person_indices', 'person_indices.id', '=', 'document_person_indices.person_index_id')
+                                ->orWhere('funds.fundName', '=', $request->input('fundName'))
+                                ->orWhere('theme_indices.themeName', '=', $request->input('themeName'))
+                                ->orWhere('geo_indices.geoName', '=', $request->input('geoName'))
+                                ->orWhere('documentName', '=', $request->input('documentName'))
+                                ->orWhere('person_indices.personName', '=', $request->input('personName'))
+                                ->select('documents.id', 'documentName', 'fileName', 'funds.numberFund', 'access')
+                                ->distinct()
+                                ->get();
 
-        return view('documents', ['funds' => $funds, 'geo_indices' => $geo_indices, 'theme_indices' => $theme_indices, 'person_indices' => $person_indices, 'documentSelect' => $documentSelect, 'documentSelectName' => $documentSelectName]);
+
+            // dd($documentFilter);
+
+            // var_dump($request->input('fundName'));
+            // var_dump($request->input('themeName'));
+            // var_dump($request->input('geoName'));
+            // var_dump($request->input('documentName'));
+            // var_dump($request->input('personName'));
+
+
+        return view('documents', ['funds' => $funds, 'geo_indices' => $geo_indices, 'theme_indices' => $theme_indices, 'person_indices' => $person_indices, 'documentSelect' => $documentSelect, 'documentFilter' => $documentFilter]);
     }
 }
+

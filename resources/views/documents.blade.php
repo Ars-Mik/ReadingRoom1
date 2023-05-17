@@ -21,7 +21,7 @@
 				<h3 class="float-md-start mb-0"><img src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">Электронный каталог архивных документов Московской области</h3>
 				<nav class="nav nav-style-about">
 					<a class="nav-link text-dark fw-bold py-1 px-0" aria-current="page" href="/">Главная</a>
-					<a class="nav-link text-dark fw-bold py-1 px-0" href="about">Документы</a>
+					<a class="nav-link text-dark fw-bold py-1 px-0" href="documents">Документы</a>
 					<a class="nav-link text-dark fw-bold py-1 px-0" href="about">Помощь</a>
 					<a class="nav-link text-dark fw-bold py-1 px-0 link-auth" href="#">Войти</a>
 				</nav>
@@ -66,7 +66,7 @@
 								</div>
 							</div>
 							<div class="search-dictionary">
-								<input name="search" type="search" placeholder="Поиск...">
+								<input name="documentName" type="search" placeholder="Поиск...">
 							</div>
 							<div class="function">
 								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
@@ -74,6 +74,68 @@
 							</div>
 						</div>
 
+						<div class="line_search" id="line_2">
+							<div class="select">
+								<div class="custom-arrow">
+									<select name="" id="select_1">
+										<option value="value1" selected>Название документа </option>
+										<option value="value2" >Фонд</option>
+										<option value="value3" >Географический индекс</option>
+										<option value="value4" >Тематический индекс</option>
+										<option value="value5" >Именной индекс</option>
+									</select>
+								</div>
+							</div>
+							<div class="dictionary">
+								<div class="custom-arrow">
+									<select name="select1" id="">
+										<option value="value1" selected>Содержит</option>
+										<option value="value2" >Не содержит</option>
+										<option value="value3" >Слово начинается</option>
+										<option value="value4" >Не заполнено</option>
+									</select>
+								</div>
+							</div>
+							<div class="search-dictionary">
+								<input name="documentName" type="search" placeholder="Поиск...">
+							</div>
+							<div class="function">
+								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
+							</div>
+						</div>
+
+
+						<div class="line_search" id="line_3">
+							<div class="select">
+								<div class="custom-arrow">
+									<select name="" id="select_1">
+										<option value="value1" selected>Название документа </option>
+										<option value="value2" >Фонд</option>
+										<option value="value3" >Географический индекс</option>
+										<option value="value4" >Тематический индекс</option>
+										<option value="value5" >Именной индекс</option>
+									</select>
+								</div>
+							</div>
+							<div class="dictionary">
+								<div class="custom-arrow">
+									<select name="select1" id="">
+										<option value="value1" selected>Содержит</option>
+										<option value="value2" >Не содержит</option>
+										<option value="value3" >Слово начинается</option>
+										<option value="value4" >Не заполнено</option>
+									</select>
+								</div>
+							</div>
+							<div class="search-dictionary">
+								<input name="documentName" type="search" placeholder="Поиск...">
+							</div>
+							<div class="function">
+								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
+							</div>
+						</div>
 					</div>
 					
 					<div class="function_button mx-5">
@@ -107,7 +169,7 @@
 					<a href="#" class="next-pagination number"><img src="{{ Vite::asset('resources/img/right.svg') }}" alt="right"></a>
 				</div>
 			</div>
-			<x-table :json="array($documentSelect, $documentSelectName)"/>
+			<x-table :json="array($documentSelect, $documentFilter)"/>
 		</div>
 	</div>
 	
@@ -118,7 +180,7 @@
 
   <script>
 	$(window).on("load", function() {
-		var count = 1;
+		var count = 3;
 		var line_search = $('.line_search');
 		const from_container = $('.block-form-container');
 		var Isline_search = $('.line_search');
@@ -227,7 +289,7 @@
 					if (test.length == 0) {
 						$($($(line_search)[i]).find('div')[4]).find('select').remove();
 						$(appendDictionary).append(`
-							<input id="search" type="search" placeholder="Поиск...">
+							<input name="documentName" type="search" placeholder="Поиск...">
 						`);
 					}
 				});
@@ -254,7 +316,7 @@
 									templateSelect = `
 										<select name="fundName" id="">
 											@foreach ($funds as $fund)
-												<option value='{{$fund->id}}'>{{$fund->fundName}}</option>
+												<option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
 											@endforeach	
 										</select>
 									`;
@@ -263,7 +325,7 @@
 									templateSelect = `
 										<select name="geoName" id="">
 											@foreach ($geo_indices as $geo)
-												<option value='{{$geo->id}}'>{{$geo->geoName}}</option>
+												<option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
 											@endforeach	
 										</select>
 									`;
@@ -272,7 +334,7 @@
 									templateSelect = `
 										<select name="themeName" id="">
 											@foreach ($theme_indices as $theme)
-												<option value='{{$theme->id}}'>{{$theme->themeName}}</option>
+												<option value='{{$theme->themeName}}'>{{$theme->themeName}}</option>
 											@endforeach	
 										</select>
 									`;
@@ -281,7 +343,7 @@
 									templateSelect = `
 										<select name="personName" id="">
 											@foreach ($person_indices as $person)
-												<option value='{{$person->id}}'>{{$person->personName}}</option>
+												<option value='{{$person->personName}}'>{{$person->personName}}</option>
 											@endforeach	
 										</select>
 									`;
@@ -293,7 +355,7 @@
 							if (select.length > 0) {
 								$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								$(appendDictionary).append(`
-									<input name="search" type="search" placeholder="Поиск...">
+									<input name="documentName" type="search" placeholder="Поиск...">
 								`);
 							}
 							
@@ -369,7 +431,7 @@
 				if (test.length == 0) {
 					$($($(line_search)[i]).find('div')[4]).find('select').remove();
 					$(appendDictionary).append(`
-						<input id="search" type="search" placeholder="Поиск...">
+						<input name="documentName" type="search" placeholder="Поиск...">
 					`);
 				}
 			});
@@ -397,7 +459,7 @@
 									templateSelect = `
 										<select name="fundName" id="">
 											@foreach ($funds as $fund)
-												<option value='{{$fund->id}}'>{{$fund->fundName}}</option>
+												<option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
 											@endforeach	
 										</select>
 									`;
@@ -406,7 +468,7 @@
 									templateSelect = `
 										<select name="geoName" id="">
 											@foreach ($geo_indices as $geo)
-												<option value='{{$geo->id}}'>{{$geo->geoName}}</option>
+												<option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
 											@endforeach	
 										</select>
 									`;
@@ -415,7 +477,7 @@
 									templateSelect = `
 										<select name="themeName" id="">
 											@foreach ($theme_indices as $theme)
-												<option value='{{$theme->id}}'>{{$theme->themeName}}</option>
+												<option value='{{$theme->themeName}}'>{{$theme->themeName}}</option>
 											@endforeach	
 										</select>
 									`;
@@ -424,7 +486,7 @@
 									templateSelect = `
 										<select name="personName" id="">
 											@foreach ($person_indices as $person)
-												<option value='{{$person->id}}'>{{$person->personName}}</option>
+												<option value='{{$person->personName}}'>{{$person->personName}}</option>
 											@endforeach	
 										</select>
 									`;
@@ -435,7 +497,7 @@
 						}else{
 							$($($(line_search)[i]).find('div')[4]).find('select').remove();
 							$(appendDictionary).append(`
-								<input id="search" type="search" placeholder="Поиск...">
+								<input name="documentName" type="search" placeholder="Поиск...">
 							`);
 						}
 					});
