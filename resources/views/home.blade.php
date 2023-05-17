@@ -14,7 +14,7 @@
       
         <x-header title="Электронный архив"/>
     
-        <div class="container-fluid no-padding">
+        <div class="container-fluid no-padding" style="position: absolute;top: 50%;right: 50%;transform: translate(50%,-50%);">
           <div class="row" style="position: relative;">
             <div class="col">
               <h1 class="fs-1 m-auto mb-5">Электронный читальный зал архивных документов Московской области</h1>

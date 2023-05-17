@@ -20,15 +20,19 @@ class AboutController extends Controller
                             ->select('documents.id', 'documentName', 'fileName', 'funds.numberFund', 'access')
                             ->get();
         
+        if ($request->method('post')) {
+            dd($request);
+        }
+
         $documentSelectName = DB::table('documents')
                             ->join('funds', 'documents.fund_id', '=', 'funds.id')
-                            ->where('documentName', '=', $request->input('search'))
+                            ->where('documentName', '=', $request->input('documentName'))
                             ->select('documents.id', 'documentName', 'fileName', 'funds.numberFund', 'access')
                             ->get();
         
         
        
 
-        return view('about', ['funds' => $funds, 'geo_indices' => $geo_indices, 'theme_indices' => $theme_indices, 'person_indices' => $person_indices, 'documentSelect' => $documentSelect, 'documentSelectName' => $documentSelectName]);
+        return view('documents', ['funds' => $funds, 'geo_indices' => $geo_indices, 'theme_indices' => $theme_indices, 'person_indices' => $person_indices, 'documentSelect' => $documentSelect, 'documentSelectName' => $documentSelectName]);
     }
 }

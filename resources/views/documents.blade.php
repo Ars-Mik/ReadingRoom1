@@ -40,7 +40,7 @@
 		<div class="col">
 			<div class="Case-Block">
 				<h3 class="fs-3">Дело</h3>
-				<form class="options" action="/about" method="post">
+				<form name="form" class="options" action="/documents" method="post">
 					@csrf
 					<div class="block-form-container">
 						<div class="line_search" id="line_1">
@@ -57,69 +57,7 @@
 							</div>
 							<div class="dictionary">
 								<div class="custom-arrow">
-									<select name="" id="">
-										<option value="value1" selected>Содержит</option>
-										<option value="value2" >Не содержит</option>
-										<option value="value3" >Слово начинается</option>
-										<option value="value4" >Не заполнено</option>
-									</select>
-								</div>
-							</div>
-							<div class="search-dictionary">
-								<input name="search" type="search" placeholder="Поиск...">
-							</div>
-							<div class="function">
-								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
-								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
-							</div>
-						</div>
-
-						<div class="line_search" id="line_2">
-							<div class="select">
-								<div class="custom-arrow">
-									<select name="" id="select_2">
-										<option value="value1" selected>Название документа </option>
-										<option value="value2" >Фонд</option>
-										<option value="value3" >Географический индекс</option>
-										<option value="value4" >Тематический индекс</option>
-										<option value="value5" >Именной индекс</option>
-									</select>
-								</div>
-							</div>
-							<div class="dictionary">
-								<div class="custom-arrow">
-									<select name="" id="">
-										<option value="value1" selected>Содержит</option>
-										<option value="value2" >Не содержит</option>
-										<option value="value3" >Слово начинается</option>
-										<option value="value4" >Не заполнено</option>
-									</select>
-								</div>
-							</div>
-							<div class="search-dictionary">
-								<input name="search" type="search" placeholder="Поиск...">
-							</div>
-							<div class="function">
-								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
-								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
-							</div>
-						</div>
-
-						<div class="line_search" id="line_3">
-							<div class="select">
-								<div class="custom-arrow">
-									<select name="" id="select_3">
-										<option value="value1" selected>Название документа </option>
-										<option value="value2" >Фонд</option>
-										<option value="value3" >Географический индекс</option>
-										<option value="value4" >Тематический индекс</option>
-										<option value="value5" >Именной индекс</option>		
-									</select>
-								</div>
-							</div>
-							<div class="dictionary">
-								<div class="custom-arrow">
-									<select name="" id="">
+									<select name="select1" id="">
 										<option value="value1" selected>Содержит</option>
 										<option value="value2" >Не содержит</option>
 										<option value="value3" >Слово начинается</option>
@@ -138,7 +76,7 @@
 
 					</div>
 					
-					<div class="function_button mx-4">
+					<div class="function_button mx-5">
 						<a href="#" class="btn btn-outline-primary btn-lg btn-category" id="add_category">Добавить новый критерий</a>
 						<input class="btn btn-primary btn-lg btn-search" id="search" type="submit" value="Поиск">
 					</div>
@@ -153,7 +91,7 @@
 	<div class="row">
 		<div class="col">
 			<div class="pagination-result">
-				<p>Найдено объектов: <span></span></p>
+				<p>Найдено объектов: <span>0</span></p>
 
 				<div class="pagination">
 					<span class="previous-pagination number"><img src="{{ Vite::asset('resources/img/left.svg') }}" alt="left"></span>
@@ -180,7 +118,7 @@
 
   <script>
 	$(window).on("load", function() {
-		var count = 3;
+		var count = 1;
 		var line_search = $('.line_search');
 		const from_container = $('.block-form-container');
 		var Isline_search = $('.line_search');
@@ -228,7 +166,7 @@
 						</div>
 					</div>
 					<div class="search-dictionary">
-						<input name="search" type="search" placeholder="Поиск...">
+						<input name="documentName" type="search" placeholder="Поиск...">
 					</div>
 					<div class="function">
 						<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
@@ -247,13 +185,11 @@
 					e.preventDefault();
 					
 					$(line_search[i]).remove();
-					Isline_search = $('.line_search');
-					if (Isline_search.length === 0) {
+					count = 0;
+					let Isline_search = $('.line_search');
+					if (Isline_search.length == 0) {
 						from_container.append('<span>Нажмите на кнопку "Добавить новый критерий" чтобы появилось поле выбора.</span>');
-						console.log(Isline_search.length);
 					}
-
-					return true;
 				});
 			
 			}
@@ -316,7 +252,7 @@
 
 								if (valueSelected == 'value2') {
 									templateSelect = `
-										<select name="" id="">
+										<select name="fundName" id="">
 											@foreach ($funds as $fund)
 												<option value='{{$fund->id}}'>{{$fund->fundName}}</option>
 											@endforeach	
@@ -325,7 +261,7 @@
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if (valueSelected == 'value3') {
 									templateSelect = `
-										<select name="" id="">
+										<select name="geoName" id="">
 											@foreach ($geo_indices as $geo)
 												<option value='{{$geo->id}}'>{{$geo->geoName}}</option>
 											@endforeach	
@@ -334,7 +270,7 @@
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if (valueSelected == 'value4'){
 									templateSelect = `
-										<select name="" id="">
+										<select name="themeName" id="">
 											@foreach ($theme_indices as $theme)
 												<option value='{{$theme->id}}'>{{$theme->themeName}}</option>
 											@endforeach	
@@ -343,7 +279,7 @@
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if(valueSelected == 'value5'){
 									templateSelect = `
-										<select name="" id="">
+										<select name="personName" id="">
 											@foreach ($person_indices as $person)
 												<option value='{{$person->id}}'>{{$person->personName}}</option>
 											@endforeach	
@@ -399,13 +335,15 @@
 				e.preventDefault();
 				
 				$(line_search[i]).remove();
+				count = 0;
 				var Isline_search = $('.line_search');
-				if (Isline_search.length == 0) {
+				console.log(Isline_search);
+				if (Isline_search.length == 0 && Isline_search != false) {
 					from_container.append('<span>Нажмите на кнопку "Добавить новый критерий" чтобы появилось поле выбора.</span>');
+					Isline_search = false;
 					console.log(Isline_search.length);
 				}
 			});
-			
 		}
 
 		//очистка поля критерий
@@ -457,7 +395,7 @@
 
 								if (valueSelected == 'value2') {
 									templateSelect = `
-										<select name="" id="">
+										<select name="fundName" id="">
 											@foreach ($funds as $fund)
 												<option value='{{$fund->id}}'>{{$fund->fundName}}</option>
 											@endforeach	
@@ -466,7 +404,7 @@
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if (valueSelected == 'value3') {
 									templateSelect = `
-										<select name="" id="">
+										<select name="geoName" id="">
 											@foreach ($geo_indices as $geo)
 												<option value='{{$geo->id}}'>{{$geo->geoName}}</option>
 											@endforeach	
@@ -475,7 +413,7 @@
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if (valueSelected == 'value4'){
 									templateSelect = `
-										<select name="" id="">
+										<select name="themeName" id="">
 											@foreach ($theme_indices as $theme)
 												<option value='{{$theme->id}}'>{{$theme->themeName}}</option>
 											@endforeach	
@@ -484,7 +422,7 @@
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if(valueSelected == 'value5'){
 									templateSelect = `
-										<select name="" id="">
+										<select name="personName" id="">
 											@foreach ($person_indices as $person)
 												<option value='{{$person->id}}'>{{$person->personName}}</option>
 											@endforeach	

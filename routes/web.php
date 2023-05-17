@@ -18,8 +18,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/about', [AboutController::class, 'index']);
-Route::post('/about', [AboutController::class, 'index']);
+Route::get('/documents', [AboutController::class, 'index']);
+Route::post('/documents', [AboutController::class, 'index']);
 
 Route::get('/contact', function () {
     return view('contact');

@@ -12,7 +12,7 @@
 
   <script>
     $(window).on("load", function() {
-      $($('.pagination-result').find('p')).find('span').append({{$json[0]->max('id')}})
+      $($('.pagination-result').find('p')).find('span').html({{$json[0]->max('id')}})
       let count = 1;
       $('.list-books').append(`
           @foreach ($json[0] as $item)
@@ -28,7 +28,8 @@
       `);
 
       var test = <?php echo $json[1]?>;
-      if (test[0]) {      
+      if (test[0]) {     
+        $($('.pagination-result').find('p')).find('span').html({{$json[1]->max('id')}}) 
         let count = 1;
         $('.list-books').html(`
           @foreach ($json[1] as $item)
