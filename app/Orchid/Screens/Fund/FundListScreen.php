@@ -40,7 +40,7 @@ class FundListScreen extends Screen
 
             Layout::modal('createFund', Layout::rows([
                 Input::make('fund.fundName')->required()->title('Название фонда'),
-                Input::make('fund.numberFund')->required()->title('Номер фонда')                
+                Input::make('fund.numberFund')->required()->title('Номер фонда')
             ]))->title('Создание фонда')->applyButton('Создать'),
 
             Layout::modal('editFund', Layout::rows([
@@ -63,7 +63,7 @@ class FundListScreen extends Screen
             'id' => $fundId
         ], $request->validated()['fund']);
 
-        is_null($fundId) ? Toast::info('Фонд добавлен') : ('Фонд обновлён');
+        is_null($fundId) ? Toast::info('Фонд добавлен') : Toast::info('Фонд обновлён');
     }
 
     public function removeFund(Request $request): void

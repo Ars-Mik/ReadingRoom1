@@ -26,13 +26,13 @@
           </tr>
         @endforeach
     `);
-    
-        
-    if ('<?php $json1 = json_encode($json[1]); echo $json1 ?>' !== '[]') {
-      $($('.pagination-result').find('p')).find('span').html(<?php echo count($json[1])?>);    
+
+
+    if ('<?php $json0 = json_encode($json[0]); echo $json0 ?>' !== '[]') {
+      $($('.pagination-result').find('p')).find('span').html(<?php echo count($json[0])?>);
       let count = 1;
       $('.list-books').html(`
-        @foreach ($json[1] as $item)
+        @foreach ($json[0] as $item)
           <tr>
             <td>${count++}</td>
             <td>Ф. {{$item->numberFund}} Оп. 4 Д. 3</td>
@@ -47,7 +47,7 @@
 
   });
 </script>
-  
+
 
   <div class="list-pagination">
     <div class="pagination">

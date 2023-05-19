@@ -10,7 +10,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	  
+
   </head>
 
   <body class="text-center h-100">
@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col">
 			<header class="header_menu_about">
-				<h3 class="float-md-start mb-0"><img src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">Электронный каталог архивных документов Московской области</h3>
+				<h3 class="float-md-start mb-0"><img src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">Электронный каталог архивных документов Астраханской области</h3>
 				<nav class="nav nav-style-about">
 					<a class="nav-link text-dark fw-bold py-1 px-0" aria-current="page" href="/">Главная</a>
 					<a class="nav-link text-dark fw-bold py-1 px-0" href="documents">Документы</a>
@@ -32,16 +32,15 @@
 				</div>
 			</div>
 			</div>
-		</div>	
+		</div>
     </div>
-  
-  
+
+
 	<div class="row">
 		<div class="col">
 			<div class="Case-Block">
 				<h3 class="fs-3">Дело</h3>
-				<form name="form" class="options" action="/documents" method="post">
-					@csrf
+				<form name="form" class="options" action="/documents" method="get">
 					<div class="block-form-container">
 						<div class="line_search" id="line_1">
 							<div class="select">
@@ -137,7 +136,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="function_button mx-5">
 						<a href="#" class="btn btn-outline-primary btn-lg btn-category" id="add_category">Добавить новый критерий</a>
 						<input class="btn btn-primary btn-lg btn-search" id="search" type="submit" value="Поиск">
@@ -164,16 +163,16 @@
 						<a href="#" class="number">4</a>
 						<a href="#" class="number">5</a>
 						<span href="#" class="dots number">...</span>
-						<a href="#" class="number">99</a>
+						<a href="{{$documentFilter->url($documentFilter->lastPage())}}" class="number">{{ $documentFilter->lastPage()}}</a>
 					</div>
 					<a href="#" class="next-pagination number"><img src="{{ Vite::asset('resources/img/right.svg') }}" alt="right"></a>
 				</div>
 			</div>
-			<x-table :json="array($documentSelect, $documentFilter)"/>
+			<x-table :json="array($documentFilter)"/>
 		</div>
 	</div>
-	
-	
+
+
   <footer class="footer">
     <x-footer/>
   </footer>
@@ -243,9 +242,9 @@
 			var line_search = $('.line_search');
 			for (let i = 0; i < line_search.length; i++) {
 				const btn_trush = $(line_search[i]).find('a');
-				$(btn_trush[1]).click(function (e) { 
+				$(btn_trush[1]).click(function (e) {
 					e.preventDefault();
-					
+
 					$(line_search[i]).remove();
 					count = 0;
 					let Isline_search = $('.line_search');
@@ -253,13 +252,13 @@
 						from_container.append('<span>Нажмите на кнопку "Добавить новый критерий" чтобы появилось поле выбора.</span>');
 					}
 				});
-			
+
 			}
-			
+
 			//очистка поля критерий
 			for (let i = 0; i < line_search.length; i++) {
 				const btn_trush = $(line_search[i]).find('a');
-				$(btn_trush[0]).click(function (e) { 
+				$(btn_trush[0]).click(function (e) {
 					e.preventDefault();
 					let search = $(line_search[i]).find('div')[4];
 					$(search).find('input').val('');
@@ -269,7 +268,7 @@
 			//очистка поля критерий
 			for (let i = 0; i < line_search.length; i++) {
 				const btn_trush = $(line_search[i]).find('a');
-				$(btn_trush[0]).click(function (e) { 
+				$(btn_trush[0]).click(function (e) {
 					e.preventDefault();
 					let search = $(line_search[i]).find('div')[4];
 					$(search).find('input').val('');
@@ -300,10 +299,10 @@
 				let search_dictionary = $(line_search[i]).find('div');
 				if ($(search_dictionary).attr('class') == 'select') {
 					var select = $(search_dictionary).find('select');
-					
-					$(select[0]).change(function (e) { 
+
+					$(select[0]).change(function (e) {
 						e.preventDefault();
-						
+
 						var optionSelected = $(this).find("option:selected");
 						var valueSelected  = optionSelected.val();
 						let appendDictionary = $($($(line_search)[i]).find('div')[4]);
@@ -314,51 +313,51 @@
 
 								if (valueSelected == 'value2') {
 									templateSelect = `
-										<select name="fundName" id="">
+										<select name="fundName[]" id="">
 											@foreach ($funds as $fund)
 												<option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
-											@endforeach	
+											@endforeach
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if (valueSelected == 'value3') {
 									templateSelect = `
-										<select name="geoName" id="">
+										<select name="geoName[]" id="">
 											@foreach ($geo_indices as $geo)
 												<option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
-											@endforeach	
+											@endforeach
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if (valueSelected == 'value4'){
 									templateSelect = `
-										<select name="themeName" id="">
+										<select name="themeName[]" id="">
 											@foreach ($theme_indices as $theme)
 												<option value='{{$theme->themeName}}'>{{$theme->themeName}}</option>
-											@endforeach	
+											@endforeach
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if(valueSelected == 'value5'){
 									templateSelect = `
-										<select name="personName" id="">
+										<select name="personName[]" id="">
 											@foreach ($person_indices as $person)
 												<option value='{{$person->personName}}'>{{$person->personName}}</option>
-											@endforeach	
+											@endforeach
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								}
-								
+
 								$(appendDictionary).append(templateSelect);
 						}else{
 							if (select.length > 0) {
 								$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								$(appendDictionary).append(`
-									<input name="documentName" type="search" placeholder="Поиск...">
+									<input name="documentName[]" type="search" placeholder="Поиск...">
 								`);
 							}
-							
+
 						}
 					});
 				}
@@ -368,10 +367,10 @@
 				let search_dictionary = $(line_search[i]).find('div');
 				if ($(search_dictionary).attr('class') == 'select') {
 					var select = $(search_dictionary).find('select');
-					
-					$(select[0]).change(function (e) { 
+
+					$(select[0]).change(function (e) {
 						e.preventDefault();
-						
+
 						var optionSelected = $(this).find("option:selected");
 						var valueSelected  = optionSelected.val();
 						let appendDictionary = $($($(line_search)[i]).find('div')[4]);
@@ -393,9 +392,9 @@
 		for (let i = 0; i < line_search.length; i++) {
 
 			const btn_trush = $(line_search[i]).find('a');
-			$(btn_trush[1]).click(function (e) { 
+			$(btn_trush[1]).click(function (e) {
 				e.preventDefault();
-				
+
 				$(line_search[i]).remove();
 				count = 0;
 				var Isline_search = $('.line_search');
@@ -411,7 +410,7 @@
 		//очистка поля критерий
 		for (let i = 0; i < line_search.length; i++) {
 			const btn_trush = $(line_search[i]).find('a');
-			$(btn_trush[0]).click(function (e) { 
+			$(btn_trush[0]).click(function (e) {
 				e.preventDefault();
 				let search = $(line_search[i]).find('div')[4];
 				$(search).find('input').val('');
@@ -442,10 +441,10 @@
 			let search_dictionary = $(line_search[i]).find('div');
 				if ($(search_dictionary).attr('class') == 'select') {
 					var select = $(search_dictionary).find('select');
-					
-					$(select[0]).change(function (e) { 
+
+					$(select[0]).change(function (e) {
 						e.preventDefault();
-						
+
 						var optionSelected = $(this).find("option:selected");
 						var valueSelected  = optionSelected.val();
 						let appendDictionary = $($($(line_search)[i]).find('div')[4]);
@@ -457,47 +456,47 @@
 
 								if (valueSelected == 'value2') {
 									templateSelect = `
-										<select name="fundName" id="">
+										<select name="fundName[]" id="">
 											@foreach ($funds as $fund)
 												<option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
-											@endforeach	
+											@endforeach
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if (valueSelected == 'value3') {
 									templateSelect = `
-										<select name="geoName" id="">
+										<select name="geoName[]" id="">
 											@foreach ($geo_indices as $geo)
 												<option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
-											@endforeach	
+											@endforeach
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if (valueSelected == 'value4'){
 									templateSelect = `
-										<select name="themeName" id="">
+										<select name="themeName[]" id="">
 											@foreach ($theme_indices as $theme)
 												<option value='{{$theme->themeName}}'>{{$theme->themeName}}</option>
-											@endforeach	
+											@endforeach
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								} else if(valueSelected == 'value5'){
 									templateSelect = `
-										<select name="personName" id="">
+										<select name="personName[]" id="">
 											@foreach ($person_indices as $person)
 												<option value='{{$person->personName}}'>{{$person->personName}}</option>
-											@endforeach	
+											@endforeach
 										</select>
 									`;
 									$($($(line_search)[i]).find('div')[4]).find('select').remove();
 								}
-								
+
 								$(appendDictionary).append(templateSelect);
 						}else{
 							$($($(line_search)[i]).find('div')[4]).find('select').remove();
 							$(appendDictionary).append(`
-								<input name="documentName" type="search" placeholder="Поиск...">
+								<input name="documentName[]" type="search" placeholder="Поиск...">
 							`);
 						}
 					});
@@ -509,10 +508,10 @@
 			let search_dictionary = $(line_search[i]).find('div');
 			if ($(search_dictionary).attr('class') == 'select') {
 				var select = $(search_dictionary).find('select');
-				
-				$(select[0]).change(function (e) { 
+
+				$(select[0]).change(function (e) {
 					e.preventDefault();
-					
+
 					var optionSelected = $(this).find("option:selected");
 					var valueSelected  = optionSelected.val();
 					let appendDictionary = $($($(line_search)[i]).find('div')[4]);
@@ -532,7 +531,7 @@
 
 	});
   </script>
- 
+
 
   </body>
 </html>

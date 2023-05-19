@@ -61,7 +61,7 @@ class GeoIndexListScreen extends Screen
             'id' => $geoIndexId
         ], $request->validated()['geoIndex']);
 
-        is_null($geoIndexId) ? Toast::info('Географический индекс добавлен') : ('Географический индекс обновлён');
+        is_null($geoIndexId) ? Toast::info('Географический индекс добавлен') : Toast::info('Географический индекс обновлён');
     }
 
     public function removeGeoIndex(Request $request): void

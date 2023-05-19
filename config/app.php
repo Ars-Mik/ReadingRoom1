@@ -194,6 +194,7 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
@@ -210,9 +211,11 @@ return [
     |
     */
 
-    
+
+
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

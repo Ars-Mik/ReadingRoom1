@@ -61,7 +61,7 @@ class PersonIndexListScreen extends Screen
             'id' => $personIndexId
         ], $request->validated()['personIndex']);
 
-        is_null($personIndexId) ? Toast::info('Именной индекс добавлен') : ('Именной индекс обновлён');
+        is_null($personIndexId) ? Toast::info('Именной индекс добавлен') : Toast::info('Именной индекс обновлён');
     }
 
     public function removePersonIndex(Request $request): void
