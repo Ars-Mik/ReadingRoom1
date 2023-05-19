@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col">
 			<header class="header_menu_about">
-				<h3 class="float-md-start mb-0"><img src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">Электронный каталог архивных документов Астраханской области</h3>
+				<h3 class="float-md-start mb-0"><img src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">Электронный каталог архивных документов Московская область</h3>
 				<nav class="nav nav-style-about">
 					<a class="nav-link text-dark fw-bold py-1 px-0" aria-current="page" href="/">Главная</a>
 					<a class="nav-link text-dark fw-bold py-1 px-0" href="documents">Документы</a>
@@ -162,7 +162,7 @@
 						<a href="#" class="number">3</a>
 						<a href="#" class="number">4</a>
 						<a href="#" class="number">5</a>
-						<span href="#" class="dots number">...</span>
+						<span class="dots number">...</span>
 						<a href="{{$documentFilter->url($documentFilter->lastPage())}}" class="number">{{ $documentFilter->lastPage()}}</a>
 					</div>
 					<a href="#" class="next-pagination number"><img src="{{ Vite::asset('resources/img/right.svg') }}" alt="right"></a>

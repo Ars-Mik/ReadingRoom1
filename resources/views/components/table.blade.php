@@ -7,7 +7,7 @@
       <th>Заголовок</th>
       <th>Действие</th>
     </tr>
-  </table>
+</table>
 
 <script>
   $(window).on("load", function() {
@@ -18,33 +18,14 @@
         @foreach ($json[0] as $item)
           <tr>
             <td>${count++}</td>
-            <td>Ф. {{$item->numberFund}} Оп. 4 Д. 3</td>
-            <td>{{$item->numberFund}}</td>
-            <td>Ф.716 Оп. 4</td>
+            <td>Ф. {{$item->fund->numberFund}} Оп. 4 Д. 3</td>
+            <td>{{$item->fund->numberFund}}</td>
+            <td>Ф.{{$item->fund->numberFund}} Оп. 4</td>
             <td>{{$item->documentName}}</td>
-            <td><a href="">Открыть документ</a></td>
+            <td><a href="{{ asset('/storage/pdf/') }}/{{$item->fileName}}" target="_blank">Открыть документ</a></td>
           </tr>
         @endforeach
     `);
-
-
-    if ('<?php $json0 = json_encode($json[0]); echo $json0 ?>' !== '[]') {
-      $($('.pagination-result').find('p')).find('span').html(<?php echo count($json[0])?>);
-      let count = 1;
-      $('.list-books').html(`
-        @foreach ($json[0] as $item)
-          <tr>
-            <td>${count++}</td>
-            <td>Ф. {{$item->numberFund}} Оп. 4 Д. 3</td>
-            <td>{{$item->numberFund}}</td>
-            <td>Ф.716 Оп. 4</td>
-            <td>{{$item->documentName}}</td>
-            <td><a href="{{$item->fileName}}">Открыть документ</a></td>
-          </tr>
-        @endforeach
-      `);
-    }
-
   });
 </script>
 

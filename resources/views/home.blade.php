@@ -17,7 +17,7 @@
         <div class="container-fluid no-padding" style="position: absolute;top: 50%;right: 50%;transform: translate(50%,-50%);">
           <div class="row" style="position: relative;">
             <div class="col">
-              <h1 class="fs-1 m-auto mb-5">Электронный читальный зал архивных документов Астраханской области</h1>
+              <h1 class="fs-1 m-auto mb-5">Электронный читальный зал архивных документов Московская область</h1>
               <p class="lead btn-center">
                 <a href="documents" class="btn btn-lg rounded-pill btn-size btn-primary">Перейти к просмотру документов</a>
               </p>

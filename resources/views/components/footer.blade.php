@@ -11,7 +11,7 @@
     <a class="mail_href" href="mailto:msk.archiv@mail.com">Техническая поддержка
 </a>
     <div class="address">
-    support@astrobl.ru
+        msk.archiv@mail.com
     </div>
     <div class="social_network">
             <a href="#!"  style="text-decoration: none;">Vkontakte</a>
