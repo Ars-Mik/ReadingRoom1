@@ -10,17 +10,6 @@
             <a class="nav-link fw-bold py-1 px-0" href="#">Контакты</a>
           </nav>
       </header>
-
-      @if ($search == 'true')
-        <div class="search">
-          <form id="search" class="form-search">
-            <input class="input-search" type="text" placeholder="Поиск..." value="">
-            <button class="icon-search" type="submit" value=""><i class="bi bi-search"></i></button>
-          </form>
-          <button class="submit-search">Расширенный поиск</button>
-        </div>
-      @endif
-
       </div>
     </div>
 

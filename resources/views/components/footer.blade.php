@@ -3,15 +3,16 @@
         электронный архив
     </div>
     <div class="description">
+        какой-то крутой текст для описания архива в двух словах
     </div>
 </div>
 
 
 <div class="info">
-    <a class="mail_href" href="mailto:msk.archiv@mail.com">Техническая поддержка
+    <a class="mail_href" href="mailto:msk.archiv@mail.com">msk.archiv@mail.com
 </a>
     <div class="address">
-        msk.archiv@mail.com
+        Москва, улица какая-то там 25
     </div>
     <div class="social_network">
             <a href="#!"  style="text-decoration: none;">Vkontakte</a>

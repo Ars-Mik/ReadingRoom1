@@ -238,18 +238,23 @@ body {
 .footer{
 	display: flex;
 	justify-content: space-around;
-    padding: 50px 0;
-    background: #F2F4FA;
+  padding: 50px 0;
+  background: #292929;
+  color: #fff;
 	align-items: center;
 	height: 400px;
 }
+
+.footer a{
+  color: #FFF;
+}
+
 .title_footer{
 	font-style: normal;
 	font-weight: 700;
 	font-size: 50px;
 	line-height: 77px;
 	letter-spacing: -0.1em;
-	color: #323543;
 }
 .description{
 	width: 281px;
@@ -258,7 +263,6 @@ body {
 	font-size: 15px;
 	line-height: 170%;
 	text-align: left;
-	color: #686F81;
 }
 .info{
 	padding-left: 129px;
@@ -275,14 +279,12 @@ body {
 	font-size: 24px;
 	line-height: 30px;
 	text-decoration-line: underline;
-	color: #323543;
 	transition: color 0.5s ease-in-out;
 }
 
 .address{
 	font-size: 15px;
 	line-height: 170%;
-	color: #686F81;
 }
 
 .social_network {
@@ -297,7 +299,6 @@ body {
 	font-size: 15px;
 	line-height: 18px;
 	text-transform: uppercase;
-	color: #323543;
 	transition: color 0.5s ease-in-out;
 }
 

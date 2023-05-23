@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <meta name="csrf-token" content="{{ csrf_token() }}" />
-      @vite(['resources/js/app.js'])
-      <title>Электронный архив</title>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-	  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
+	@vite(['resources/js/app.js'])
+	<title>Электронный архив</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   </head>
 
   <body class="text-center h-100">
@@ -23,8 +22,12 @@
 					<a class="nav-link text-dark fw-bold py-1 px-0" aria-current="page" href="/">Главная</a>
 					<a class="nav-link text-dark fw-bold py-1 px-0" href="documents">Документы</a>
 					<a class="nav-link text-dark fw-bold py-1 px-0" href="about">Помощь</a>
-					<a class="nav-link text-dark fw-bold py-1 px-0 link-auth" href="#">Войти</a>
+					<a class="nav-link text-dark fw-bold py-1 px-0 link-auth"  href="#">Войти</a>
+					<a class="nav-link text-dark fw-bold py-1 px-0 burger" id="burger" href="javascript://"><i class="bi bi-list"></i></a>
 				</nav>
+				<div class="burger-menu burger-menu-hidden">
+					<a href="admin"><img src="{{ Vite::asset('resources/img/admin_panel.svg') }}" alt="admin_panel"> Вход для администратора</a>
+				</div>
 			</header>
 			<div class="logo_banner">
 				<div class="box-text">
@@ -54,22 +57,12 @@
 									</select>
 								</div>
 							</div>
-							<div class="dictionary">
-								<div class="custom-arrow">
-									<select name="select1" id="">
-										<option value="value1" selected>Содержит</option>
-										<option value="value2" >Не содержит</option>
-										<option value="value3" >Слово начинается</option>
-										<option value="value4" >Не заполнено</option>
-									</select>
-								</div>
-							</div>
 							<div class="search-dictionary">
 								<input name="documentName" type="search" placeholder="Поиск...">
 							</div>
 							<div class="function">
-								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
-								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
+								<a href="javascript://" id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+								<a href="javascript://" id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
 							</div>
 						</div>
 
@@ -85,22 +78,12 @@
 									</select>
 								</div>
 							</div>
-							<div class="dictionary">
-								<div class="custom-arrow">
-									<select name="select1" id="">
-										<option value="value1" selected>Содержит</option>
-										<option value="value2" >Не содержит</option>
-										<option value="value3" >Слово начинается</option>
-										<option value="value4" >Не заполнено</option>
-									</select>
-								</div>
-							</div>
 							<div class="search-dictionary">
 								<input name="documentName" type="search" placeholder="Поиск...">
 							</div>
 							<div class="function">
-								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
-								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
+								<a href="javascript://" id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+								<a href="javascript://" id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
 							</div>
 						</div>
 
@@ -117,22 +100,12 @@
 									</select>
 								</div>
 							</div>
-							<div class="dictionary">
-								<div class="custom-arrow">
-									<select name="select1" id="">
-										<option value="value1" selected>Содержит</option>
-										<option value="value2" >Не содержит</option>
-										<option value="value3" >Слово начинается</option>
-										<option value="value4" >Не заполнено</option>
-									</select>
-								</div>
-							</div>
 							<div class="search-dictionary">
 								<input name="documentName" type="search" placeholder="Поиск...">
 							</div>
 							<div class="function">
-								<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
-								<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
+								<a href="javascript://" id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+								<a href="javascript://" id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
 							</div>
 						</div>
 					</div>
@@ -183,19 +156,6 @@
 		var line_search = $('.line_search');
 		const from_container = $('.block-form-container');
 		var Isline_search = $('.line_search');
-		var dictionaryNameDocument = `
-		<select name="" id="">
-			<option value="value1" selected>Содержит</option>
-			<option value="value2" >Не содержит</option>
-			<option value="value3" >Слово начинается</option>
-			<option value="value4" >Не заполнено</option>
-		</select>`;
-
-		var dictionaryOtherСriteria = `
-		<select name="" id="">
-			<option value="value2" >Равно</option>
-			<option value="value3" >Не равно</option>
-		</select>`;
 
 		//добавление новых критерий
 		$('#add_category').click((e) =>{
@@ -216,22 +176,12 @@
 							</select>
 						</div>
 					</div>
-					<div class="dictionary">
-						<div class="custom-arrow">
-							<select name="" id="">
-								<option value="value1" selected>Содержит</option>
-								<option value="value2" >Не содержит</option>
-								<option value="value3" >Слово начинается</option>
-								<option value="value4" >Не заполнено</option>
-							</select>
-						</div>
-					</div>
 					<div class="search-dictionary">
 						<input name="documentName" type="search" placeholder="Поиск...">
 					</div>
 					<div class="function">
-						<a id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
-						<a id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
+						<a href="javascript://" id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+						<a href="javascript://" id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
 					</div>
 				</div>
 				`
@@ -260,7 +210,7 @@
 				const btn_trush = $(line_search[i]).find('a');
 				$(btn_trush[0]).click(function (e) {
 					e.preventDefault();
-					let search = $(line_search[i]).find('div')[4];
+					let search = $(line_search[i]).find('div')[2];
 					$(search).find('input').val('');
 				});
 			}
@@ -305,83 +255,63 @@
 
 						var optionSelected = $(this).find("option:selected");
 						var valueSelected  = optionSelected.val();
-						let appendDictionary = $($($(line_search)[i]).find('div')[4]);
-						let select = $($($(line_search)[i]).find('div')[4]).find('select');
+						let appendDictionary = $($($(line_search)[i]).find('div')[2]);
+						let select = $($($(line_search)[i]).find('div')[2]).find('select');
 						if (valueSelected !== 'value1') {
-							$($($(line_search)[i]).find('div')[4]).find('input').remove();
+							$($($(line_search)[i]).find('div')[2]).find('input').remove();
 								let templateSelect = '';
 
 								if (valueSelected == 'value2') {
 									templateSelect = `
-										<select name="fundName[]" id="">
+										<select name="fundName[]" required>
+											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($funds as $fund)
 												<option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
 											@endforeach
 										</select>
 									`;
-									$($($(line_search)[i]).find('div')[4]).find('select').remove();
+									$($($(line_search)[i]).find('div')[2]).find('select').remove();
 								} else if (valueSelected == 'value3') {
 									templateSelect = `
-										<select name="geoName[]" id="">
+										<select name="geoName[]" required>
+											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($geo_indices as $geo)
 												<option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
 											@endforeach
 										</select>
 									`;
-									$($($(line_search)[i]).find('div')[4]).find('select').remove();
+									$($($(line_search)[i]).find('div')[2]).find('select').remove();
 								} else if (valueSelected == 'value4'){
 									templateSelect = `
-										<select name="themeName[]" id="">
+										<select name="themeName[]" required>
+											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($theme_indices as $theme)
 												<option value='{{$theme->themeName}}'>{{$theme->themeName}}</option>
 											@endforeach
 										</select>
 									`;
-									$($($(line_search)[i]).find('div')[4]).find('select').remove();
+									$($($(line_search)[i]).find('div')[2]).find('select').remove();
 								} else if(valueSelected == 'value5'){
 									templateSelect = `
-										<select name="personName[]" id="">
+										<select name="personName[]" required>
+											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($person_indices as $person)
 												<option value='{{$person->personName}}'>{{$person->personName}}</option>
 											@endforeach
 										</select>
 									`;
-									$($($(line_search)[i]).find('div')[4]).find('select').remove();
+									$($($(line_search)[i]).find('div')[2]).find('select').remove();
 								}
 
 								$(appendDictionary).append(templateSelect);
 						}else{
 							if (select.length > 0) {
-								$($($(line_search)[i]).find('div')[4]).find('select').remove();
+								$($($(line_search)[i]).find('div')[2]).find('select').remove();
 								$(appendDictionary).append(`
 									<input name="documentName[]" type="search" placeholder="Поиск...">
 								`);
 							}
 
-						}
-					});
-				}
-			}
-
-			for (let i = 0; i < $(line_search).length; i++) {
-				let search_dictionary = $(line_search[i]).find('div');
-				if ($(search_dictionary).attr('class') == 'select') {
-					var select = $(search_dictionary).find('select');
-
-					$(select[0]).change(function (e) {
-						e.preventDefault();
-
-						var optionSelected = $(this).find("option:selected");
-						var valueSelected  = optionSelected.val();
-						let appendDictionary = $($($(line_search)[i]).find('div')[4]);
-						let select = $($($(line_search)[i]).find('div')[4]).find('select');
-
-						if (valueSelected == 'value1') {
-							$($($(line_search)[i]).find('div')[3]).find('select').remove();
-							$($($(line_search)[i]).find('div')[3]).append(dictionaryNameDocument);
-						}else{
-							$($($(line_search)[i]).find('div')[3]).find('select').remove();
-							$($($(line_search)[i]).find('div')[3]).append(dictionaryOtherСriteria);
 						}
 					});
 				}
@@ -412,7 +342,7 @@
 			const btn_trush = $(line_search[i]).find('a');
 			$(btn_trush[0]).click(function (e) {
 				e.preventDefault();
-				let search = $(line_search[i]).find('div')[4];
+				let search = $(line_search[i]).find('div')[2];
 				$(search).find('input').val('');
 
 				let select_fond = $(line_search[i]).find('div')[2];
@@ -420,15 +350,15 @@
 
 				let select = $(line_search[i]).find('div')[0];
 				$(select).find('select').val('value1');
-				if ($(select).find('select').val() == 'value1') {
-					$($($(line_search)[i]).find('div')[3]).find('select').remove();
-					$($($(line_search)[i]).find('div')[3]).append(dictionaryNameDocument);
-				}
+				// if ($(select).find('select').val() == 'value1') {
+				// 	$($($(line_search)[i]).find('div')[3]).find('select').remove();
+				// 	$($($(line_search)[i]).find('div')[3]).append(dictionaryNameDocument);
+				// }
 
-				let appendDictionary = $($($(line_search)[i]).find('div')[4]);
-				let test = $($($(line_search)[i]).find('div')[4]).find('input');
+				let appendDictionary = $($($(line_search)[i]).find('div')[2]);
+				let test = $($($(line_search)[i]).find('div')[2]).find('input');
 				if (test.length == 0) {
-					$($($(line_search)[i]).find('div')[4]).find('select').remove();
+					$($($(line_search)[i]).find('div')[2]).find('select').remove();
 					$(appendDictionary).append(`
 						<input name="documentName[]" type="search" placeholder="Поиск...">
 					`);
@@ -447,54 +377,58 @@
 
 						var optionSelected = $(this).find("option:selected");
 						var valueSelected  = optionSelected.val();
-						let appendDictionary = $($($(line_search)[i]).find('div')[4]);
-						let select = $($($(line_search)[i]).find('div')[4]).find('select');
+						let appendDictionary = $($($(line_search)[i]).find('div')[2]);
+						let select = $($($(line_search)[i]).find('div')[2]).find('select');
 
 						if (valueSelected !== 'value1') {
-							$($($(line_search)[i]).find('div')[4]).find('input').remove();
+							$($($(line_search)[i]).find('div')[2]).find('input').remove();
 								let templateSelect = '';
 
 								if (valueSelected == 'value2') {
 									templateSelect = `
-										<select name="fundName[]" id="">
+										<select name="fundName[]" required>
+											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($funds as $fund)
 												<option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
 											@endforeach
 										</select>
 									`;
-									$($($(line_search)[i]).find('div')[4]).find('select').remove();
+									$($($(line_search)[i]).find('div')[2]).find('select').remove();
 								} else if (valueSelected == 'value3') {
 									templateSelect = `
-										<select name="geoName[]" id="">
+										<select name="geoName[]" required>
+											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($geo_indices as $geo)
 												<option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
 											@endforeach
 										</select>
 									`;
-									$($($(line_search)[i]).find('div')[4]).find('select').remove();
+									$($($(line_search)[i]).find('div')[2]).find('select').remove();
 								} else if (valueSelected == 'value4'){
 									templateSelect = `
-										<select name="themeName[]" id="">
+										<select name="themeName[]" required>
+											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($theme_indices as $theme)
 												<option value='{{$theme->themeName}}'>{{$theme->themeName}}</option>
 											@endforeach
 										</select>
 									`;
-									$($($(line_search)[i]).find('div')[4]).find('select').remove();
+									$($($(line_search)[i]).find('div')[2]).find('select').remove();
 								} else if(valueSelected == 'value5'){
 									templateSelect = `
-										<select name="personName[]" id="">
+										<select name="personName[]" required>
+											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($person_indices as $person)
 												<option value='{{$person->personName}}'>{{$person->personName}}</option>
 											@endforeach
 										</select>
 									`;
-									$($($(line_search)[i]).find('div')[4]).find('select').remove();
+									$($($(line_search)[i]).find('div')[2]).find('select').remove();
 								}
 
 								$(appendDictionary).append(templateSelect);
 						}else{
-							$($($(line_search)[i]).find('div')[4]).find('select').remove();
+							$($($(line_search)[i]).find('div')[2]).find('select').remove();
 							$(appendDictionary).append(`
 								<input name="documentName[]" type="search" placeholder="Поиск...">
 							`);
@@ -504,32 +438,12 @@
 		}
 
 
-		for (let i = 0; i < $(line_search).length; i++) {
-			let search_dictionary = $(line_search[i]).find('div');
-			if ($(search_dictionary).attr('class') == 'select') {
-				var select = $(search_dictionary).find('select');
-
-				$(select[0]).change(function (e) {
-					e.preventDefault();
-
-					var optionSelected = $(this).find("option:selected");
-					var valueSelected  = optionSelected.val();
-					let appendDictionary = $($($(line_search)[i]).find('div')[4]);
-					let select = $($($(line_search)[i]).find('div')[4]).find('select');
-
-					if (valueSelected == 'value1') {
-						$($($(line_search)[i]).find('div')[3]).find('select').remove();
-						$($($(line_search)[i]).find('div')[3]).append(dictionaryNameDocument);
-					}else{
-						$($($(line_search)[i]).find('div')[3]).find('select').remove();
-						$($($(line_search)[i]).find('div')[3]).append(dictionaryOtherСriteria);
-					}
-				});
-			}
-		}
-
-
+		$('#burger').click(function (e) { 
+			e.preventDefault();
+			$('.burger-menu').toggleClass('burger-menu-hidden');
+		});
 	});
+
   </script>
 
 

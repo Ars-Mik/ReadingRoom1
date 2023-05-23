@@ -12,6 +12,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 22px;
+    position: relative;
 }
 
 .header_menu_about h3{
@@ -75,6 +76,10 @@
 .nav-style-about .link-auth::after{
     display: none;
 }
+.nav-style-about .burger::after{
+    display: none;
+}
+
 
 .nav-style-about>.link-auth{
     background-color: #252527;
@@ -85,6 +90,56 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.nav-style-about>.burger{
+    font-weight: bold !important;
+    font-size: 30px;
+}
+
+.burger-menu-hidden{
+    display: none !important;
+}
+
+.burger-menu{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: #000000 0px 0px 10px 0px;
+    font-size: 16px;
+    position: absolute;
+    right: 30px;
+    top: 91px;
+    z-index: 9;
+    padding: 10px;
+    border-radius: 20px;
+    animation: animation-burger 0.8s ease-in-out;
+}
+.burger-menu::before{
+    content: url('../img/up.svg');
+    position: absolute;
+    top: -24px;
+    right: 83px;
+    animation: animation-burger 0.8s ease-in-out;
+}
+
+@keyframes animation-burger {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.burger-menu img{
+    width: 35px;
+    margin-right: 15px;
+}
+
+.burger-menu a{
+    text-decoration: none;
+    color: #000000;
 }
 
 
@@ -178,6 +233,7 @@
     line-height: 21px;
     color: #000000;
     border: 2px solid rgba(0, 108, 204, 0.6);
+    background: rgba(217, 217, 217, 0.3);
     border-radius: 9px;
     text-align: center;
 }
@@ -213,30 +269,15 @@
 
 .Case-Block .line_search .search-dictionary input::-webkit-input-placeholder {
     color: #AFADAD;
-  }
+}
 .Case-Block .line_search .search-dictionary input::-moz-placeholder { /* Firefox 19+ */
     color: #AFADAD;
-  }
+}
 .Case-Block .line_search .search-dictionary input:-ms-input-placeholder {
     color: #AFADAD;
-  }
+}
 .Case-Block .line_search .search-dictionary input:-moz-placeholder { /* Firefox 18- */
     color: #AFADAD;
-  }
-
-
-.Case-Block .line_search .dictionary select{
-    width: 337px;
-    height: 50px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    color: #000000;
-    background: #d9d9d94d;
-    border-radius: 9px;
-    text-align: center;
-    border: 0;
 }
 
 .line_search>.function a{
@@ -327,7 +368,6 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
-    width: 95%;
     margin: 0 auto;
 }
 
@@ -453,4 +493,14 @@
     justify-content: flex-end;
     margin: 3rem 0;
     margin-right: 3rem;
+}
+
+.search-dictionary select:required:invalid {
+    color: gray;
+}
+.search-dictionary option[value=""][disabled] {
+    display: none;
+  }
+.search-dictionary option {
+    color: black;
 }
