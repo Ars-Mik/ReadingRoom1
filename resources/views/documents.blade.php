@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col">
 			<header class="header_menu_about">
-				<h3 class="float-md-start mb-0"><img src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">Электронный каталог архивных документов Московская область</h3>
+				<h3 class="float-md-start mb-0"><img src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">Электронный каталог архивных документов Астраханской области</h3>
 				<nav class="nav nav-style-about">
 					<a class="nav-link text-dark fw-bold py-1 px-0" aria-current="page" href="/">Главная</a>
 					<a class="nav-link text-dark fw-bold py-1 px-0" href="documents">Документы</a>
@@ -288,7 +288,7 @@
 					if (test.length == 0) {
 						$($($(line_search)[i]).find('div')[4]).find('select').remove();
 						$(appendDictionary).append(`
-							<input name="documentName" type="search" placeholder="Поиск...">
+							<input name="documentName[]" type="search" placeholder="Поиск...">
 						`);
 					}
 				});
@@ -430,7 +430,7 @@
 				if (test.length == 0) {
 					$($($(line_search)[i]).find('div')[4]).find('select').remove();
 					$(appendDictionary).append(`
-						<input name="documentName" type="search" placeholder="Поиск...">
+						<input name="documentName[]" type="search" placeholder="Поиск...">
 					`);
 				}
 			});

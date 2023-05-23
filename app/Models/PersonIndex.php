@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Orchid\Screen\AsSource;
 use Orchid\Filters\Filterable;
 
@@ -22,4 +23,8 @@ class PersonIndex extends Model
     protected $allowedFilters = [
         'personName'
     ];
+
+    public function documents(): BelongsToMany{
+        return $this->belongsToMany(Document::class, 'document_person_indices');
+    }
 }

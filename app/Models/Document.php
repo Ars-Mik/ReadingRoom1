@@ -36,6 +36,12 @@ class Document extends Model
     public function themes(): BelongsToMany{
         return $this->belongsToMany(ThemeIndex::class, 'document_theme_indices');
     }
+    public function geos(): BelongsToMany{
+        return $this->belongsToMany(GeoIndex::class, 'document_geo_indices');
+    }
+    public function nameIndexes(): BelongsToMany{
+        return $this->belongsToMany(PersonIndex::class, 'document_person_indices');
+    }
 
 
 }
