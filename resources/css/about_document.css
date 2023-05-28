@@ -76,6 +76,7 @@ ul.breadcrumb li a {
   padding: 20px;
   border-bottom: 3px #CDCDCD solid;
   text-align: left;
+  height: 100%;
 }
 
 .table_info td{

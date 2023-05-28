@@ -40,6 +40,7 @@
     </div>
 
 
+
 	<div class="row">
 		<div class="col">
             <ul class="breadcrumb container">
@@ -52,7 +53,7 @@
                     <a class="btn btn-primary btn-lg" style="width: 316px; height: 53px;" href="{{ asset('/storage/pdf/') }}/">Читать документ</a>
                     {{-- кнопка для закрытого документа --}}
                     {{-- <a class="btn btn-black btn-lg" style="width: 316px; height: 53px;" href="">Отправить заявку</a>  --}}
-                    {{$documentSelect}}
+                    
                     <div class="table_info">
                         <span>Общая информация</span>
                         <table style="width: 100%">
@@ -68,21 +69,7 @@
                                 <th>Именной указатель</th>
                                 <th>Дата появления</th>
                             </tr>
-                            <script>
-
-                            </script>
-                            <tr>
-                                <td>Государственный архив Астраханской области</td>
-                                <td>Астраханский Фонд</td>
-                                <td>2456</td>
-                                <td>2</td>
-                                <td>4</td>
-                                <td>Пример “Актовые записи о рождении, браке и смерти”</td>
-                                <td>г. Астрахань; Волгоградская обл.</td>
-                                <td>Письма с фронта; Образование</td>
-                                <td>Георгий Леонидович</td>
-                                <td>1943г.</td>
-                            </tr>
+                           
                         </table>
                     </div>
                 </div>
@@ -91,7 +78,66 @@
 	</div>
 
 
-	
+  <script>
+
+  $(window).on("load", function() {
+    var arr = <?php echo json_encode($documentSelect)?>
+    
+    var arr_personeName = [];
+
+    var arr_geoName = [];
+
+    var arr_themeName = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      
+      arr_personeName.push(arr[i]['personName']);
+
+      arr_geoName.push(arr[i]['geoName']);
+      
+      arr_themeName.push(arr[i]['themeName']);
+      
+    }
+    arr_geoName = Array.from(new Set(arr_geoName));
+    arr_themeName = Array.from(new Set(arr_themeName));
+    arr_personeName = Array.from(new Set(arr_personeName));
+    
+    function test(id, array) {
+      for (let i = 0; i < array.length; i++) {
+        (array.length > 1) ? (i == array.length - 1) ? $(`#${id}`).append(`${array[i]}`) : $(`#${id}`).append(`${array[i]}, `) : $(`#${id}`).append(array[i]);
+      }
+    }
+    
+    if (arr.length) {
+      $('.table_info table tbody').append(`
+    <tr>
+        <td>Государственный архив Астраханской области</td>
+        <td>${arr[0]['fundName']}</td>
+        <td>${arr[0]['Numberfund']}</td>
+        <td>2</td>
+        <td>4</td>
+        <td>${arr[0]['documentName']}</td>
+        <td id="geoName"></td>
+        <td id="themeName"></td>
+        <td id="personeName"></td>
+        <td>1943г.</td>
+    </tr>
+    `);
+    }else{
+      $('.container-body').html('Вы вышли за пределы библиотеки');
+    }
+    
+    
+
+
+   
+    test('geoName', arr_geoName);
+    test('themeName', arr_themeName);
+    test('personeName', arr_personeName);
+
+  });
+
+  </script>
 
   <footer class="footer">
     <x-footer/>
