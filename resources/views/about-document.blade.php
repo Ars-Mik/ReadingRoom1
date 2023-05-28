@@ -41,35 +41,33 @@
 
 
 
+  
 	<div class="row">
 		<div class="col">
             <ul class="breadcrumb container">
-                <li><a href="document">Дело</a></li>
-                <li>Ф. 719 Оп. 1 Д. 1 Пример “Актовые записи о рождении, браке и смерти”</li>
+                <li><a href="/documents">Дело</a></li>
+                <li><?php if ($documentSelect) { echo 'Ф. '.$documentSelect[0]->Numberfund. ' Оп. 4 Д. 1 '. $documentSelect[0]->documentName; } ?></li>
             </ul>
-
+            {{-- Ф. 719 Оп. 1 Д. 1 Пример “Актовые записи о рождении, браке и смерти” --}}
             <div class="container-fluid container_about">
                 <div class="container container-body">
-                    <a class="btn btn-primary btn-lg" style="width: 316px; height: 53px;" href="{{ asset('/storage/pdf/') }}/">Читать документ</a>
-                    {{-- кнопка для закрытого документа --}}
-                    {{-- <a class="btn btn-black btn-lg" style="width: 316px; height: 53px;" href="">Отправить заявку</a>  --}}
+                    <a id="btn" class="btn btn-primary btn-lg" style="width: 316px; height: 53px;" href=''>Читать документ</a>
                     
                     <div class="table_info">
                         <span>Общая информация</span>
-                        <table style="width: 100%">
+                        <table style="width: 100%;">
                             <tr>
-                                <th>Архив</th>
-                                <th>Фонд</th>
-                                <th>Номер фонда</th>
-                                <th>Номер описи</th>
-                                <th>Номер дела</th>
-                                <th>Заголовок</th>
-                                <th>Географический указатель</th>
-                                <th>Тематический указатель</th>
-                                <th>Именной указатель</th>
-                                <th>Дата появления</th>
+                                <td>Архив</td>
+                                <td>Фонд</td>
+                                <td>Номер фонда</td>
+                                <td>Номер описи</td>
+                                <td>Номер дела</td>
+                                <td>Заголовок</td>
+                                <td>Географический указатель</td>
+                                <td>Тематический указатель</td>
+                                <td class="test">Именной указатель</td>
+                                <td>Дата появления</td>
                             </tr>
-                           
                         </table>
                     </div>
                 </div>
@@ -110,24 +108,34 @@
     
     if (arr.length) {
       $('.table_info table tbody').append(`
-    <tr>
-        <td>Государственный архив Астраханской области</td>
-        <td>${arr[0]['fundName']}</td>
-        <td>${arr[0]['Numberfund']}</td>
-        <td>2</td>
-        <td>4</td>
-        <td>${arr[0]['documentName']}</td>
-        <td id="geoName"></td>
-        <td id="themeName"></td>
-        <td id="personeName"></td>
-        <td>1943г.</td>
-    </tr>
-    `);
+        <tr>
+            <td>Государственный архив Астраханской области</td>
+            <td>${arr[0]['fundName']}</td>
+            <td>${arr[0]['Numberfund']}</td>
+            <td>2</td>
+            <td>4</td>
+            <td>${arr[0]['documentName']}</td>
+            <td id="geoName"></td>
+            <td id="themeName"></td>
+            <td id="personeName"></td>
+            <td>1943г.</td>
+        </tr>
+      `);
+
+      $('#btn').attr('href', "{{ asset('/storage/pdf')}}/" + arr[0]['fileName']);
     }else{
       $('.container-body').html('Вы вышли за пределы библиотеки');
     }
     
     
+    
+
+    if (!arr[0]['access']) {
+      $('#btn').text('Отправить заявку');
+      $('#btn').removeClass('btn-primary');
+      $('#btn').addClass('btn-black');
+      $('#btn').attr('href', ''); // ссылка на модальное окно
+    }
 
 
    
