@@ -13,17 +13,15 @@ class aboutDocumentController extends Controller
 {
     public function index(Request $request, $id)
     {
-        $documentSelect = DB::table('documents')
-                            ->join('funds', 'documents.fund_id', '=', 'funds.id')
-                            ->where('documents.id', '=', $id)
-                            ->select('documents.id', 'documentName', 'fileName', 'funds.numberFund', 'access')
-                            ->get();
 
-        $documentFilter = Document::query()
-                                ->filter($request->all())
-                                ->distinct()
-                                ->with('fund')
-                                ->paginate();
+        $documentSelect = DB::select('SELECT DISTINCT fundName, Numberfund, documentName, geoName, themeName, personName, date, fileName, access 
+            FROM documents, funds, document_geo_indices, geo_indices, person_indices, theme_indices, document_theme_indices, document_person_indices 
+            WHERE fund_id = funds.id AND theme_indices.id = document_theme_indices.theme_index_id AND document_theme_indices.document_id = documents.id 
+            AND geo_indices.id = document_geo_indices.geo_index_id AND document_geo_indices.document_id = documents.id 
+            AND person_indices.id = document_person_indices.person_index_id AND document_person_indices.document_id = documents.id
+            AND theme_indices.id = document_theme_indices.theme_index_id AND document_theme_indices.document_id = documents.id
+            AND documents.id = "'.$id.'"
+        ');
 
         return view('about-document', ['documentSelect' => $documentSelect]);
     }

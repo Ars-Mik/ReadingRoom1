@@ -22,13 +22,15 @@
             <td>{{$item->fund->numberFund}}</td>
             <td>Ф.{{$item->fund->numberFund}} Оп. 4</td>
             <td>{{$item->documentName}}</td>
-            <td><a href="about_document/{{$item->id}}" target="_blank">Открыть документ</a></td>
+            <td><a href="about_document/{{$item->id}}">Открыть документ</a></td>
           </tr>
         @endforeach
     `);
   });
+
+  // {{ asset('/storage/pdf/') }}/{{$item->fileName}}
 </script>
-// {{ asset('/storage/pdf/') }}/{{$item->fileName}}
+
 
   <div class="list-pagination">
     <div class="pagination">
