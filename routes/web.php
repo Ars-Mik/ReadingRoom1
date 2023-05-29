@@ -11,7 +11,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/documents', [AboutController::class, 'index']);
 });
 
@@ -23,4 +23,4 @@ Route::get('/contact', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
