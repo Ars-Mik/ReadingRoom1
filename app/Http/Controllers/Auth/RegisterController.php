@@ -69,7 +69,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'first_name' => $data['first_name'],
+            'name' => $data['first_name'],
             'second_name' => $data['second_name'],
             'third_name' => $data['third_name'],
             'email' => $data['email'],
@@ -79,6 +79,9 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
+        $user = Auth::user();
+        Auth::logout();
 
+        return view('auth.verify', ['email' => $user->email]);
     }
 }

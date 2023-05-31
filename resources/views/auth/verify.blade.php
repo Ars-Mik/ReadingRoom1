@@ -12,7 +12,7 @@
                 class="text-center mt-5"
                 style="font-size: 20px; font-weight: 500; font: caption">
                 Мы отправили письмо с подтверждением на адрес <br>
-                <b>{{ auth()->user()->email }}</b> <br>
+                <b>{{ $email }}</b> <br>
                 Пройдите по ссылке в письме.
             </p>
         </div>

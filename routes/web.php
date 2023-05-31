@@ -23,4 +23,8 @@ Route::get('/contact', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/test', function () {
+    return view('auth.passwords.success', ['text' => 'Ваша учетная запись подтверждена!']);
+});
+
 Auth::routes(['verify' => true]);

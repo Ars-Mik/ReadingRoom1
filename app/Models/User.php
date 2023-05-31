@@ -13,7 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first_name',
+        'name',
         'second_name',
         'third_name',
         'user_role_id',
@@ -67,4 +67,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'updated_at',
         'created_at',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        parent::sendPasswordResetNotification("$token?email=$this->email");
+    }
 }

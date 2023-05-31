@@ -47,7 +47,7 @@
         >Получить ссылку для восстановления</button>
     </div>
     <div class="row mt-5 col-md-6 offset-3 text-center">
-        <a href="login">Войти</a>
+        <a href="/login">Войти</a>
     </div>
 </form>
 
