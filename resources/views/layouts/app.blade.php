@@ -34,14 +34,31 @@
                         <img class="col-md-2 mb-3" style="height: 100%; margin-left: 2rem;" src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">
                         <p class="col-md-7 text-white mt-2" style="margin-left: 1rem; height: 2rem; display: inline-block">Электронный каталог архивных документов Астраханской области </p>
                     </div>
+                    <div class="right" style="margin-right: 2rem;">
+                        @auth()
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgba(98, 98, 98, 0.15)">
+                                    {{ Auth::user()->name . ' ' . mb_substr(Auth::user()->second_name, 0, 1). '.'}}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="left: -5rem">
+                                    <li><a class="dropdown-item" href="/client/edit">
+                                            <img style="width: 2rem; margin-right: 1rem;" src="{{ Vite::asset('resources/img/svg/user.svg') }}" alt="">
+                                            Личный кабинет
+                                        </a></li>
+                                    <li><a class="dropdown-item" href="javascript:;" onclick="fetch.fetch('post', '/logout')">
+                                            <img style="width: 2rem; margin-right: 1rem;" src="{{ Vite::asset('resources/img/svg/log-out.svg') }}" alt="">
+                                            Выйти
+                                        </a></li>
+                                </ul>
+                            </div>
+                        @endauth
+                    </div>
                 </nav>
         @endif
 
         <main class="py-4">
             @yield('content')
         </main>
-
-
     </div>
 </body>
 </html>
