@@ -19,21 +19,29 @@
 </head>
 <body class="bg-white" style="text-shadow: none; font-family: Poppins,sans-serif">
     <div id="app">
-        @guest
-            @if (Route::is(['login', 'password.request']))
-                <nav class="navbar navbar-light bg-white border-bottom">
-                    <div class="container justify-content-start">
-                        <a class="navbar-brand col-md-2" href="/">&larr;</a>
-                        <p class="navbar-brand col-md-4 offset-2">Электронный архив Астраханской области</p>
+        @if (Route::is(['login', 'password.request']))
+            <nav class="navbar navbar-light bg-white border-bottom">
+                <div class="container justify-content-start">
+                    <a class="navbar-brand col-md-2" href="/">&larr;</a>
+                    <p class="navbar-brand col-md-4 offset-2">Электронный архив Астраханской области</p>
+                </div>
+            </nav>
+        @endif
+
+        @if(Route::is('client.edit'))
+                <nav class="navbar container-fluid bg-white border-bottom" style="height: 5rem">
+                    <div class="row col-md-4 bg-black p-1" style="height: 100%; border-top-right-radius: 27px; border-bottom-right-radius: 27px">
+                        <img class="col-md-2 mb-3" style="height: 100%; margin-left: 2rem;" src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">
+                        <p class="col-md-7 text-white mt-2" style="margin-left: 1rem; height: 2rem; display: inline-block">Электронный каталог архивных документов Астраханской области </p>
                     </div>
                 </nav>
-            @endif
-        @endguest
-
+        @endif
 
         <main class="py-4">
             @yield('content')
         </main>
+
+
     </div>
 </body>
 </html>

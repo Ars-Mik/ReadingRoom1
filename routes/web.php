@@ -1,19 +1,21 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\aboutDocumentController;
-
-//Auth::routes();
 
 Route::get('/', function () {
     return view('home');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/documents', [AboutController::class, 'index']);
+    Route::post('client', [ClientController::class, 'update']);
+    Route::get('client/edit', [ClientController::class, 'edit'])->name('client.edit');
 });
+
+Route::get('/documents', [AboutController::class, 'index']);
 
 Route::get('/about_document/{id}', [aboutDocumentController::class, 'index']);
 
