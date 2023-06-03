@@ -17,7 +17,7 @@
                                         <img style="width: 2rem; margin-right: 1rem;" src="{{ Vite::asset('resources/img/svg/user.svg') }}" alt="">
                                         Личный кабинет
                                     </a></li>
-                                <li><a class="dropdown-item" href="javascript:;" onclick="fetch.fetch('post', '/logout')">
+                                <li><a class="dropdown-item" href="/" id="logout" disabled>
                                         <img style="width: 2rem; margin-right: 1rem;" src="{{ Vite::asset('resources/img/svg/log-out.svg') }}" alt="">
                                         Выйти
                                     </a></li>

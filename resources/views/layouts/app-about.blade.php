@@ -23,6 +23,12 @@
 
     @yield('script')
 
+    <script>
+        $('#logout').on('click', (e) => {
+            axios('/logout', {method: "POST"})
+        })
+    </script>
+
 </body>
 
 </html>
