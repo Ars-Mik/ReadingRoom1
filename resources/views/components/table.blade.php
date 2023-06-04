@@ -28,7 +28,6 @@
     `);
   });
 
-  // {{ asset('/storage/pdf/') }}/{{$item->fileName}}
 </script>
 
 
