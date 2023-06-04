@@ -39,9 +39,6 @@
 		</div>
     </div>
 
-
-
-  
 	<div class="row">
 		<div class="col">
             <ul class="breadcrumb container">
@@ -51,8 +48,8 @@
             {{-- Ф. 719 Оп. 1 Д. 1 Пример “Актовые записи о рождении, браке и смерти” --}}
             <div class="container-fluid container_about">
                 <div class="container container-body">
-                    <a id="btn" class="btn btn-primary btn-lg" style="width: 316px; height: 53px;" href=''>Читать документ</a>
-                    
+                    <button id="btn" class="btn btn-primary btn-lg" style="width: 316px; height: 53px;">Читать документ</button>
+
                     <div class="table_info">
                         <span>Общая информация</span>
                         <table style="width: 100%;">
@@ -75,12 +72,28 @@
 		</div>
 	</div>
 
-
+    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="/orders" method="POST" class="modal-content">
+                @csrf
+                <input type="hidden" name="id" value="{{ $id }}">
+                <div class="modal-header bg-black text-white">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Заявка на просмотр документа</h5>
+                    <button type="button" class="close" data-dismiss="orderModal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
   <script>
 
   $(window).on("load", function() {
     var arr = <?php echo json_encode($documentSelect)?>
-    
+
     var arr_personeName = [];
 
     var arr_geoName = [];
@@ -88,24 +101,24 @@
     var arr_themeName = [];
 
     for (let i = 0; i < arr.length; i++) {
-      
+
       arr_personeName.push(arr[i]['personName']);
 
       arr_geoName.push(arr[i]['geoName']);
-      
+
       arr_themeName.push(arr[i]['themeName']);
-      
+
     }
     arr_geoName = Array.from(new Set(arr_geoName));
     arr_themeName = Array.from(new Set(arr_themeName));
     arr_personeName = Array.from(new Set(arr_personeName));
-    
+
     function test(id, array) {
       for (let i = 0; i < array.length; i++) {
         (array.length > 1) ? (i == array.length - 1) ? $(`#${id}`).append(`${array[i]}`) : $(`#${id}`).append(`${array[i]}, `) : $(`#${id}`).append(array[i]);
       }
     }
-    
+
     if (arr.length) {
       $('.table_info table tbody').append(`
         <tr>
@@ -126,19 +139,24 @@
     }else{
       $('.container-body').html('Вы вышли за пределы библиотеки');
     }
-    
-    
-    
+
+
+
 
     if (!arr[0]['access']) {
-      $('#btn').text('Отправить заявку');
-      $('#btn').removeClass('btn-primary');
-      $('#btn').addClass('btn-black');
-      $('#btn').attr('href', ''); // ссылка на модальное окно
+      let btn = $('#btn')
+      btn.text('Отправить заявку');
+      btn.removeClass('btn-primary');
+      btn.addClass('btn-black');
+      btn.attr('data-toggle', 'orderModal');
+      btn.attr('data-target', '#exampleModalLong');
+      btn.attr('id', 'myModal');
+
+      btn.on('click', function () {
+          $('#orderModal').modal('show')
+      })
     }
 
-
-   
     test('geoName', arr_geoName);
     test('themeName', arr_themeName);
     test('personeName', arr_personeName);

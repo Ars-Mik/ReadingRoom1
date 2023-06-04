@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('client', [ClientController::class, 'update']);
     Route::get('client/edit', [ClientController::class, 'edit'])->name('client.edit');
+    Route::apiResource('orders', ApplicationController::class);
 });
 
 Route::get('/documents', [AboutController::class, 'index']);

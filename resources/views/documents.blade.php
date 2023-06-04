@@ -83,7 +83,6 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col">
             <div class="pagination-result">
@@ -106,6 +105,8 @@
             <x-table :json="array($documentFilter)"/>
         </div>
     </div>
+
+
 @endsection
 
 @section('script')
