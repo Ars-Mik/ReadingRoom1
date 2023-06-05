@@ -14,6 +14,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('client', [ClientController::class, 'update']);
     Route::get('client/edit', [ClientController::class, 'edit'])->name('client.edit');
+    Route::get('client/orders', [ClientController::class, 'orders']);
     Route::apiResource('orders', ApplicationController::class);
 });
 

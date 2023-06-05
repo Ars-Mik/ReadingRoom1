@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientUpdateRequest;
+use App\Models\Application;
+use App\Models\HistoryApplication;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -38,5 +40,26 @@ class ClientController extends Controller
         $user->save();
 
         return back();
+    }
+
+    public function orders()
+    {
+        $applications = HistoryApplication::query()
+            ->union(
+                Application::query()
+                    ->rightJoin('documents', 'document_id', '=', 'documents.id')
+                    ->where('user_id', Auth::id())
+                    ->selectRaw('`applications`.`id` as `id`, `user_id`, `document_id`, 2 as `status`, `documentName`')
+            )
+            ->where('user_id', Auth::id())
+            ->rightJoin('documents', 'document_id', '=', 'documents.id')
+            ->simplePaginate(perPage: 5, columns: ['history_applications.id as id', 'user_id', 'document_id', 'status', 'documentName'])
+            ->toArray();
+
+        $statuses = [
+          'Отказано', 'Одобрен', 'На рассмотрении'
+        ];
+
+        return view('client.applications', compact('applications', 'statuses'));
     }
 }
