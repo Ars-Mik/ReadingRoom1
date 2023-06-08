@@ -34,8 +34,36 @@
             <a class="col-md-2 pb-1" href="/client/edit">Персональные данные</a>
             <a class="col-md-2" href="/client/orders">Мои заявки</a>
         </div>
-        <div class="card bg-white pb-5 pt-3" style="margin-bottom: 8rem; box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.25);">
+        <div class="card bg-white pb-5 pt-3" style="box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.25);">
             @yield('client')
         </div>
+        @if(Route::is('client.orders'))
+            <div class="col-md-7 offset-6 mt-3 pagination">
+                @if($applications['current_page'] != 1)
+                    <a href="{{ $applications['prev_page_url'] }}"  class="previous-pagination number"><</a>
+                @else
+                    <span class="previous-pagination number"><img src="{{ Vite::asset('resources/img/left.svg') }}" alt="left"></span>
+                @endif
+
+                <div class="pagination-number">
+                    @if($applications['last_page'] < 8)
+                        @for($i = 0; $i < $applications['last_page']; $i++)
+                            <a href="/client/orders?page={{ $i + 1 }}" class="number @if($applications['current_page'] == $i + 1) active @endif ">{{ $i + 1 }}</a>
+                        @endfor
+                    @else
+                        @for($i = 0; $i < ($applications['current_page'] > 5 ? 3 : 5); $i++)
+                            <a href="/client/orders?page={{ $i + 1 }}" class="number @if($applications['current_page'] == $i + 1) active @endif ">{{ $i + 1 }}</a>
+                        @endfor
+                            @if($applications['current_page'] > 5 && $applications['current_page'] != $applications['last_page'])
+                                <span class="dots number">...</span>
+                                <a href="/client/orders?page={{ $applications['current_page'] }}" class="number active">{{ $applications['current_page'] }}</a>
+                            @endif
+                        <span class="dots number">...</span>
+                        <a href="/client/orders?page={{ $applications['last_page'] }}" class="number @if($applications['current_page'] == $applications['last_page']) active @endif ">{{ $applications['last_page'] }}</a>
+                    @endif
+                </div>
+                <a href="{{ $applications['next_page_url'] }}" class="next-pagination number"><img src="{{ Vite::asset('resources/img/right.svg') }}" alt="right"></a>
+            </div>
+        @endif
     </div>
 @endsection

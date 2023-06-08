@@ -53,7 +53,8 @@ class ClientController extends Controller
             )
             ->where('user_id', Auth::id())
             ->rightJoin('documents', 'document_id', '=', 'documents.id')
-            ->simplePaginate(perPage: 5, columns: ['history_applications.id as id', 'user_id', 'document_id', 'status', 'documentName'])
+            ->select(['history_applications.id as id', 'user_id', 'document_id', 'status', 'documentName'])
+            ->paginate(perPage: 5)
             ->toArray();
 
         $statuses = [

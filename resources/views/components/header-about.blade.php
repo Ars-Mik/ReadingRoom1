@@ -32,7 +32,7 @@
                     <a href="admin"><img src="{{ Vite::asset('resources/img/admin_panel.svg') }}" alt="admin_panel"> Вход для администратора</a>
                 </div>
             </header>
-            @if(!Route::is('client.edit'))
+            @if(!Route::is(['client.edit', 'client.orders']))
                 <div class="logo_banner">
                     <div class="box-text">
                         <h4>Поиск документов</h4>
