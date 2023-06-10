@@ -52,7 +52,7 @@ class DocumentListScreen extends Screen
             Layout::modal('createDocument', Layout::rows([
                 Input::make('document.documentName')->required()->title('Название документа'),
                 Input::make('file')->type('file')->required()->title('Файл'),
-                Input::make('document.fileName')->type('hidden'),                
+                Input::make('document.fileName')->type('hidden'),
                 Relation::make('document.fund_id')->fromModel(Fund::class, 'fundName')->required()->title('Фонд'),
                 Relation::make('geoIndex.id.')->fromModel(GeoIndex::class, 'geoName')->multiple()->required()->title('Географический индекс'),
                 Relation::make('personIndex.id.')->fromModel(PersonIndex::class, 'personName')->multiple()->required()->title('Именной индекс'),
@@ -70,7 +70,7 @@ class DocumentListScreen extends Screen
                 Input::make('document.id')->type('hidden'),
                 Input::make('document.documentName')->required()->title('Название документа'),
                 Input::make('file')->type('file')->required()->title('Файл'),
-                Input::make('document.fileName')->type('hidden'), 
+                Input::make('document.fileName')->type('hidden'),
                 Relation::make('document.fund_id')->fromModel(Fund::class, 'fundName')->required()->title('Фонд'),
                 Relation::make('geoIndex.id.')->fromModel(GeoIndex::class, 'geoName')->multiple()->required()->title('Географический индекс'),
                 Relation::make('personIndex.id.')->fromModel(PersonIndex::class, 'personName')->multiple()->required()->title('Именной индекс'),
@@ -135,7 +135,9 @@ class DocumentListScreen extends Screen
                 'document_id' => $documentId,
                 'person_index_id' => $personIndex
             ], $request->validated()['personIndex']);
-        }         
+        }
+
+        $request->file('file')->storeAs("pdf/$documentId/", $request->input('document.fileName'));
 
         is_null($documentId) ? Toast::info('Документ добавлен') : ('Документ обновлён');
     }
