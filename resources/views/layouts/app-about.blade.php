@@ -15,6 +15,15 @@
 <body class="text-center h-100">
     <x-header-about></x-header-about>
 
+    <div id="documentModal" style="position: absolute; z-index: 999; width: 100%; height: 100vh; margin-top: -10rem; display: none">
+        <button type="button" class="btn btn-danger" style="position: absolute; top: 2rem; right: 8%; z-index: 999" onclick="closeDocument()">X</button>
+        <iframe id="documentFileFrame" src="/documents/7/file" style="position: absolute; width: 80%; height: 90vh; left: 10%; margin-top: 4rem"></iframe>
+    </div>
+
+    <div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-hidden="true">
+
+    </div>
+
     @yield('content')
 
     <footer class="footer">
@@ -27,6 +36,16 @@
         $('#logout').on('click', (e) => {
             axios('/logout', {method: "POST"})
         })
+
+        function openDocument(id) {
+            $('#documentFileFrame').attr('src', '/documents/' + id + '/file')
+            $('#documentModal').show()
+        }
+
+        function closeDocument() {
+            $('#documentFileFrame').attr('src', '')
+            $('#documentModal').hide()
+        }
     </script>
 
 </body>

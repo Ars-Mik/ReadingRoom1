@@ -20,9 +20,9 @@
                 <td class="border-2">{{ $statuses[$item['status']] }}</td>
                 <td class="border-2">
                     @if($item['status'] == 1)
-                        <a class="btn btn-primary" href="">Читать документ</a>
+                        <button class="btn btn-primary" type="button" onclick="openDocument('{{ $item['document_id'] }}');">Читать документ</button>
                     @else
-                        <a class="btn btn-secondary" href="">Читать документ</a>
+                        <button class="btn btn-secondary" type="button" disabled>Читать документ</button>
                     @endif
                 </td>
             </tr>

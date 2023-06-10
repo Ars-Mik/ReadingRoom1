@@ -49,11 +49,11 @@ class ClientController extends Controller
                 Application::query()
                     ->rightJoin('documents', 'document_id', '=', 'documents.id')
                     ->where('user_id', Auth::id())
-                    ->selectRaw('`applications`.`id` as `id`, `user_id`, `document_id`, 2 as `status`, `documentName`')
+                    ->selectRaw('`applications`.`id` as `id`, `user_id`, `document_id`, 2 as `status`, `documentName`, `fileName`')
             )
             ->where('user_id', Auth::id())
             ->rightJoin('documents', 'document_id', '=', 'documents.id')
-            ->select(['history_applications.id as id', 'user_id', 'document_id', 'status', 'documentName'])
+            ->select(['history_applications.id as id', 'user_id', 'document_id', 'status', 'documentName', 'fileName'])
             ->paginate(perPage: 5)
             ->toArray();
 

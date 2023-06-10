@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DocumentFileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
@@ -19,6 +20,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 Route::get('/documents', [AboutController::class, 'index']);
+Route::get('/documents/{document}/file', [DocumentFileController::class, 'getFileContent']);
 
 Route::get('/about_document/{id}', [aboutDocumentController::class, 'index']);
 

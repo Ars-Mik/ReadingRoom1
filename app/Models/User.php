@@ -72,4 +72,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         parent::sendPasswordResetNotification("$token?email=$this->email");
     }
+
+    public function isAdmin(): bool
+    {
+        return (bool) $this->permissions;
+    }
 }
