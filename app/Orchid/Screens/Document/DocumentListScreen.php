@@ -6,20 +6,22 @@ use App\Http\Requests\DocumentRequest;
 use Orchid\Screen\Screen;
 use App\Models\Document;
 use App\Models\DocumentGeoIndex;
+use App\Models\DocumentInventory;
 use App\Models\DocumentPersonIndex;
-use App\Models\DocumentThemeIndex;
+use App\Models\DocumentType;
 use App\Models\Fund;
 use App\Models\GeoIndex;
 use App\Models\PersonIndex;
-use App\Models\ThemeIndex;
 use App\Orchid\Layouts\Document\DocumentListTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\DateTimer;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
@@ -50,39 +52,98 @@ class DocumentListScreen extends Screen
         return [
             DocumentListTable::class,
             Layout::modal('createDocument', Layout::rows([
-                Input::make('document.documentName')->required()->title('Название документа'),
-                Input::make('file')->type('file')->required()->title('Файл'),
+                Group::make([
+                    Input::make('document.documentName')->required()->title('Название документа'),
+                    Input::make('file')->type('file')->required()->title('Файл'),
+                ])->fullWidth(),
                 Input::make('document.fileName')->type('hidden'),
-                Relation::make('document.fund_id')->fromModel(Fund::class, 'fundName')->required()->title('Фонд'),
-                Relation::make('geoIndex.id.')->fromModel(GeoIndex::class, 'geoName')->multiple()->required()->title('Географический индекс'),
-                Relation::make('personIndex.id.')->fromModel(PersonIndex::class, 'personName')->multiple()->required()->title('Именной индекс'),
-                Relation::make('themeIndex.id.')->fromModel(ThemeIndex::class, 'themeName')->multiple()->required()->title('Тематический индекс'),
+                Group::make([
+                    Relation::make('document.document_inventory_id')
+                    ->fromModel(DocumentInventory::class, 'numberInventory')
+                    ->required()->title('Номер описи')->displayAppend('full'),
+                    Input::make('document.caseNumber')->required()->title('Номер дела'),
+                ])->fullWidth(),
+                Group::make([
+                    Relation::make('geoIndex.id.')->fromModel(GeoIndex::class, 'geoName')->multiple()->required()->title('Географический указатель'),
+                    Relation::make('personIndex.id.')->fromModel(PersonIndex::class, 'personName')->multiple()->required()->title('Именной указатель'),
+                    Relation::make('document.document_type_id')->fromModel(DocumentType::class, 'typeName')->required()->title('Вид документа'),
+                ])->fullWidth(),
+                Group::make([
+                    Input::make('document.year')->required()->title('Год'),
+                    Select::make('document.month')
+                    ->options([
+                        1 => 'Январь', 2 => 'Февраль', 3 => 'Март', 4 => 'Апрель', 5 => 'Май', 6 => 'Июнь',
+                        7 => 'Июль', 8 => 'Август', 9 => 'Сентябрь', 10 => 'Октябрь', 11 => 'Ноябрь', 12 => 'Декабрь',
+                    ])
+                    ->empty('Не выбрано', 0)->title('Месяц')->required(),
+                    Select::make('document.day')
+                    ->options([
+                        1 => '01', 2 => '02', 3 => '03', 4 => '04', 5 => '05', 6 => '06',
+                        7 => '07', 8 => '08', 9 => '09', 10 => '10', 11 => '11', 12 => '12',
+                        13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18',
+                        19 => '19', 20 => '20', 21 => '21', 22 => '22', 23 => '23', 24 => '24',
+                        25 => '25', 26 => '26', 27 => '27', 28 => '28', 29 => '29', 30 => '30',
+                        31 => '31',
+                    ])
+                    ->empty('Не выбрано', 0)->title('День')->required(),
+                ])->fullWidth(),
+
+                /*
                 DateTimer::make('document.date')->required()->format('Y-m-d H:i:s')->allowInput()->title('Дата появления документа'),
+                 */
+
                 Select::make('document.access')
                 ->options([
                     1 => 'Общий доступ',
                     0 => 'Закрытый доступ',
                 ])
                 ->title('Доступ к документу')->required()
-            ]))->title('Создание документа')->applyButton('Создать'),
+            ]))->title('Создание документа')->applyButton('Создать')->size(Modal::SIZE_LG),
 
             Layout::modal('editDocument', Layout::rows([
                 Input::make('document.id')->type('hidden'),
-                Input::make('document.documentName')->required()->title('Название документа'),
-                Input::make('file')->type('file')->required()->title('Файл'),
+                Group::make([
+                    Input::make('document.documentName')->required()->title('Название документа'),
+                    Input::make('file')->type('file')->required()->title('Файл'),
+                ])->fullWidth(),
                 Input::make('document.fileName')->type('hidden'),
-                Relation::make('document.fund_id')->fromModel(Fund::class, 'fundName')->required()->title('Фонд'),
-                Relation::make('geoIndex.id.')->fromModel(GeoIndex::class, 'geoName')->multiple()->required()->title('Географический индекс'),
-                Relation::make('personIndex.id.')->fromModel(PersonIndex::class, 'personName')->multiple()->required()->title('Именной индекс'),
-                Relation::make('themeIndex.id.')->fromModel(ThemeIndex::class, 'themeName')->multiple()->required()->title('Тематический индекс'),
-                DateTimer::make('document.date')->required()->format('Y-m-d H:i:s')->allowInput()->title('Дата появления документа'),
+                Group::make([
+                    Relation::make('document.document_inventory_id')
+                    ->fromModel(DocumentInventory::class, 'numberInventory')
+                    ->required()->title('Номер описи')->displayAppend('full'),
+                    Input::make('document.caseNumber')->required()->title('Номер дела'),
+                ])->fullWidth(),
+                Group::make([
+                    Relation::make('geoIndex.id.')->fromModel(GeoIndex::class, 'geoName')->multiple()->required()->title('Географический указатель'),
+                    Relation::make('personIndex.id.')->fromModel(PersonIndex::class, 'personName')->multiple()->required()->title('Именной указатель'),
+                    Relation::make('document.document_type_id')->fromModel(DocumentType::class, 'typeName')->required()->title('Вид документа'),
+                ])->fullWidth(),
+                Group::make([
+                    Input::make('document.year')->required()->title('Год'),
+                    Select::make('document.month')
+                    ->options([
+                        1 => 'Январь', 2 => 'Февраль', 3 => 'Март', 4 => 'Апрель', 5 => 'Май', 6 => 'Июнь',
+                        7 => 'Июль', 8 => 'Август', 9 => 'Сентябрь', 10 => 'Октябрь', 11 => 'Ноябрь', 12 => 'Декабрь',
+                    ])
+                    ->empty('Не выбрано', 0)->title('Месяц')->required(),
+                    Select::make('document.day')
+                    ->options([
+                        1 => '01', 2 => '02', 3 => '03', 4 => '04', 5 => '05', 6 => '06',
+                        7 => '07', 8 => '08', 9 => '09', 10 => '10', 11 => '11', 12 => '12',
+                        13 => '13', 14 => '14', 15 => '15', 16 => '16', 17 => '17', 18 => '18',
+                        19 => '19', 20 => '20', 21 => '21', 22 => '22', 23 => '23', 24 => '24',
+                        25 => '25', 26 => '26', 27 => '27', 28 => '28', 29 => '29', 30 => '30',
+                        31 => '31',
+                    ])
+                    ->empty('Не выбрано', 0)->title('День')->required(),
+                ])->fullWidth(),
                 Select::make('document.access')
                 ->options([
                     1 => 'Общий доступ',
                     0 => 'Закрытый доступ',
                 ])
                 ->title('Доступ к документу')->required()
-            ]))->async('asyncGetDocument')
+            ]))->size(Modal::SIZE_LG)->async('asyncGetDocument')
         ];
     }
 
@@ -99,11 +160,16 @@ class DocumentListScreen extends Screen
             'id' => $documentId
         ], $request->validated()['document']);
 
+        $check = false;
+
         if (is_null($documentId)){
+            $check = true;
             $documentId = DB::table('documents')
             ->where('documentName', $request->input('document.documentName'))
-            ->where('fund_id', $request->input('document.fund_id'))
+            ->where('document_inventory_id', $request->input('document.document_inventory_id'))
+            ->where('caseNumber', $request->input('document.caseNumber'))
             ->where('fileName', $request->input('document.fileName'))
+            ->where('year', $request->input('document.year'))
             ->get('id');
             foreach($documentId as $temp){
                 $documentId = $temp->id;
@@ -111,7 +177,6 @@ class DocumentListScreen extends Screen
         }
         else {
             DocumentGeoIndex::where('document_id', $documentId)->delete();
-            DocumentThemeIndex::where('document_id', $documentId)->delete();
             DocumentPersonIndex::where('document_id', $documentId)->delete();
         }
 
@@ -122,13 +187,7 @@ class DocumentListScreen extends Screen
                 'geo_index_id' => $geoIndex
             ], $request->validated()['geoIndex']);
         }
-        $theme_indices = $request->input('themeIndex.id');
-        foreach($theme_indices as $themeIndex){
-            DocumentThemeIndex::create([
-                'document_id' => $documentId,
-                'theme_index_id' => $themeIndex
-            ], $request->validated()['themeIndex']);
-        }
+
         $person_indices = $request->input('personIndex.id');
         foreach($person_indices as $personIndex){
             DocumentPersonIndex::create([
@@ -139,13 +198,15 @@ class DocumentListScreen extends Screen
 
         $request->file('file')->storeAs("pdf/$documentId/", $request->input('document.fileName'));
 
-        is_null($documentId) ? Toast::info('Документ добавлен') : ('Документ обновлён');
+        if($check)
+            Toast::info('Документ добавлен');
+        else
+            Toast::info('Документ обновлён');
     }
 
     public function removeDocument(Request $request): void
     {
         DocumentGeoIndex::where('document_id', $request->get('id'))->delete();
-        DocumentThemeIndex::where('document_id', $request->get('id'))->delete();
         DocumentPersonIndex::where('document_id', $request->get('id'))->delete();
         Document::findOrFail($request->get('id'))->delete();
 

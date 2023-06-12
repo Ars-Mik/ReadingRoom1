@@ -23,13 +23,13 @@ class GeoIndexListScreen extends Screen
 
     public function name(): ?string
     {
-        return 'Список географических индексов';
+        return 'Список географических указателей';
     }
 
     public function commandBar(): iterable
     {
         return [
-            ModalToggle::make('Создать индекс')->modal('createGeoIndex')->method('createOrUpdateGeoIndex')->icon('plus')
+            ModalToggle::make('Создать указатель')->modal('createGeoIndex')->method('createOrUpdateGeoIndex')->icon('plus')
         ];
     }
 
@@ -39,12 +39,12 @@ class GeoIndexListScreen extends Screen
             GeoIndexListTable::class,
 
             Layout::modal('createGeoIndex', Layout::rows([
-                Input::make('geoIndex.geoName')->required()->title('Название географического индекса')
-            ]))->title('Создание географического индекса')->applyButton('Создать'),
+                Input::make('geoIndex.geoName')->required()->title('Название географического указателя')
+            ]))->title('Создание географического указателя')->applyButton('Создать'),
 
             Layout::modal('editGeoIndex', Layout::rows([
                 Input::make('geoIndex.id')->type('hidden'),
-                Input::make('geoIndex.geoName')->required()->title('Название географического индекса')
+                Input::make('geoIndex.geoName')->required()->title('Название географического указателя')
             ]))->async('asyncGetGeoIndex')
         ];
     }
@@ -61,13 +61,13 @@ class GeoIndexListScreen extends Screen
             'id' => $geoIndexId
         ], $request->validated()['geoIndex']);
 
-        is_null($geoIndexId) ? Toast::info('Географический индекс добавлен') : Toast::info('Географический индекс обновлён');
+        is_null($geoIndexId) ? Toast::info('Географический указатель добавлен') : Toast::info('Географический указатель обновлён');
     }
 
     public function removeGeoIndex(Request $request): void
     {
         GeoIndex::findOrFail($request->get('id'))->delete();
 
-        Toast::info('Географический индекс удалён');
+        Toast::info('Географический указатель удалён');
     }
 }

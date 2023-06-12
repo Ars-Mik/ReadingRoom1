@@ -14,7 +14,7 @@ class Fund extends Model
     use AsSource;
     use Filterable;
 
-    protected $fillable = ['id', 'fundName', 'numberFund',];
+    protected $fillable = ['id', 'fundName', 'numberFund', 'startDate', 'endDate', ];
 
     protected $allowedSorts = [
         'fundName', 'numberFund'
@@ -24,7 +24,4 @@ class Fund extends Model
         'fundName', 'numberFund'
     ];
 
-    public function document(): belongsTo{
-        return $this->belongsTo(Document::class);
-    }
 }

@@ -18,6 +18,8 @@ class FundListTable extends Table
         return [
             TD::make('fundName', 'Название фонда')->sort()->filter(TD::FILTER_TEXT),
             TD::make('numberFund', 'Номер фонда')->sort()->filter(TD::FILTER_TEXT),
+            TD::make('startDate', 'Начальная дата'),
+            TD::make('endDate', 'Конечная дата'),
             TD::make('created_at', 'Дата создания')->defaultHidden(),
             TD::make('updated_at', 'Дата обновления')->defaultHidden(),            
             TD::make('action', 'Действия')

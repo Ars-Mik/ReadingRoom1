@@ -8,7 +8,6 @@ use App\Filter\CaseFilter;
 class NameDocumentCase extends CaseFilter
 {
 
-
     public static string $NAME_QUERY_FIELD = 'documentName';
 
     function apply($builder, $value) {

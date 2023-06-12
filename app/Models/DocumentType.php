@@ -5,20 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
-class DocumentThemeIndex extends Model
+class DocumentType extends Model
 {
     use HasFactory;
     use AsSource;
+    use Filterable;
 
-    protected $fillable = ['document_id', 'theme_index_id',];
+    protected $fillable = ['id', 'typeName',];
+
+    protected $allowedSorts = [
+        'typeName'
+    ];
+
+    protected $allowedFilters = [
+        'typeName'
+    ];
 
     public function document(): BelongsTo{
         return $this->belongsTo(Document::class);
-    }
-
-    public function themeIndex(): BelongsTo{
-        return $this->belongsTo(ThemeIndex::class);
     }
 }

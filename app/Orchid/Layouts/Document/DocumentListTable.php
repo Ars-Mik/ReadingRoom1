@@ -18,11 +18,15 @@ class DocumentListTable extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('documentName', 'Название')->sort()->filter(TD::FILTER_TEXT),
-            TD::make('fund_id', 'Фонд')->render(function(Document $document){
-                return $document->fund->fundName;
+            TD::make('documentName', 'Название')->sort()->filter(TD::FILTER_TEXT)->width('200px'),
+            TD::make('Фонд')->render(function(Document $document){
+                return $document->documentInventory->fund->fundName;
             }),
-            TD::make('Географические индексы')
+            TD::make('document_inventory_id', '№ Описи')->render(function(Document $document){
+                return $document->documentInventory->numberInventory;
+            }),
+            TD::make('caseNumber', 'Номер дела'),
+            TD::make('Географические указатели')
             ->render(function(Document $document){
                 $geo_indices_id = DB::table('document_geo_indices')
                 ->where('document_id', $document->id)->get('geo_index_id');
@@ -34,21 +38,8 @@ class DocumentListTable extends Table
                 }
                 $geo_indices_name = mb_substr($geo_indices_name, 0, -5);
                 return $geo_indices_name;
-            }),
-            TD::make('Тематические индексы')
-            ->render(function(Document $document){
-                $theme_indices_id = DB::table('document_theme_indices')
-                ->where('document_id', $document->id)->get('theme_index_id');
-                $theme_indices_name = "";
-                foreach($theme_indices_id as $theme_index){
-                    $theme_indices_name .= DB::table('theme_indices')
-                    ->where('id', $theme_index->theme_index_id)->value('themeName');
-                    $theme_indices_name .= ",<br>";
-                }
-                $theme_indices_name = mb_substr($theme_indices_name, 0, -5);
-                return $theme_indices_name;
-            }),  
-            TD::make('Именные индексы')
+            }),              
+            TD::make('Именные указатели')
             ->render(function(Document $document){
                 $person_indices_id = DB::table('document_person_indices')
                 ->where('document_id', $document->id)->get('person_index_id');
@@ -60,8 +51,41 @@ class DocumentListTable extends Table
                 }
                 $person_indices_name = mb_substr($person_indices_name, 0, -5);
                 return $person_indices_name;
+            }),
+            TD::make('document_type_id', 'Вид документа')->render(function(Document $document){
+                return $document->documentType->typeName;
             }),   
-            TD::make('date', 'Дата появления')->defaultHidden()->sort(),
+            TD::make('year', 'Год')->defaultHidden()->sort(),
+            TD::make('month', 'Месяц')->defaultHidden()
+            ->render(function(Document $document){
+                $string = "";
+                if($document->month != 0){
+                    if($document->month < 10){
+                        $string .= "0";
+                    }
+                    $string .= $document->month;
+                    return $string;
+                }
+                else{
+                    $string .= "-";
+                    return $string;
+                }
+            }),
+            TD::make('day', 'День')->defaultHidden()
+            ->render(function(Document $document){
+                $string = "";
+                if($document->day != 0){
+                    if($document->day < 10){
+                        $string .= "0";
+                    }
+                    $string .= $document->day;
+                    return $string;
+                }
+                else{
+                    $string .= "-";
+                    return $string;
+                }
+            }),
             TD::make('fileName', 'Название файла')->defaultHidden(),
             TD::make('access', 'Доступ')
             ->render(function(Document $document){

@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ Vite::asset('resources/css/about_document.css') }}">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
   </head>
 
   <body class="text-center h-100">
@@ -43,7 +44,7 @@
 		<div class="col">
             <ul class="breadcrumb container">
                 <li><a href="/documents">Дело</a></li>
-                <li><?php if ($documentSelect) { echo 'Ф. '.$documentSelect[0]->Numberfund. ' Оп. 4 Д. 1 '. $documentSelect[0]->documentName; } ?></li>
+                <li><?php if ($documentSelect) { echo 'Ф. '.$documentSelect[0]->Numberfund. ' Оп. '.$documentSelect[0]->numberInventory. ' Д. '.$documentSelect[0]->caseNumber. ' ' .$documentSelect[0]->documentName; } ?></li>
             </ul>
             {{-- Ф. 719 Оп. 1 Д. 1 Пример “Актовые записи о рождении, браке и смерти” --}}
             <div class="container-fluid container_about">
@@ -98,7 +99,7 @@
 
     var arr_geoName = [];
 
-    var arr_themeName = [];
+    var arr_typeName = [];
 
     for (let i = 0; i < arr.length; i++) {
 
@@ -106,11 +107,11 @@
 
       arr_geoName.push(arr[i]['geoName']);
 
-      arr_themeName.push(arr[i]['themeName']);
+      arr_typeName.push(arr[i]['typeName']);
 
     }
     arr_geoName = Array.from(new Set(arr_geoName));
-    arr_themeName = Array.from(new Set(arr_themeName));
+    arr_typeName = Array.from(new Set(arr_typeName));
     arr_personeName = Array.from(new Set(arr_personeName));
 
     function test(id, array) {
@@ -125,11 +126,11 @@
             <td>Государственный архив Астраханской области</td>
             <td>${arr[0]['fundName']}</td>
             <td>${arr[0]['Numberfund']}</td>
-            <td>2</td>
-            <td>4</td>
+            <td>${arr[0]['numberInventory']}</td>
+            <td>${arr[0]['caseNumber']}</td>
             <td>${arr[0]['documentName']}</td>
             <td id="geoName"></td>
-            <td id="themeName"></td>
+            <td id="typeName"></td>
             <td id="personeName"></td>
             <td>1943г.</td>
         </tr>
@@ -158,7 +159,7 @@
     }
 
     test('geoName', arr_geoName);
-    test('themeName', arr_themeName);
+    test('typeName', arr_typeName);
     test('personeName', arr_personeName);
 
   });

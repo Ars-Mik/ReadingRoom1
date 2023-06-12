@@ -36,17 +36,21 @@ class PlatformProvider extends OrchidServiceProvider
             ->icon('building')
             ->route('platform.funds'),
 
-            Menu::make('Географические индексы')
+            Menu::make('Описи')
+            ->icon('docs')
+            ->route('platform.document_inventories'),
+
+            Menu::make('Географические указатели')
             ->icon('pointer')
             ->route('platform.geo_indices'),
 
-            Menu::make('Именные индексы')
+            Menu::make('Именные указатели')
             ->icon('friends')
             ->route('platform.person_indices'),
 
-            Menu::make('Тематические индексы')
+            Menu::make('Виды документов')
             ->icon('tag')
-            ->route('platform.theme_indices'),
+            ->route('platform.document_types'),
 
             Menu::make(__('Users'))
                 ->icon('user')

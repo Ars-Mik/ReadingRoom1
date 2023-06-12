@@ -15,7 +15,7 @@ class AboutController extends Controller
     {
         $funds = DB::table('funds')->get();
         $geo_indices = DB::table('geo_indices')->get();
-        $theme_indices = DB::table('theme_indices')->get();
+        $document_types = DB::table('document_types')->get();
         $person_indices = DB::table('person_indices')->get();
 
 /*         $documentSelect = DB::table('documents')
@@ -26,10 +26,10 @@ class AboutController extends Controller
         $documentFilter = Document::query()
                                 ->filter($request->all())
                                 ->distinct()
-                                ->with('fund')
+                                ->with('documentInventory')
                                 ->paginate();
 
-        return view('documents', ['funds' => $funds, 'geo_indices' => $geo_indices, 'theme_indices' => $theme_indices, 'person_indices' => $person_indices, 'documentFilter' => $documentFilter]);
+        return view('documents', ['funds' => $funds, 'geo_indices' => $geo_indices, 'document_types' => $document_types, 'person_indices' => $person_indices, 'documentFilter' => $documentFilter]);
     }
 }
 

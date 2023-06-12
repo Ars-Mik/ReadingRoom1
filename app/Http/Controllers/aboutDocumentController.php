@@ -15,12 +15,12 @@ class aboutDocumentController extends Controller
 {
     public function index(Request $request, $id)
     {
-        $documentSelect = DB::select('SELECT DISTINCT fundName, Numberfund, documentName, geoName, themeName, personName, date, fileName, access
-            FROM documents, funds, document_geo_indices, geo_indices, person_indices, theme_indices, document_theme_indices, document_person_indices
-            WHERE fund_id = funds.id AND theme_indices.id = document_theme_indices.theme_index_id AND document_theme_indices.document_id = documents.id
+        $documentSelect = DB::select('SELECT DISTINCT fundName, Numberfund, numberInventory, caseNumber, documentName, geoName, typeName, personName, year, fileName, access
+            FROM documents, funds, document_geo_indices, geo_indices, person_indices, document_types, document_inventories, document_person_indices
+            WHERE document_inventories.id = documents.document_inventory_id AND document_inventories.fund_id = funds.id
+            AND document_types.id = documents.document_type_id
             AND geo_indices.id = document_geo_indices.geo_index_id AND document_geo_indices.document_id = documents.id
             AND person_indices.id = document_person_indices.person_index_id AND document_person_indices.document_id = documents.id
-            AND theme_indices.id = document_theme_indices.theme_index_id AND document_theme_indices.document_id = documents.id
             AND documents.id = "'.$id.'"
         ');
 

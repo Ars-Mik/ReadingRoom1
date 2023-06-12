@@ -29,7 +29,7 @@ class GeoIndexListTable extends Table
                         ModalToggle::make('Редактировать')
                             ->modal('editGeoIndex')
                             ->method('createOrUpdateGeoIndex')
-                            ->modalTitle('Редактирование географического индекса')
+                            ->modalTitle('Редактирование географического указателя')
                             ->icon('pencil')
                             ->asyncParameters([
                                 'geoIndex' => $geoIndex->id
@@ -37,7 +37,7 @@ class GeoIndexListTable extends Table
 
                         Button::make('Удалить')
                             ->icon('trash')
-                            ->confirm('Вы уверены, что хотите удалить данный географический индекс?')
+                            ->confirm('Вы уверены, что хотите удалить данный географический указатель?')
                             ->method('removeGeoIndex', [
                                 'id' => $geoIndex->id
                             ]),

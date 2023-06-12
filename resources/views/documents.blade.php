@@ -242,11 +242,11 @@
 `;
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if (valueSelected == 'value4'){
-                                    templateSelect = `
-										<select name="themeName[]" required>
+                                    templateSelect = `s
+										<select name="typeName[]" required>
 											<option value="" disabled selected>- Выбрать -</option>
-											@foreach ($theme_indices as $theme)
-                                    <option value='{{$theme->themeName}}'>{{$theme->themeName}}</option>
+											@foreach ($document_types as $type)
+                                    <option value='{{$type->typeName}}'>{{$type->typeName}}</option>
 											@endforeach
                                     </select>
 `;
@@ -366,10 +366,10 @@
                                 $($($(line_search)[i]).find('div')[2]).find('select').remove();
                             } else if (valueSelected == 'value4'){
                                 templateSelect = `
-										<select name="themeName[]" required>
+										<select name="typeName[]" required>
 											<option value="" disabled selected>- Выбрать -</option>
-											@foreach ($theme_indices as $theme)
-                                <option value='{{$theme->themeName}}'>{{$theme->themeName}}</option>
+											@foreach ($document_types as $type)
+                                <option value='{{$type->typeName}}'>{{$type->typeName}}</option>
 											@endforeach
                                 </select>
 `;

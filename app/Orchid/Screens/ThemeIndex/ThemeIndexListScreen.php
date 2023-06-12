@@ -41,7 +41,7 @@ class ThemeIndexListScreen extends Screen
             Layout::modal('createThemeIndex', Layout::rows([
                 Input::make('themeIndex.themeName')->required()->title('Название тематического индекса'),
             ]))->title('Создание тематического индекса')->applyButton('Создать'),
-
+            
             Layout::modal('editThemeIndex', Layout::rows([
                 Input::make('themeIndex.id')->type('hidden'),
                 Input::make('themeIndex.themeName')->required()->title('Название тематического индекса'),
@@ -61,7 +61,7 @@ class ThemeIndexListScreen extends Screen
             'id' => $themeIndexId
         ], $request->validated()['themeIndex']);
 
-        is_null($themeIndexId) ? Toast::info('Тематический индекс добавлен') : Toast::info('Тематический индекс обновлён');
+        is_null($themeIndexId) ? Toast::info('Тематический индекс добавлен') : ('Тематический индекс обновлён');
     }
 
     public function removeThemeIndex(Request $request): void
