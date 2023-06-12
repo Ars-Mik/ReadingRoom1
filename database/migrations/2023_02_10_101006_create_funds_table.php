@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('fundName');
             $table->string('numberFund');
+            $table->integer('startDate')->unsigned();
+            $table->integer('endDate')->unsigned();
             $table->timestamps();
         });
     }

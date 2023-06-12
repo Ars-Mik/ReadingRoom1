@@ -40,13 +40,17 @@ class FundListScreen extends Screen
 
             Layout::modal('createFund', Layout::rows([
                 Input::make('fund.fundName')->required()->title('Название фонда'),
-                Input::make('fund.numberFund')->required()->title('Номер фонда')
+                Input::make('fund.numberFund')->required()->title('Номер фонда'),
+                Input::make('fund.startDate')->required()->title('Начальная дата'),
+                Input::make('fund.endDate')->required()->title('Конечная дата')                
             ]))->title('Создание фонда')->applyButton('Создать'),
 
             Layout::modal('editFund', Layout::rows([
                 Input::make('fund.id')->type('hidden'),
                 Input::make('fund.fundName')->required()->title('Название фонда'),
-                Input::make('fund.numberFund')->required()->title('Номер фонда')
+                Input::make('fund.numberFund')->required()->title('Номер фонда'),
+                Input::make('fund.startDate')->required()->title('Начальная дата'),
+                Input::make('fund.endDate')->required()->title('Конечная дата')
             ]))->async('asyncGetFund')
         ];
     }

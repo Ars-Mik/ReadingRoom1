@@ -18,9 +18,9 @@
         @foreach ($json[0] as $item)
           <tr>
             <td>${count++}</td>
-            <td>Ф. {{$item->fund->numberFund}} Оп. 4 Д. 3</td>
-            <td>{{$item->fund->numberFund}}</td>
-            <td>Ф.{{$item->fund->numberFund}} Оп. 4</td>
+            <td>Ф. {{$item->documentInventory->fund->numberFund}} Оп. {{$item->documentInventory->numberInventory}} Д. {{$item->caseNumber}}</td>
+            <td>{{$item->documentInventory->fund->numberFund}}</td>
+            <td>Ф.{{$item->documentInventory->fund->numberFund}} Оп. {{$item->documentInventory->numberInventory}}</td>
             <td>{{$item->documentName}}</td>
             <td><a href="about_document/{{$item->id}}">Открыть документ</a></td>
           </tr>

@@ -20,28 +20,35 @@ class Document extends Model
 
     public static string $QueryFilterClass = DocumentFilter::class;
 
-    protected $fillable = ['id', 'documentName', 'fileName', 'fund_id', 'date', 'access',];
+    protected $fillable = ['id', 'documentName', 'caseNumber', 'fileName', 'document_inventory_id',
+    'document_type_id', 'year', 'month', 'day', 'access',];
 
     protected $allowedSorts = [
-        'documentName', 'date'
+        'documentName', 'year'
     ];
 
     protected $allowedFilters = [
         'documentName'
     ];
 
-    public function fund(): BelongsTo{
+    /* public function fund(): BelongsTo{
         return $this->belongsTo(Fund::class);
+    } */
+
+    public function documentInventory(): BelongsTo{
+        return $this->belongsTo(DocumentInventory::class);
     }
-    public function themes(): BelongsToMany{
-        return $this->belongsToMany(ThemeIndex::class, 'document_theme_indices');
+
+    public function documentType(): BelongsTo{
+        return $this->belongsTo(DocumentType::class);
     }
+
     public function geos(): BelongsToMany{
         return $this->belongsToMany(GeoIndex::class, 'document_geo_indices');
     }
+
     public function nameIndexes(): BelongsToMany{
         return $this->belongsToMany(PersonIndex::class, 'document_person_indices');
     }
-
 
 }

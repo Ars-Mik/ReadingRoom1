@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\DocumentInventory;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
 use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
@@ -16,10 +17,11 @@ use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use App\Orchid\Screens\Document\DocumentListScreen;
+use App\Orchid\Screens\DocumentInventory\DocumentInventoryListScreen;
 use App\Orchid\Screens\Fund\FundListScreen;
 use App\Orchid\Screens\GeoIndex\GeoIndexListScreen;
 use App\Orchid\Screens\PersonIndex\PersonIndexListScreen;
-use App\Orchid\Screens\ThemeIndex\ThemeIndexListScreen;
+use App\Orchid\Screens\DocumentType\DocumentTypeListScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -42,6 +44,10 @@ Route::screen('documents', DocumentListScreen::class)
 Route::screen('funds', FundListScreen::class)
     ->name('platform.funds');
 
+// Document_inventories_orchid
+Route::screen('document_inventories', DocumentInventoryListScreen::class)
+->name('platform.document_inventories');
+
 // Geo_Index_orchid
 Route::screen('geo_indices', GeoIndexListScreen::class)
     ->name('platform.geo_indices');
@@ -50,9 +56,9 @@ Route::screen('geo_indices', GeoIndexListScreen::class)
 Route::screen('person_indices', PersonIndexListScreen::class)
     ->name('platform.person_indices');
 
-// Theme_Index_orchid
-Route::screen('theme_indices', ThemeIndexListScreen::class)
-    ->name('platform.theme_indices');
+// Document_Type_orchid
+Route::screen('document_types', DocumentTypeListScreen::class)
+    ->name('platform.document_types');
 
 // Main
 Route::screen('/main', PlatformScreen::class)

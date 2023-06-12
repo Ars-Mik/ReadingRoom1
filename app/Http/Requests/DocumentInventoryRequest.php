@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FundRequest extends FormRequest
+class DocumentInventoryRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,10 +14,8 @@ class FundRequest extends FormRequest
     public function rules()
     {
         return [
-            'fund.fundName' => ['required'],
-            'fund.numberFund' => ['required'],
-            'fund.startDate' => ['required'],
-            'fund.endDate' => ['required']
+            'documentInventory.numberInventory' => ['required'],
+            'documentInventory.fund_id' => ['required'],
         ];
     }
 }

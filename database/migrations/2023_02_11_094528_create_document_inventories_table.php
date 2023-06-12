@@ -13,16 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-
-        // Сделать таблицы мосты------------------------------
-
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('document_inventories', function (Blueprint $table) {
             $table->id();
-            $table->string('documentName');
-            $table->string('fileName');
-            $table->bigInteger('fund_id')->unsigned();            
-            $table->date('date')->nullable();
-            $table->boolean('access');
+            $table->string('numberInventory');
+            $table->bigInteger('fund_id')->unsigned();
             $table->foreign('fund_id')
                 ->references('id')
                 ->on('funds')
@@ -39,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('document_inventories');
     }
 };

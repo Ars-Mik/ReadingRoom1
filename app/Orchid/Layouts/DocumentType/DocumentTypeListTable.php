@@ -1,45 +1,45 @@
 <?php
 
-namespace App\Orchid\Layouts\PersonIndex;
+namespace App\Orchid\Layouts\DocumentType;
 
-use App\Models\PersonIndex;
+use App\Models\DocumentType;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
-class PersonIndexListTable extends Table
+class DocumentTypeListTable extends Table
 {
-    protected $target = 'person_indices';
+    protected $target = 'document_types';
 
     protected function columns(): iterable
     {
         return [
-            TD::make('personName', 'Название')->sort()->filter(TD::FILTER_TEXT),
+            TD::make('typeName', 'Название')->sort()->filter(TD::FILTER_TEXT),
             TD::make('created_at', 'Дата создания')->defaultHidden(),
             TD::make('updated_at', 'Дата обновления')->defaultHidden(),
             TD::make('action', 'Действия')
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
-                ->render(fn (PersonIndex $personIndex) => DropDown::make()
+                ->render(fn (DocumentType $documentType) => DropDown::make()
                     ->icon('options-vertical')
                     ->list([
 
                         ModalToggle::make('Редактировать')
-                            ->modal('editPersonIndex')
-                            ->method('createOrUpdatePersonIndex')
-                            ->modalTitle('Редактирование именного указателя')
+                            ->modal('editDocumentType')
+                            ->method('createOrUpdateDocumentType')
+                            ->modalTitle('Редактирование вида документа')
                             ->icon('pencil')
                             ->asyncParameters([
-                                'personIndex' => $personIndex->id
+                                'documentType' => $documentType->id
                             ]),
 
                         Button::make('Удалить')
                             ->icon('trash')
-                            ->confirm('Вы уверены, что хотите удалить данный именной указатель?')
-                            ->method('removePersonIndex', [
-                                'id' => $personIndex->id
+                            ->confirm('Вы уверены, что хотите удалить данный вид документа?')
+                            ->method('removeDocumentType', [
+                                'id' => $documentType->id
                             ]),
                     ])),
         ];
