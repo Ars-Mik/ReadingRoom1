@@ -15,7 +15,7 @@ class aboutDocumentController extends Controller
 {
     public function index(Request $request, $id)
     {
-        $documentSelect = DB::select('SELECT DISTINCT fundName, Numberfund, numberInventory, caseNumber, documentName, geoName, typeName, personName, year, fileName, access
+        $documentSelect = DB::select('SELECT DISTINCT documents.id as id, fundName, Numberfund, numberInventory, caseNumber, documentName, geoName, typeName, personName, year, fileName, access
             FROM documents, funds, document_geo_indices, geo_indices, person_indices, document_types, document_inventories, document_person_indices
             WHERE document_inventories.id = documents.document_inventory_id AND document_inventories.fund_id = funds.id
             AND document_types.id = documents.document_type_id
