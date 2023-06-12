@@ -15,6 +15,6 @@ class ApplicationController extends Controller
             'document_id' => $request->id
         ]);
 
-        return back();
+        return response('');
     }
 }

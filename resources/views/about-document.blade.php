@@ -39,22 +39,36 @@
         </div>
     </div>
 
-    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-         aria-hidden="true">
+    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="/orders" method="POST" class="modal-content">
-                @csrf
-                <input type="hidden" name="id" value="{{ $id }}">
-                <div class="modal-header bg-black text-white">
+            <form class="modal-content">
+                <div class="modal-header bg-black text-white text-center">
                     <h5 class="modal-title" id="exampleModalLongTitle">Заявка на просмотр документа</h5>
-                    <button type="button" class="close" data-dismiss="orderModal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Отправить</button>
+                    <button type="button" onclick="saveOrder();" class="btn btn-primary">Отправить</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <img style="width: 15rem" src="{{ Vite::asset('resources/img/success.png') }}">
+                <span class="mt-5" style="
+            font-size: 12px;
+            font-weight: 500;
+            font: caption"
+                >
+                Ваша заявка была успешно отправлена. Статус отправленной заявки вы можете просмотреть в личном кабинете, раздел Мои заявки.
+            </span>
+                <a class="btn btn-primary" href="/client/orders">Мои заявки</a>
+                <a href="#" onclick="closeSuccessModal();">Закрыть</a>
+            </div>
         </div>
     </div>
 @endsection
@@ -116,6 +130,7 @@
                 btn.text('Отправить заявку');
                 btn.removeClass('btn-primary');
                 btn.addClass('btn-black');
+                btn.removeAttr('onclick');
                 btn.attr('data-toggle', 'orderModal');
                 btn.attr('data-target', '#exampleModalLong');
                 btn.attr('id', 'myModal');
@@ -130,5 +145,18 @@
             test('personeName', arr_personeName);
 
         });
+
+        function saveOrder() {
+            $.post('/orders', {
+                id: {{ $id }},
+                _token: "{{ csrf_token() }}"
+            })
+            $('#orderModal').modal('hide')
+            $('#successModal').modal('show')
+        }
+
+        function closeSuccessModal() {
+            $('#successModal').modal('hide')
+        }
     </script>
 @endsection
