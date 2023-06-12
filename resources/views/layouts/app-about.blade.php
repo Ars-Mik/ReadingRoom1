@@ -38,7 +38,7 @@
         })
 
         function openDocument(id) {
-            $('#documentFileFrame').attr('src', '/documents/' + id + '/file')
+            $('#documentFileFrame').attr('src', '/laraview/#../documents/' + id + '/file')
             $('#documentModal').show()
         }
 

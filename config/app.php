@@ -197,7 +197,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Davcpas1234\LaravelPdfViewer\LaravelPdfViewerServiceProvider::class,
     ],
 
     /*
