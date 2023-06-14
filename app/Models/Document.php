@@ -31,10 +31,6 @@ class Document extends Model
         'documentName'
     ];
 
-    /* public function fund(): BelongsTo{
-        return $this->belongsTo(Fund::class);
-    } */
-
     public function documentInventory(): BelongsTo{
         return $this->belongsTo(DocumentInventory::class);
     }
