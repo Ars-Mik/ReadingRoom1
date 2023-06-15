@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\DocumentInventory;
+use App\Orchid\Screens\Application\ApplicationListScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
 use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
@@ -22,6 +23,7 @@ use App\Orchid\Screens\Fund\FundListScreen;
 use App\Orchid\Screens\GeoIndex\GeoIndexListScreen;
 use App\Orchid\Screens\PersonIndex\PersonIndexListScreen;
 use App\Orchid\Screens\DocumentType\DocumentTypeListScreen;
+use App\Orchid\Screens\HistoryApplication\HistoryApplicationListScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -59,6 +61,14 @@ Route::screen('person_indices', PersonIndexListScreen::class)
 // Document_Type_orchid
 Route::screen('document_types', DocumentTypeListScreen::class)
     ->name('platform.document_types');
+
+// Application_orchid
+Route::screen('applications', ApplicationListScreen::class)
+->name('platform.applications');
+
+// History_Application_orchid
+Route::screen('history_applications', HistoryApplicationListScreen::class)
+->name('platform.history_applications');
 
 // Main
 Route::screen('/main', PlatformScreen::class)
