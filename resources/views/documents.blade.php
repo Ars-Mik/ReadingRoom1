@@ -11,10 +11,8 @@
                             <div class="select">
                                 <div class="custom-arrow">
                                     <select name="" id="select_1">
-                                        <option value="value1" selected>Название документа </option>
-                                        <option value="value2" >Фонд</option>
+                                        <option value="value1" selected>Название документа</option>
                                         <option value="value3" >Географический индекс</option>
-                                        <option value="value4" >Тематический индекс</option>
                                         <option value="value5" >Именной индекс</option>
                                     </select>
                                 </div>
@@ -32,16 +30,19 @@
                             <div class="select">
                                 <div class="custom-arrow">
                                     <select name="" id="select_1">
-                                        <option value="value1" selected>Название документа </option>
                                         <option value="value2" >Фонд</option>
                                         <option value="value3" >Географический индекс</option>
-                                        <option value="value4" >Тематический индекс</option>
                                         <option value="value5" >Именной индекс</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="search-dictionary">
-                                <input name="documentName" type="search" placeholder="Поиск...">
+                                <select name="fundName[]" required>
+                                    <option value="" disabled selected>- Выбрать -</option>
+                                    @foreach ($funds as $fund)
+                                        <option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="function">
                                 <a href="javascript://" id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
@@ -54,22 +55,30 @@
                             <div class="select">
                                 <div class="custom-arrow">
                                     <select name="" id="select_1">
-                                        <option value="value1" selected>Название документа </option>
-                                        <option value="value2" >Фонд</option>
-                                        <option value="value3" >Географический индекс</option>
-                                        <option value="value4" >Тематический индекс</option>
+                                        <option value="value3">Географический индекс</option>
+                                        <option value="value4" selected>Вид документа</option>
                                         <option value="value5" >Именной индекс</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="search-dictionary">
-                                <input name="documentName" type="search" placeholder="Поиск...">
+                                <select name="typeName[]" required>
+                                        <option value="" disabled selected>- Выбрать -</option>
+                                    @foreach ($document_types as $type)
+                                        <option value='{{$type->typeName}}'>{{$type->typeName}}</option>
+                                    @endforeach
+                                    </select>
                             </div>
                             <div class="function">
                                 <a href="javascript://" id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
                                 <a href="javascript://" id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
                             </div>
                         </div>
+
+
+
+                        
+
                     </div>
 
                     <div class="function_button mx-5">
@@ -116,37 +125,95 @@
             var line_search = $('.line_search');
             const from_container = $('.block-form-container');
             var Isline_search = $('.line_search');
-
+            var is_value = false;
             //добавление новых критерий
             $('#add_category').click((e) =>{
                 e.preventDefault();
                 from_container.find('span').remove();
                 count++;
+
                 from_container.append(
-                    `
-				<div class="line_search" id="line_${count}">
-					<div class="select">
-						<div class="custom-arrow">
-							<select name="" id="select_${count}">
-								<option value="value1" selected>Название документа </option>
-								<option value="value2" >Фонд</option>
-								<option value="value3" >Географический индекс</option>
-								<option value="value4" >Тематический индекс</option>
-								<option value="value5" >Именной индекс</option>
-							</select>
-						</div>
-					</div>
-					<div class="search-dictionary">
-						<input name="documentName" type="search" placeholder="Поиск...">
-					</div>
-					<div class="function">
-						<a href="javascript://" id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
-						<a href="javascript://" id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
-					</div>
-				</div>
-				`
+                    '<div class="line_search" id="line_'+count+'">'+
+                        '<div class="select">'+
+                            '<div class="custom-arrow">'+
+                                '<select name="" id="select_'+count+'">'+
+                                    '<option value="value1" selected>Название документа</option>'+
+                                    '<option value="value2" >Фонд</option>'+
+                                    '<option value="value3" >Географический индекс</option>'+
+                                    '<option value="value4" >Вид документа</option>'+
+                                    '<option value="value5" >Именной индекс</option>'+
+                                '</select>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="search-dictionary">'+
+                            '<input name="documentName" type="search" placeholder="Поиск...">'+
+                        '</div>'+
+                        '<div class="function">'+
+                            '<a href="javascript://" id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>'+
+                            '<a href="javascript://" id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>'+
+                        '</div>'+
+                    '</div>'
                 );
 
+                function is_OPtion(val) {
+                    for (let i = 0; i < 5; i++) {
+                        if ($($('.line_search')[i]).attr('id') && $($('.line_search')[i]).attr('id') != `line_${count}`) {
+                            for (let j = 0; j < 5; j++) {
+                                if ($($(`#${$($('.line_search')[i]).attr('id')} option`)[j]).val()) {
+                                    if ($($(`#${$($('.line_search')[i]).attr('id')} option`)[j]).val() == val) {
+                                        console.log($($(`#${$($('.line_search')[i]).attr('id')} option`)[j]).val());
+                                        return true;
+                                    }
+                                }
+                            }         
+                        }
+                    }  
+                }
+
+                if (is_OPtion('value1')) {
+                    for (let j = 0; j < $(`#select_${count} option`).length; j++) {
+                        if ($($(`#select_${count} option`)[j]).val() == 'value1') {
+                            $($(`#select_${count} option`)[j]).remove();
+                        }
+                    }
+                } else{
+                    for (let j = 0; j < $(`#select_${count} option`).length; j++) {
+                        if ($($(`#select_${count} option`)[j]).val() == 'value1') {
+                            $($(`#select_${count} option`)[j]).attr('selected', 'selected');
+                        }
+                    }
+                }
+
+                if (is_OPtion('value2')) {
+                    for (let j = 0; j < $(`#select_${count} option`).length; j++) {
+                        if ($($(`#select_${count} option`)[j]).val() == 'value2') {
+                            $($(`#select_${count} option`)[j]).remove();
+                        }
+                    }
+                } else{
+                    for (let j = 0; j < $(`#select_${count} option`).length; j++) {
+                        if ($($(`#select_${count} option`)[j]).val() == 'value2') {
+                            $($(`#select_${count} option`)[j]).attr('selected', 'selected');
+                        }
+                    }
+                }
+
+                if (is_OPtion('value4')) {
+                    for (let j = 0; j < $(`#select_${count} option`).length; j++) {
+                        if ($($(`#select_${count} option`)[j]).val() == 'value4') {
+                            $($(`#select_${count} option`)[j]).remove();
+                        }
+                    }
+                } else{
+                    for (let j = 0; j < $(`#select_${count} option`).length; j++) {
+                        if ($($(`#select_${count} option`)[j]).val() == 'value4') {
+                            $($(`#select_${count} option`)[j]).attr('selected', 'selected');
+                        }
+                    }
+                }
+
+
+                
 
                 // удаление критерии по одному
                 var line_search = $('.line_search');
@@ -154,9 +221,9 @@
                     const btn_trush = $(line_search[i]).find('a');
                     $(btn_trush[1]).click(function (e) {
                         e.preventDefault();
-
+                        
                         $(line_search[i]).remove();
-                        count = 0;
+                        
                         let Isline_search = $('.line_search');
                         if (Isline_search.length == 0) {
                             from_container.append('<span>Нажмите на кнопку "Добавить новый критерий" чтобы появилось поле выбора.</span>');
@@ -228,8 +295,7 @@
 											@foreach ($funds as $fund)
                                     <option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
 											@endforeach
-                                    </select>
-`;
+                                    </select>`;
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if (valueSelected == 'value3') {
                                     templateSelect = `
@@ -238,18 +304,16 @@
 											@foreach ($geo_indices as $geo)
                                     <option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
 											@endforeach
-                                    </select>
-`;
+                                    </select>`;
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if (valueSelected == 'value4'){
-                                    templateSelect = `s
+                                    templateSelect = `
 										<select name="typeName[]" required>
 											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($document_types as $type)
                                     <option value='{{$type->typeName}}'>{{$type->typeName}}</option>
 											@endforeach
-                                    </select>
-`;
+                                    </select>`;
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if(valueSelected == 'value5'){
                                     templateSelect = `
@@ -258,8 +322,7 @@
 											@foreach ($person_indices as $person)
                                     <option value='{{$person->personName}}'>{{$person->personName}}</option>
 											@endforeach
-                                    </select>
-`;
+                                    </select>`;
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 }
 
@@ -284,11 +347,10 @@
                 const btn_trush = $(line_search[i]).find('a');
                 $(btn_trush[1]).click(function (e) {
                     e.preventDefault();
-
+                    
                     $(line_search[i]).remove();
-                    count = 0;
+                    
                     var Isline_search = $('.line_search');
-                    console.log(Isline_search);
                     if (Isline_search.length == 0 && Isline_search != false) {
                         from_container.append('<span>Нажмите на кнопку "Добавить новый критерий" чтобы появилось поле выбора.</span>');
                         Isline_search = false;
@@ -351,8 +413,7 @@
 											@foreach ($funds as $fund)
                                 <option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
 											@endforeach
-                                </select>
-`;
+                                </select>`;
                                 $($($(line_search)[i]).find('div')[2]).find('select').remove();
                             } else if (valueSelected == 'value3') {
                                 templateSelect = `
@@ -361,8 +422,7 @@
 											@foreach ($geo_indices as $geo)
                                 <option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
 											@endforeach
-                                </select>
-`;
+                                </select>`;
                                 $($($(line_search)[i]).find('div')[2]).find('select').remove();
                             } else if (valueSelected == 'value4'){
                                 templateSelect = `
@@ -371,8 +431,7 @@
 											@foreach ($document_types as $type)
                                 <option value='{{$type->typeName}}'>{{$type->typeName}}</option>
 											@endforeach
-                                </select>
-`;
+                                </select>`;
                                 $($($(line_search)[i]).find('div')[2]).find('select').remove();
                             } else if(valueSelected == 'value5'){
                                 templateSelect = `
@@ -381,8 +440,7 @@
 											@foreach ($person_indices as $person)
                                 <option value='{{$person->personName}}'>{{$person->personName}}</option>
 											@endforeach
-                                </select>
-`;
+                                </select>`;
                                 $($($(line_search)[i]).find('div')[2]).find('select').remove();
                             }
 
@@ -396,8 +454,9 @@
                     });
                 }
             }
-        });
 
+            
+        });
     </script>
 @endsection
 

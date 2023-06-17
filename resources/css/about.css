@@ -80,6 +80,10 @@
     display: none;
 }
 
+.dropdown-item::after{
+    display: none;
+}
+
 
 .nav-style-about>.link-auth{
     background-color: #252527;
@@ -363,7 +367,7 @@
 }
 
 .block-form-container{
-    height: 12rem;
+    height: 17rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -499,6 +503,10 @@
     color: gray;
 }
 .search-dictionary option[value=""][disabled] {
+    display: none;
+  }
+
+  .line_search option[value=""][disabled] {
     display: none;
   }
 .search-dictionary option {
