@@ -40,7 +40,7 @@
         })
 
         function openDocument(id) {
-            $('#documentFileFrame').attr('src', '/laraview/#../documents/' + id + '/file')
+            $('#documentFileFrame').attr('src', encodeURI("../lib/web/viewer.html?file={{ route('document-download', ['document' => $id]) }}"))
             $('#documentModal').show()
         }
 
