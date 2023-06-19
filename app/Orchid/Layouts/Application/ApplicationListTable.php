@@ -18,15 +18,17 @@ class ApplicationListTable extends Table
         return [
             TD::make('user_id', 'Пользователь')->render(function(Application $application){
                 return $application->user->name;
-            }),
+            })->width('200px'),
             TD::make('Почта')->render(function(Application $application){
                 return $application->user->email;
-            }),
+            })->width('200px'),
             TD::make('document_id', 'Документ')->render(function(Application $application){
                 return $application->document->documentName;
-            }),
-            TD::make('created_at', 'Дата создания')->defaultHidden(),
-            TD::make('updated_at', 'Дата обновления')->defaultHidden(),
+            })->width('200px'),
+            TD::make('created_at', 'Дата создания')->defaultHidden()
+            ->render(fn (Application $application) => $application->created_at->toDateTimeString()),
+            TD::make('updated_at', 'Дата обновления')->defaultHidden()
+            ->render(fn (Application $application) => $application->updated_at->toDateTimeString()),
             TD::make('action', 'Действия')
                 ->align(TD::ALIGN_CENTER)
                 ->width('294px')
