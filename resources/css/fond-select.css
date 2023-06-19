@@ -1,0 +1,68 @@
+/* selectFond (стили для выброного фонда) */
+
+.blockFond {
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    padding: 0;
+}
+
+.blockFond h3{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 4rem;
+    padding-left: 5rem;
+}
+
+.blockFondInformation {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 100%;
+    row-gap: 22px;
+    border-top: 4px solid rgba(0, 0, 0, 0.24);
+    padding: 18px 0;
+}
+
+.lineFond{
+    padding-left: 5rem;
+    text-shadow: none;
+}
+
+.lineFond .title{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.lineFond span:last-child{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    margin-left: 10px;
+}
+
+.lineFond:last-child{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    row-gap: 15px;
+}
+
+.lineFond>.geoPointer{
+    display: flex;
+    column-gap: 13px;
+    padding-bottom: 8px;
+    border-bottom: 4px solid rgba(0, 0, 0, 0.24);
+}
+
+.lineFond>.geoPointer span{
+    background: #F0F0F0;
+    border-radius: 9px;
+    padding: 12px 31px;
+    margin-left: 0;
+}

@@ -1,0 +1,111 @@
+.block-form-container-fond{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.label-block{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    row-gap: 8px;
+    margin-left: 20px;
+}
+
+.label-block label{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+
+.label-block input{
+    width: 373px;
+    height: 45px;
+    background: rgba(238, 238, 238, 0.3);
+    border-radius: 9px;
+    border: 2px solid rgba(0, 108, 204, 0.6);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    color: #000000;
+    padding-left: 47px;
+}
+
+.label-block  select{
+    width: 370px;
+    height: 45px;
+    background: rgba(238, 238, 238, 0.3);
+    border-radius: 9px;
+    border: 2px solid rgba(0, 108, 204, 0.6);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    color: #000000;
+    padding-left: 47px;
+}
+
+.label-block  input::-webkit-input-placeholder {
+    color: #AFADAD;
+}
+.label-block  input::-moz-placeholder { /* Firefox 19+ */
+    color: #AFADAD;
+}
+.label-block  input:-ms-input-placeholder {
+    color: #AFADAD;
+}
+.label-block  input:-moz-placeholder { /* Firefox 18- */
+    color: #AFADAD;
+}
+
+.label-block select:required:invalid {
+    color: gray;
+}
+.label-block option[value=""][disabled] {
+    display: none;
+}
+
+.line_search option[value=""][disabled] {
+    display: none;
+}
+
+.label-block option {
+    color: black;
+}
+
+.function_button.fond{
+    justify-content: end !important;
+}
+
+.title-fond{
+    display: flex;
+    margin-left: 10rem;
+}
+
+
+.Case-block-fond>from{
+    padding-bottom: 60px;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 21px;
+}
+
+.table-title-fond{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+}
+
+.table-title-fond hr{
+    border-width: 3px !important;
+}
+
+.list-books td:nth-child(5){
+    text-align: center;
+}

@@ -22,7 +22,7 @@ class AboutController extends Controller
                             ->join('funds', 'documents.fund_id', '=', 'funds.id')
                             ->select('documents.id', 'documentName', 'fileName', 'funds.numberFund', 'access')
                             ->get(); */
-
+                            
         $documentFilter = Document::query()
                                 ->filter($request->all())
                                 ->distinct()

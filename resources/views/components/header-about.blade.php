@@ -5,6 +5,7 @@
                 <h3 class="float-md-start mb-0"><img src="{{ Vite::asset('resources/img/logo_about.svg') }}" alt="logo">Электронный каталог архивных документов Астраханской области</h3>
                 <nav class="nav nav-style-about">
                     <a class="nav-link text-dark fw-bold py-1 px-0" aria-current="page" href="/">Главная</a>
+                    <a class="nav-link text-dark fw-bold py-1 px-0" href="/funds">Фонды</a>
                     <a class="nav-link text-dark fw-bold py-1 px-0" href="/documents">Документы</a>
                     <a class="nav-link text-dark fw-bold py-1 px-0" href="/about">Помощь</a>
                     @auth()

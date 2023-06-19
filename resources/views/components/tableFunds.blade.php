@@ -1,34 +1,37 @@
-<table class="list-books" style="width:100%; border-collapse: separate;">
+
+
+<div class="table-title-fond">
+  <h3 class="fs-3 title-fond">Все фонды</h3>
+  <hr/>
+  
+</div>
+<table class="list-books container" style="width:100%; border-collapse: separate; margin-top: 2rem;">
     <tr>
-      <th>№</th>
-      <th>Шифр</th>
-      <th>Номер фонда</th>
-      <th>Номер описи</th>
-      <th>Заголовок</th>
-      <th>Действие</th>
+      <th width="228px">№ фонда</th>
+      <th width="685px">Название</th>
+      <th width="300px">Начальная дата</th>
+      <th width="244px">Конечная дата</th>
+      <th width="260px">Количество дел</th>
     </tr>
+
+    
 </table>
 
 <script>
   $(window).on("load", function() {
-    let count = 1;
-
-    $($('.pagination-result').find('p')).find('span').html(<?php echo count($json[0])?>);
     $('.list-books').append(`
         @foreach ($json[0] as $item)
           <tr>
-            <td>${count++}</td>
-            <td>Ф. {{$item->documentInventory->fund->numberFund}} Оп. {{$item->documentInventory->numberInventory}} Д. {{$item->caseNumber}}</td>
-            <td>{{$item->documentInventory->fund->numberFund}}</td>
-            <td>Ф.{{$item->documentInventory->fund->numberFund}} Оп. {{$item->documentInventory->numberInventory}}</td>
-            <td>{{$item->documentName}}</td>
-            <td><a href="about_document/{{$item->id}}">Открыть документ</a></td>
+            <td width="228px" style="color: black;">{{$item->id}}</td>
+            <td width="685px" style="text-align: left; text-decoration: underline; color: black;"><a href="fund/{{$item->id}}">{{$item->fundName}}</a></td>
+            <td width="300px" style="color: black;">{{$item->startDate}}</td>
+            <td width="244px">{{$item->endDate}}</td>
+            <td width="260px">8</td>
           </tr>
         @endforeach
     `);
   });
 </script>
-
 
   <div class="list-pagination">
     <div class="pagination">

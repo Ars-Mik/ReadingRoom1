@@ -367,7 +367,7 @@
 }
 
 .block-form-container{
-    height: 17rem;
+    height: 12rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
