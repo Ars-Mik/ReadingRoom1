@@ -40,7 +40,8 @@
         })
 
         function openDocument(id) {
-            $('#documentFileFrame').attr('src', encodeURI("../lib/web/viewer.html?file={{ route('document-download', ['document' => $id]) }}"))
+            let url = encodeURI("../lib/web/viewer.html?file=http://" + window.location.host + "/documents/" + id + "/file")
+            $('#documentFileFrame').attr('src', url)
             $('#documentModal').show()
         }
 
