@@ -17,8 +17,10 @@ class PersonIndexListTable extends Table
     {
         return [
             TD::make('personName', 'Название')->sort()->filter(TD::FILTER_TEXT),
-            TD::make('created_at', 'Дата создания')->defaultHidden(),
-            TD::make('updated_at', 'Дата обновления')->defaultHidden(),
+            TD::make('created_at', 'Дата создания')->defaultHidden()
+            ->render(fn (PersonIndex $personIndex) => $personIndex->created_at->toDateTimeString()),
+            TD::make('updated_at', 'Дата обновления')->defaultHidden()
+            ->render(fn (PersonIndex $personIndex) => $personIndex->updated_at->toDateTimeString()),
             TD::make('action', 'Действия')
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')

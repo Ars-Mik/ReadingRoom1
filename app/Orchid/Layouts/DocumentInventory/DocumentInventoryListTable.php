@@ -19,9 +19,11 @@ class DocumentInventoryListTable extends Table
             TD::make('numberInventory', 'Номер описи')->sort()->filter(TD::FILTER_TEXT)->width('200px'),
             TD::make('fund_id', 'Фонд')->render(function(DocumentInventory $inventory){
                 return $inventory->fund->fundName;
-            }),
-            TD::make('created_at', 'Дата создания')->defaultHidden(),
-            TD::make('updated_at', 'Дата обновления')->defaultHidden(),
+            })->width('600px'),
+            TD::make('created_at', 'Дата создания')->defaultHidden()
+            ->render(fn (DocumentInventory $inventory) => $inventory->created_at->toDateTimeString()),
+            TD::make('updated_at', 'Дата обновления')->defaultHidden()
+            ->render(fn (DocumentInventory $inventory) => $inventory->updated_at->toDateTimeString()),
             TD::make('action', 'Действия')
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')

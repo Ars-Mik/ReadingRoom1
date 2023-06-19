@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 Route::get('/documents', [AboutController::class, 'index']);
-Route::get('/documents/{document}/file', [DocumentFileController::class, 'getFileContent']);
+Route::get('/documents/{document}/file', [DocumentFileController::class, 'getFileContent'])->name('document-download');
 
 Route::get('/funds', [FundsController::class, 'index']);
 Route::get('/fund/{id}/', [FundSelectController::class, 'index']);

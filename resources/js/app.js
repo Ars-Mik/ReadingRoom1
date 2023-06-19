@@ -5,4 +5,6 @@ import '../css/about.css';
 import '../css/fond.css';
 import '../css/media.css';
 import '../js/script.js';
+import '../js/pdf';
+import '../js/pdf.worker';
 import.meta.glob([ '../img/**', ]);

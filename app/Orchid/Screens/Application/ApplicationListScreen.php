@@ -35,6 +35,13 @@ class ApplicationListScreen extends Screen
         ];
     }
 
+    public function permission(): ?iterable
+    {
+        return [
+            'platform.applications',
+        ];
+    }
+
     public function approveOrRejectApplication(Request $request): void
     {
         //dd($request);
