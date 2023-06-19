@@ -21,7 +21,7 @@ class DocumentListTable extends Table
             TD::make('documentName', 'Название')->sort()->filter(TD::FILTER_TEXT)->width('200px'),
             TD::make('Фонд')->render(function(Document $document){
                 return $document->documentInventory->fund->fundName;
-            }),
+            })->width('200px'),
             TD::make('document_inventory_id', '№ Описи')->render(function(Document $document){
                 return $document->documentInventory->numberInventory;
             }),
@@ -94,8 +94,10 @@ class DocumentListTable extends Table
                 else
                     return 'Общий доступ';
             })->defaultHidden(),         
-            TD::make('created_at', 'Дата создания')->defaultHidden(),
-            TD::make('updated_at', 'Дата обновления')->defaultHidden(),
+            TD::make('created_at', 'Дата создания')->defaultHidden()
+            ->render(fn (Document $document) => $document->created_at->toDateTimeString()),
+            TD::make('updated_at', 'Дата обновления')->defaultHidden()
+            ->render(fn (Document $document) => $document->updated_at->toDateTimeString()),
             TD::make('action', 'Действия')
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')

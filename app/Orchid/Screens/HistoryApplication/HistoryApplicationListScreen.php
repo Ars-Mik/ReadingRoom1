@@ -31,4 +31,11 @@ class HistoryApplicationListScreen extends Screen
             HistoryApplicationListTable::class,
         ];
     }
+
+    public function permission(): ?iterable
+    {
+        return [
+            'platform.history_applications',
+        ];
+    }
 }

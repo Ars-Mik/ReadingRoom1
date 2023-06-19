@@ -30,7 +30,8 @@ class PlatformProvider extends OrchidServiceProvider
         return [
             Menu::make('Документы')
             ->icon('book-open')
-            ->route('platform.documents'),
+            ->route('platform.documents')
+            ->title('Архив'),
 
             Menu::make('Фонды')
             ->icon('building')
@@ -55,22 +56,25 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Заявки')
             ->icon('note')
             ->route('platform.applications')
-            ->title(__('Access rights')),
+            ->permission('platform.applications')
+            ->title('Заявки'),
 
             Menu::make('История заявок')
             ->icon('history')
-            ->route('platform.history_applications'),
+            ->route('platform.history_applications')
+            ->permission('platform.history_applications'),
 
             Menu::make(__('Users'))
                 ->icon('user')
                 ->route('platform.systems.users')
-                ->permission('platform.systems.users'),
+                ->permission('platform.systems.users')
+                ->title(__('Access rights')),
 
             Menu::make(__('Roles'))
                 ->icon('lock')
                 ->route('platform.systems.roles')
                 ->permission('platform.systems.roles'),
-
+                
             /* Menu::make('Example screen')
                 ->icon('monitor')
                 ->route('platform.example')
@@ -156,6 +160,9 @@ class PlatformProvider extends OrchidServiceProvider
             ItemPermission::group(__('System'))
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users')),
+            ItemPermission::group('Заявки')
+                ->addPermission('platform.applications', 'Заявки')
+                ->addPermission('platform.history_applications', 'История заявок'),
         ];
     }
 }

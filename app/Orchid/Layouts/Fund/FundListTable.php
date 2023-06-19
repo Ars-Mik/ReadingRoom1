@@ -16,12 +16,14 @@ class FundListTable extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('fundName', 'Название фонда')->sort()->filter(TD::FILTER_TEXT),
+            TD::make('fundName', 'Название фонда')->sort()->filter(TD::FILTER_TEXT)->width('450px'),
             TD::make('numberFund', 'Номер фонда')->sort()->filter(TD::FILTER_TEXT),
             TD::make('startDate', 'Начальная дата'),
             TD::make('endDate', 'Конечная дата'),
-            TD::make('created_at', 'Дата создания')->defaultHidden(),
-            TD::make('updated_at', 'Дата обновления')->defaultHidden(),            
+            TD::make('created_at', 'Дата создания')->defaultHidden()
+            ->render(fn (Fund $fund) => $fund->created_at->toDateTimeString()),
+            TD::make('updated_at', 'Дата обновления')->defaultHidden()
+            ->render(fn (Fund $fund) => $fund->updated_at->toDateTimeString()),            
             TD::make('action', 'Действия')
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
