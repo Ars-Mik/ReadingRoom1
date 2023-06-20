@@ -13,7 +13,7 @@
                                 {{ Auth::user()->name . ' ' . mb_substr(Auth::user()->second_name, 0, 1). '.'}}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="left: -5rem">
-                                <li><a class="dropdown-item" href="/client/edit">
+                                <li><a class="dropdown-item" href="{{ Auth::user()->isAdmin() ? 'admin' : '/client/edit'}}">
                                         <img style="width: 2rem; margin-right: 1rem;" src="{{ Vite::asset('resources/img/svg/user.svg') }}" alt="">
                                         Личный кабинет
                                     </a></li>
