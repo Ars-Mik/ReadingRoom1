@@ -1,3 +1,4 @@
+@php use App\Models\Document; @endphp
 @extends('layouts.app-about')
 
 @section('content')
@@ -39,7 +40,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form class="modal-content">
                 <div class="modal-header bg-black text-white text-center">
@@ -48,14 +50,43 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" onclick="saveOrder();" class="btn btn-primary">Отправить</button>
+
+                <div class="modal-body">
+                    <div class="col-md-10 offset-1 mt-2">
+                        <label for="fio" class="col-form-label-sm">ФИО</label>
+                        <input id="fio" class="form-control" value="{{ Auth::user()->fullName() }}" disabled>
+                    </div>
+                    <div class="col-md-10 offset-1 mt-2">
+                        <label for="email" class="col-form-label-sm">Email</label>
+                        <input id="email" class="form-control" value="{{ Auth::user()->email }}" disabled>
+                    </div>
+                    <div class="col-md-10 offset-1 mt-2">
+                        <label for="document" class="col-form-label-sm">Документ</label>
+                        <input id="document" class="form-control" value="{{ $documentSelect[0]->documentName }}"
+                               disabled>
+                    </div>
+                    <div class="col-md-10 offset-1 mt-2">
+                        <label for="cifer" class="col-form-label-sm">Шифр</label>
+                        <input id="cifer" class="form-control"
+                               value="{{Document::cipher($documentSelect[0]->Numberfund, $documentSelect[0]->numberInventory, $documentSelect[0]->caseNumber)}}" disabled>
+                    </div>
+
+                    <div>
+                        <span class="col-md-3" style="color: #0a53be; font-size: 30px;">!</span>
+                        <p class="col-md-9" style="font-size: 12px;">
+                            Проверьте правильность заполненных данных перед отправкой заявки. В случае необходимости, вы
+                            можете внести изменения в Личном кабинете.
+                        </p>
+                    </div>
+
+                    <button type="button" onclick="saveOrder();" class="btn btn-primary mt-2">Отправить</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <img style="width: 15rem" src="{{ Vite::asset('resources/img/success.png') }}">

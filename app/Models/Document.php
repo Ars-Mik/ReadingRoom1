@@ -47,4 +47,9 @@ class Document extends Model
         return $this->belongsToMany(PersonIndex::class, 'document_person_indices');
     }
 
+    public static function cipher($numberFund, $numberInventory, $numberCase)
+    {
+        return "Ф. $numberFund Оп. $numberInventory Д. $numberCase";
+    }
+
 }

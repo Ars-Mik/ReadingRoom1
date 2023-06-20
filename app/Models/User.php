@@ -77,4 +77,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return (bool) $this->permissions;
     }
+
+    public function fullName(): string
+    {
+        return "$this->second_name $this->name $this->third_name";
+    }
 }
