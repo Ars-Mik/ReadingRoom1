@@ -12,7 +12,7 @@
                                 <div class="custom-arrow">
                                     <select name="" id="select_1">
                                         <option value="value1" selected>Название документа</option>
-                                        <option value="value3" >Географический индекс</option>
+                                        <option value="value3" >Географический указатель</option>
                                         <option value="value5" >Именной индекс</option>
                                     </select>
                                 </div>
@@ -31,7 +31,7 @@
                                 <div class="custom-arrow">
                                     <select name="" id="select_1">
                                         <option value="value2" >Фонд</option>
-                                        <option value="value3" >Географический индекс</option>
+                                        <option value="value3" >Географический указатель</option>
                                         <option value="value5" >Именной индекс</option>
                                     </select>
                                 </div>
@@ -55,7 +55,7 @@
                             <div class="select">
                                 <div class="custom-arrow">
                                     <select name="" id="select_1">
-                                        <option value="value3">Географический индекс</option>
+                                        <option value="value3">Географический указатель</option>
                                         <option value="value4" selected>Вид документа</option>
                                         <option value="value5" >Именной индекс</option>
                                     </select>
@@ -139,7 +139,7 @@
                                 '<select name="" id="select_'+count+'">'+
                                     '<option value="value1" selected>Название документа</option>'+
                                     '<option value="value2" >Фонд</option>'+
-                                    '<option value="value3" >Географический индекс</option>'+
+                                    '<option value="value3" >Географический указатель</option>'+
                                     '<option value="value4" >Вид документа</option>'+
                                     '<option value="value5" >Именной индекс</option>'+
                                 '</select>'+
@@ -165,7 +165,7 @@
                                         return true;
                                     }
                                 }
-                            }         
+                            }
                         }
                     }  
                 }
@@ -354,7 +354,7 @@
                     if (Isline_search.length == 0 && Isline_search != false) {
                         from_container.append('<span>Нажмите на кнопку "Добавить новый критерий" чтобы появилось поле выбора.</span>');
                         Isline_search = false;
-                        console.log(Isline_search.length);
+                        // console.log(Isline_search.length);
                     }
                 });
             }
@@ -382,8 +382,8 @@
                     if (test.length == 0) {
                         $($($(line_search)[i]).find('div')[2]).find('select').remove();
                         $(appendDictionary).append(`
-						<input name="documentName[]" type="search" placeholder="Поиск...">
-					`);
+						    <input name="documentName[]" type="search" placeholder="Поиск...">
+					    `);
                     }
                 });
             }
