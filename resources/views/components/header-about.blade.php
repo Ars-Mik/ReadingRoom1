@@ -30,7 +30,7 @@
                     <a class="nav-link text-dark fw-bold py-1 px-0 burger" id="burger" href="javascript://"><i class="bi bi-list"></i></a>
                 </nav>
                 <div class="burger-menu burger-menu-hidden">
-                    <a href="admin"><img src="{{ Vite::asset('resources/img/admin_panel.svg') }}" alt="admin_panel"> Вход для администратора</a>
+                    <a href="/admin"><img src="{{ Vite::asset('resources/img/admin_panel.svg') }}" alt="admin_panel"> Вход для администратора</a>
                 </div>
             </header>
             @if(!Route::is(['client.edit', 'client.orders']))

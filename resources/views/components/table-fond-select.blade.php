@@ -6,15 +6,25 @@
       <th width="244px">Действие</th>
     </tr>
 
-    <tr>
-      <td style="color: black;">12345</td>
-      <td style="text-align: left; text-decoration: underline; color: black;">Астраханская губернская канцелярия города Астрахань</td>
-      <td style="color: black;">17</td>
-      <td><a href="">Открыть документ</a></td>
-    </tr>
+   
+
 </table>
+<script>
+  $(window).on("load", function() {
+    let count = 1;
 
-
+    $('.list-books').append(`
+        @foreach ($json[0] as $item)
+          <tr>
+            <td style="color: black;">${count++}</td>
+            <td style="text-align: left; text-decoration: underline; color: black;">{{$item->documentName}}</td>
+            <td style="color: black;">{{$item->caseNumber}}</td>
+            <td><a href="/about_document/{{$item->id}}">Открыть документ</a></td>
+          </tr>
+        @endforeach
+    `);
+  });
+</script>
 
   <div class="list-pagination">
     <div class="pagination">
