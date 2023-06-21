@@ -228,7 +228,7 @@
 }
 
 .Case-Block .line_search .select select{
-    width: 380px;
+    width: 440px;
     height: 50px;
     font-family: 'Inter';
     font-style: normal;
@@ -244,7 +244,7 @@
 
 
 .Case-Block .line_search .search-dictionary input{
-    width: 480px;
+    width: 520px;
     height: 45px;
     background: rgba(238, 238, 238, 0.3);
     border-radius: 9px;
@@ -258,8 +258,8 @@
 }
 
 .Case-Block .line_search .search-dictionary select{
-    width: 530px;
-    height: 45px;
+    width: 569px;
+    height: 50px;
     background: rgba(238, 238, 238, 0.3);
     border-radius: 9px;
     border: 2px solid rgba(0, 108, 204, 0.6);
