@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use App\Models\Document;
 use App\Models\HistoryApplication;
 use Illuminate\Http\Request;
@@ -30,6 +31,9 @@ class aboutDocumentController extends Controller
             if ($order) $documentSelect[0]->access = $order->status;
         }
 
-        return view('about-document', ['documentSelect' => $documentSelect, 'id' => $id]);
+        $orderExists = Application::where('document_id', $id)->where('user_id', Auth::id())->count() >
+            HistoryApplication::where('document_id', $id)->where('user_id', Auth::id())->count();
+
+        return view('about-document', ['documentSelect' => $documentSelect, 'id' => $id, 'orderExists' => $orderExists]);
     }
 }
