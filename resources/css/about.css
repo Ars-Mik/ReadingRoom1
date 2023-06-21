@@ -427,9 +427,10 @@
 
 .pagination-result{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     padding: 40px 0;
+    margin-left: 7rem;
 }
 
 .pagination-result p{
