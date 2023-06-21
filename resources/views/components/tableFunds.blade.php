@@ -6,13 +6,13 @@
   
 </div>
 <table class="list-books container" style="width:100%; border-collapse: separate; margin-top: 2rem;">
-    <tr>
-      <th width="228px">№ фонда</th>
-      <th width="685px">Название</th>
-      <th width="300px">Начальная дата</th>
-      <th width="244px">Конечная дата</th>
-      <th width="260px">Количество дел</th>
-    </tr>
+  <tr>
+    <th width="228px">№ фонда</th>
+    <th width="685px">Название</th>
+    <th width="300px">Начальная дата</th>
+    <th width="244px">Конечная дата</th>
+    <th width="260px">Количество дел</th>
+  </tr>
 
     
 </table>
@@ -23,7 +23,7 @@
         @foreach ($json[0] as $item)
           <tr>
             <td width="228px" style="color: black;">{{$item->id}}</td>
-            <td width="685px" style="text-align: left; text-decoration: underline; color: black;"><a href="fund/{{$item->id}}">{{$item->fundName}}</a></td>
+            <td width="685px" style="text-align: left; text-decoration: underline; "><a style="color: black;" href="fund/{{$item->id}}">{{$item->fundName}}</a></td>
             <td width="300px" style="color: black;">{{$item->startDate}}</td>
             <td width="244px">{{$item->endDate}}</td>
             <td width="260px">8</td>

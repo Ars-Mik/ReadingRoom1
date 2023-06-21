@@ -4,19 +4,19 @@
     <div class="row">
         <div class="col">
             <div class="Case-Block-fond container">
-                <form name="form" class="options" action="/fond" method="get">
+                <form name="form" class="options" action="/funds" method="get">
                     <div class="block-form-container-fond">
                         <div class="label-block">
                             <label>Номер фонда</label>
-                            <input name="number-fond" type="search" placeholder="Поиск...">
+                            <input name="numberFund" type="search" placeholder="Поиск...">
                         </div>
                         <div class="label-block">
                             <label>Название фонда</label>
-                            <input name="name-fond" type="search" placeholder="Поиск...">
+                            <input name="fundName" type="search" placeholder="Поиск...">
                         </div>
                         <div class="label-block">
                             <label>Географический указатель</label>
-                            <select name="geoName[]" id="select_fond" required>
+                            <select name="geoName[]" id="select_fond">
                                 <option value="" disabled selected>- Выбрать -</option>
                                 @foreach ($geo_indices as $geo)
                                     <option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
@@ -35,7 +35,7 @@
 
     <div class="row">
         <div class="col">
-            <x-tableFunds :json="array($funds)"/>
+            <x-tableFunds :json="array($fundFilter)"/>
         </div>
     </div>
 

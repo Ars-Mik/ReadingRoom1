@@ -55,6 +55,7 @@
 
 .lineFond>.geoPointer{
     display: flex;
+    flex-wrap: wrap;
     column-gap: 13px;
     padding-bottom: 8px;
     border-bottom: 4px solid rgba(0, 0, 0, 0.24);

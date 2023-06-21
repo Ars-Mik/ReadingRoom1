@@ -14,6 +14,8 @@
                                         <option value="value1" selected>Название документа</option>
                                         <option value="value3" >Географический указатель</option>
                                         <option value="value5" >Именной индекс</option>
+                                        <option value="value6" >Номер дела</option>
+                                        <option value="value7" >Номер описи</option>
                                     </select>
                                 </div>
                             </div>
@@ -33,6 +35,8 @@
                                         <option value="value2" >Фонд</option>
                                         <option value="value3" >Географический указатель</option>
                                         <option value="value5" >Именной индекс</option>
+                                        <option value="value6" >Номер дела</option>
+                                        <option value="value7" >Номер описи</option>
                                     </select>
                                 </div>
                             </div>
@@ -58,6 +62,8 @@
                                         <option value="value3">Географический указатель</option>
                                         <option value="value4" selected>Вид документа</option>
                                         <option value="value5" >Именной индекс</option>
+                                        <option value="value6" >Номер дела</option>
+                                        <option value="value7" >Номер описи</option>
                                     </select>
                                 </div>
                             </div>
@@ -142,6 +148,8 @@
                                     '<option value="value3" >Географический указатель</option>'+
                                     '<option value="value4" >Вид документа</option>'+
                                     '<option value="value5" >Именной индекс</option>'+
+                                    '<option value="value6" >Номер дела</option>'+
+                                    '<option value="value7" >Номер описи</option>'+
                                 '</select>'+
                             '</div>'+
                         '</div>'+
