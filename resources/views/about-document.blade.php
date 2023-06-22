@@ -193,7 +193,11 @@
                 btn.attr('id', 'myModal');
 
                 btn.on('click', function () {
-                    $('#orderModal').modal('show')
+                    if ("{{ Auth()->id() }}") {
+                        $('#orderModal').modal('show')
+                    } else {
+                        window.location.replace('/login')
+                    }
                 })
             }
 
