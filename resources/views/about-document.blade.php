@@ -71,21 +71,19 @@
                 </div>
             @else
                 <form class="modal-content">
-                    <div class="modal-header bg-black text-white text-center">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Заявка на просмотр документа</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div class="modal-header bg-black text-white text-center p-2">
+                        <h5 class="col-md-8 offset-2" id="exampleModalLongTitle" style="font-size: 18px;">Заявка на просмотр документа</h5>
+                        <span aria-hidden="true" onclick="closeOrderModal()" style="font-size: 32px; cursor: grab">&times;</span>
                     </div>
 
                     <div class="modal-body">
                         <div class="col-md-10 offset-1 mt-2">
                             <label for="fio" class="col-form-label-sm">ФИО</label>
-                            <input id="fio" class="form-control" value="{{ Auth::user()->fullName() }}" disabled>
+                            <input id="fio" class="form-control" value="{{ Auth::user()?->fullName() }}" disabled>
                         </div>
                         <div class="col-md-10 offset-1 mt-2">
                             <label for="email" class="col-form-label-sm">Email</label>
-                            <input id="email" class="form-control" value="{{ Auth::user()->email }}" disabled>
+                            <input id="email" class="form-control" value="{{ Auth::user()?->email }}" disabled>
                         </div>
                         <div class="col-md-10 offset-1 mt-2">
                             <label for="document" class="col-form-label-sm">Документ</label>
