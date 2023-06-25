@@ -31,6 +31,10 @@ class aboutDocumentController extends Controller
             if ($order) $documentSelect[0]->access = $order->status;
         }
 
+        if (Auth::user() && Auth::user()->isAdmin()) {
+            $documentSelect[0]->access = true;
+        }
+
         $orderExists = Application::where('document_id', $id)->where('user_id', Auth::id())->count() >
             HistoryApplication::where('document_id', $id)->where('user_id', Auth::id())->count();
 
