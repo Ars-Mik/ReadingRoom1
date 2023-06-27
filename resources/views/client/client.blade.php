@@ -29,16 +29,16 @@
         </div>
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-5 pb-5">
         <div class="row">
-            <a class="col-md-2 pb-1" href="/client/edit">Персональные данные</a>
-            <a class="col-md-2" href="/client/orders">Мои заявки</a>
+            <a class="col-md-3 mb-3 pb-3 text-black text-start" style="text-decoration: none; font-size: 24px; margin-left: 2rem; padding-left: 1.5rem; {{Route::is('client.orders') ?: 'border-bottom: solid 4px #0066FF;'}}" href="/client/edit">Персональные данные</a>
+            <a class="col-md-2 mb-3 pb-3 text-black text-start" style="text-decoration: none; font-size: 24px; margin-left: 1rem; padding-left: 2rem; {{!Route::is('client.orders') ?: 'border-bottom: solid 4px #0066FF;'}}" href="/client/orders">Мои заявки</a>
         </div>
-        <div class="card bg-white pb-5 pt-3" style="box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.25);">
+        <div class="card bg-white pb-5 pt-3 {{ Route::is('client.orders') ?: 'mb-5' }}" style="box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.25); min-height: 50vh">
             @yield('client')
         </div>
         @if(Route::is('client.orders'))
-            <div class="col-md-7 offset-6 mt-3 pagination">
+            <div class="col-md-7 offset-6 mt-3 mb-5 pagination">
                 @if($applications['current_page'] != 1)
                     <a href="{{ $applications['prev_page_url'] }}"  class="previous-pagination number"><</a>
                 @else
