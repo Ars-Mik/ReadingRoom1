@@ -78,33 +78,33 @@
 
                     <div class="modal-body">
                         <div class="col-md-10 offset-1 mt-2">
-                            <label for="fio" class="col-form-label-sm">ФИО</label>
+                            <div class="col-form-label-sm text-start" style="color: #0000004D; font: inherit; font-size: 12px;">ФИО</div>
                             <input id="fio" class="form-control" value="{{ Auth::user()?->fullName() }}" disabled>
                         </div>
                         <div class="col-md-10 offset-1 mt-2">
-                            <label for="email" class="col-form-label-sm">Email</label>
+                            <div class="col-form-label-sm text-start" style="color: #0000004D; font: inherit; font-size: 12px;">Email</div>
                             <input id="email" class="form-control" value="{{ Auth::user()?->email }}" disabled>
                         </div>
                         <div class="col-md-10 offset-1 mt-2">
-                            <label for="document" class="col-form-label-sm">Документ</label>
+                            <div class="col-form-label-sm text-start" style="color: #0000004D; font: inherit; font-size: 12px;">Документ</div>
                             <input id="document" class="form-control" value="{{ $documentSelect[0]->documentName }}"
                                    disabled>
                         </div>
                         <div class="col-md-10 offset-1 mt-2">
-                            <label for="cifer" class="col-form-label-sm">Шифр</label>
+                            <div class="col-form-label-sm text-start" style="color: #0000004D; font: inherit; font-size: 12px;">Шифр</div>
                             <input id="cifer" class="form-control"
                                    value="{{Document::cipher($documentSelect[0]->Numberfund, $documentSelect[0]->numberInventory, $documentSelect[0]->caseNumber)}}" disabled>
                         </div>
 
-                        <div>
-                            <span class="col-md-3" style="color: #0a53be; font-size: 30px;">!</span>
-                            <p class="col-md-9" style="font-size: 12px;">
-                                Проверьте правильность заполненных данных перед отправкой заявки. В случае необходимости, вы
-                                можете внести изменения в Личном кабинете.
+                        <div class="row mt-4 mb-4">
+                            <span class="col-md-1 offset-1" style="color: #0a53be; font-size: 30px; padding-left: 1.5rem!important;">!</span>
+                            <p class="col-md-8 text-start" style="font-size: 10px;">
+                                Проверьте правильность заполненных данных перед<br> отправкой заявки. В случае необходимости, вы
+                                можете<br> внести изменения в Личном кабинете.
                             </p>
                         </div>
 
-                        <button type="button" onclick="saveOrder();" class="btn btn-primary mt-2">Отправить</button>
+                        <button type="button" onclick="saveOrder();" class="btn btn-primary mt-2 mb-4">Отправить</button>
                     </div>
                 </form>
             @endif
@@ -112,19 +112,32 @@
     </div>
 
     <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-         aria-hidden="true">
+         aria-hidden="true" style="min-height: 40vh!important; top: 20vh">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <img style="width: 15rem" src="{{ Vite::asset('resources/img/success.png') }}">
-                <span class="mt-5" style="
-            font-size: 12px;
+                <div class="row mt-5">
+                    <img class="col-md-6 offset-3" style="width: 15rem" src="{{ Vite::asset('resources/img/success.png') }}">
+                </div>
+                <div class="row">
+                    <span class="mt-2" style="color: #252527B2; font: small-caption; font-size: 24px;">Заявка отправлена!</span>
+                </div>
+                <div class="row">
+                    <span class="mt-5" style="
+            font-size: 14px;
             font-weight: 500;
-            font: caption"
-                >
-                Ваша заявка была успешно отправлена. Статус отправленной заявки вы можете просмотреть в личном кабинете, раздел Мои заявки.
-            </span>
-                <a class="btn btn-primary" href="/client/orders">Мои заявки</a>
-                <a href="#" onclick="closeSuccessModal();">Закрыть</a>
+            font: caption">
+                Ваша заявка была успешно отправлена.<br>
+                    Статус отправленной заявки вы можете просмотреть<br>
+                    в личном кабинете, раздел Мои заявки.
+                </span>
+                </div>
+                <div class="row mt-5">
+                    <a class="col-md-6 offset-3 btn btn-primary" href="/client/orders">Мои заявки</a>
+                </div>
+
+                <div class="row mb-5">
+                    <span class="btn btn-link" style="text-decoration: none" href="#" onclick="closeSuccessModal();">Закрыть</span>
+                </div>
             </div>
         </div>
     </div>
