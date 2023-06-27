@@ -27,6 +27,10 @@ Route::get('/documents/{document}/file', [DocumentFileController::class, 'getFil
 Route::get('/funds', [FundsController::class, 'index']);
 Route::get('/fund/{id}/', [FundSelectController::class, 'index']);
 
+Route::get('/help', function () {
+    return view('help');
+});
+
 Route::get('/about_document/{id}', [aboutDocumentController::class, 'index']);
 
 Route::get('/contact', function () {

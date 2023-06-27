@@ -7,7 +7,7 @@
                     <a class="nav-link text-dark fw-bold py-1 px-0" aria-current="page" href="/">Главная</a>
                     <a class="nav-link text-dark fw-bold py-1 px-0" href="/funds">Фонды</a>
                     <a class="nav-link text-dark fw-bold py-1 px-0" href="/documents">Документы</a>
-                    <a class="nav-link text-dark fw-bold py-1 px-0" href="/about">Помощь</a>
+                    <a class="nav-link text-dark fw-bold py-1 px-0" href="/help">Помощь</a>
                     @auth()
                         <div class="dropdown">
                             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgba(98, 98, 98, 0.15)">
@@ -36,7 +36,17 @@
             @if(!Route::is(['client.edit', 'client.orders']))
                 <div class="logo_banner">
                     <div class="box-text">
-                        <h4>Поиск документов</h4>
+                        <h4>
+                            <?php
+                                if ($_SERVER['REQUEST_URI'] == '/documents' || preg_match('/about_document/', $_SERVER['REQUEST_URI'])) {
+                                    echo 'Поиск документов';
+                                } else if ($_SERVER['REQUEST_URI'] == '/funds' || preg_match('/fund/', $_SERVER['REQUEST_URI'])) {
+                                    echo 'Архивные Фонды';
+                                } else if ($_SERVER['REQUEST_URI'] == '/help') {
+                                    echo 'Помощь';
+                                }  
+                            ?>
+                        </h4>
                     </div>
                 </div>
             @endif

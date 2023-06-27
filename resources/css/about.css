@@ -367,7 +367,7 @@
 }
 
 .block-form-container{
-    height: 12rem;
+    height: 17rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -500,16 +500,15 @@
     margin-right: 3rem;
 }
 
-.search-dictionary select:required:invalid {
-    color: gray;
-}
+
 .search-dictionary option[value=""][disabled] {
     display: none;
-  }
+}
 
-  .line_search option[value=""][disabled] {
+.line_search option[value=""][disabled] {
     display: none;
-  }
+}
+
 .search-dictionary option {
     color: black;
 }
