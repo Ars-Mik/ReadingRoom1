@@ -227,6 +227,36 @@
             })
             $('#orderModal').modal('hide')
             $('#successModal').modal('show')
+            let modal = jQuery.find('#orderModal .modal-dialog')[0]
+
+            $(jQuery.find('.modal-body', modal)[0]).remove()
+            $(modal).append(
+                `<div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <img class="col-md-6 offset-3" style="width: 15rem" src="{{ Vite::asset('resources/img/attention.svg') }}" alt="">
+                        </div>
+                        <div class="row">
+                            <span style="
+            font-size: 24px!important;
+            color: gray;
+            font-weight: 500;
+            font: caption">Вы уже отправляли заявку!</span>
+                        </div>
+                        <div class="row mt-5">
+                            <p class="col-md-10 offset-1" style="font-size: 18px; line-height: 23px; font: caption">
+                                Вы уже отправляли заявку на просмотр этого документа.<br>Статус отправленной заявки вы можете просмотреть в личном кабинете, раздел Мои заявки.
+                            </p>
+                        </div>
+                        <div class="row mt-5">
+                            <a class="col-md-6 offset-3 btn btn-primary" href="/client/orders">Мои заявки</a>
+                        </div>
+                        <div class="row">
+                            <span class="btn btn-link" onclick="closeOrderModal();" style="text-decoration: none">Закрыть</span>
+                        </div>
+                    </div>
+                </div>`
+            )
         }
 
         function closeSuccessModal() {
