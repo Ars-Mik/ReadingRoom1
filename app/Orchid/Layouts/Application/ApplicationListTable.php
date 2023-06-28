@@ -17,7 +17,7 @@ class ApplicationListTable extends Table
     {
         return [
             TD::make('user_id', 'Пользователь')->render(function(Application $application){
-                return $application->user->name;
+                return $application->user->fullName();
             })->width('200px'),
             TD::make('Почта')->render(function(Application $application){
                 return $application->user->email;
@@ -36,7 +36,7 @@ class ApplicationListTable extends Table
                     Button::make('Одобрить')
                         ->icon('check')
                         ->confirm('Вы уверены, что хотите одобрить доступ к данному документу?')
-                        ->method('approveOrRejectApplication', [                            
+                        ->method('approveOrRejectApplication', [
                             'application_id' => $application->id,
                             'user_id' => $application->user_id,
                             'document_id' => $application->document_id,
@@ -46,13 +46,13 @@ class ApplicationListTable extends Table
                     Button::make('Отклонить')
                         ->icon('cross')
                         ->confirm('Вы уверены, что хотите оклонить запрос на доступ к данному документу?')
-                        ->method('approveOrRejectApplication', [                            
+                        ->method('approveOrRejectApplication', [
                             'application_id' => $application->id,
                             'user_id' => $application->user_id,
                             'document_id' => $application->document_id,
                             'status' => 0,
                         ]),
-                ])), 
+                ])),
         ];
     }
 }

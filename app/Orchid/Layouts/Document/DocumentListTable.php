@@ -12,7 +12,7 @@ use Orchid\Screen\Actions\ModalToggle;
 
 class DocumentListTable extends Table
 {
-    
+
     protected $target = 'documents';
 
     protected function columns(): iterable
@@ -38,7 +38,7 @@ class DocumentListTable extends Table
                 }
                 $geo_indices_name = mb_substr($geo_indices_name, 0, -5);
                 return $geo_indices_name;
-            }),              
+            }),
             TD::make('Именные указатели')
             ->render(function(Document $document){
                 $person_indices_id = DB::table('document_person_indices')
@@ -54,8 +54,8 @@ class DocumentListTable extends Table
             }),
             TD::make('document_type_id', 'Вид документа')->render(function(Document $document){
                 return $document->documentType->typeName;
-            }),   
-            TD::make('year', 'Год')->defaultHidden()->sort(),
+            }),
+            TD::make('year', 'Год')->defaultHidden()->sort()->filter(TD::FILTER_TEXT),
             TD::make('month', 'Месяц')->defaultHidden()
             ->render(function(Document $document){
                 $string = "";
@@ -93,7 +93,7 @@ class DocumentListTable extends Table
                     return 'Закрытый доступ';
                 else
                     return 'Общий доступ';
-            })->defaultHidden(),         
+            })->defaultHidden(),
             TD::make('created_at', 'Дата создания')->defaultHidden()
             ->render(fn (Document $document) => $document->created_at->toDateTimeString()),
             TD::make('updated_at', 'Дата обновления')->defaultHidden()
@@ -120,7 +120,7 @@ class DocumentListTable extends Table
                             ->method('removeDocument', [
                                 'id' => $document->id
                             ]),
-                    ])), 
+                    ])),
         ];
     }
 }

@@ -14,7 +14,7 @@ class HistoryApplicationListTable extends Table
     {
         return [
             TD::make('user_id', 'Пользователь')->render(function(HistoryApplication $application){
-                return $application->user->name;
+                return $application->user->fullName();
             })->width('300px'),
             TD::make('Почта')->render(function(HistoryApplication $application){
                 return $application->user->email;
