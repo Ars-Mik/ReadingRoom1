@@ -3,6 +3,10 @@
 @section('content')
     <div class="row">
         <div class="col">
+            <ul class="breadcrumb container">
+                <li><a href="/">Главная</a></li>
+                <li>Архивные фонды</li>
+            </ul>
             <div class="Case-Block-fond container">
                 <form name="form" class="options" action="/funds" method="get">
                     <div class="block-form-container-fond">
@@ -46,4 +50,3 @@
     
     
 @endsection
-

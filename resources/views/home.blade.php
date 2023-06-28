@@ -36,7 +36,7 @@
           </div>
           <div class="fs-6 text_footer">
             <img src="{{ Vite::asset('resources/img/svg/icon_footer_header/mdi-light_chart-bar.svg') }}" alt="icon">
-            <span>13 Фондов</span>
+            <span>3502 Фондов</span>
           </div>
         </div>
 

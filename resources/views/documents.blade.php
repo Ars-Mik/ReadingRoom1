@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="search-dictionary">
-                                <select name="fundName[]" required>
+                                <select name="fundName[]">
                                     <option value="" disabled selected>- Выбрать -</option>
                                     @foreach ($funds as $fund)
                                         <option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
@@ -68,8 +68,8 @@
                                 </div>
                             </div>
                             <div class="search-dictionary">
-                                <select name="typeName[]" required>
-                                        <option value="" disabled selected>- Выбрать -</option>
+                                <select name="typeName[]">
+                                        <option id="placeholder" value="" disabled selected>- Выбрать -</option>
                                     @foreach ($document_types as $type)
                                         <option value='{{$type->typeName}}'>{{$type->typeName}}</option>
                                     @endforeach
@@ -82,6 +82,33 @@
                         </div>
 
 
+
+
+                        <div class="line_search" id="line_4">
+                            <div class="select">
+                                <div class="custom-arrow">
+                                    <select name="" id="select_1">
+                                        <option value="value3" >Географический указатель</option>
+                                        <option value="value4" >Вид документа</option>
+                                        <option value="value5" selected>Именной индекс</option>
+                                        <option value="value6" >Номер дела</option>
+                                        <option value="value7" >Номер описи</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="search-dictionary">
+                                <select name="personName[]">
+                                    <option value="" disabled selected>- Выбрать -</option>
+                                    @foreach ($person_indices as $person)
+                                         <option value='{{$person->personName}}'>{{$person->personName}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="function">
+                                <a href="javascript://" id="btn-clear" class="btn btn-outline-primary"><i class="bi bi-plus-lg"></i></a>
+                                <a href="javascript://" id="btn-trash" class="btn btn-outline-primary"><i class="bi bi-trash3"></i></a>
+                            </div>
+                        </div>
 
 
 
@@ -238,13 +265,13 @@
                             var valueSelected  = optionSelected.val();
                             let appendDictionary = $($($(line_search)[i]).find('div')[2]);
                             let select = $($($(line_search)[i]).find('div')[2]).find('select');
-                            if (valueSelected !== 'value1') {
+                            if (valueSelected !== 'value1' && valueSelected !== 'value6' && valueSelected !== 'value7') {
                                 $($($(line_search)[i]).find('div')[2]).find('input').remove();
                                 let templateSelect = '';
 
                                 if (valueSelected == 'value2') {
                                     templateSelect = `
-										<select name="fundName[]" required>
+										<select name="fundName[]">
 											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($funds as $fund)
                                     <option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
@@ -253,7 +280,7 @@
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if (valueSelected == 'value3') {
                                     templateSelect = `
-										<select name="geoName[]" required>
+										<select name="geoName[]">
 											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($geo_indices as $geo)
                                     <option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
@@ -262,7 +289,7 @@
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if (valueSelected == 'value4'){
                                     templateSelect = `
-										<select name="typeName[]" required>
+										<select name="typeName[]">
 											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($document_types as $type)
                                     <option value='{{$type->typeName}}'>{{$type->typeName}}</option>
@@ -271,7 +298,7 @@
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if(valueSelected == 'value5'){
                                     templateSelect = `
-										<select name="personName[]" required>
+										<select name="personName[]">
 											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($person_indices as $person)
                                     <option value='{{$person->personName}}'>{{$person->personName}}</option>
@@ -285,10 +312,10 @@
                                 if (select.length > 0) {
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                     $(appendDictionary).append(`
-									<input name="documentName[]" type="search" placeholder="Поиск...">
-								`);
+									    <input name="documentName[]" type="search" placeholder="Поиск...">
+								    `);
                                 }
-
+                                
                             }
                             syncCriteria()
                         });
@@ -362,13 +389,13 @@
                             let appendDictionary = $($($(line_search)[i]).find('div')[2]);
                             let select = $($($(line_search)[i]).find('div')[2]).find('select');
 
-                            if (valueSelected !== 'value1') {
+                            if (valueSelected !== 'value1' && valueSelected !== 'value6' && valueSelected !== 'value7') {
                                 $($($(line_search)[i]).find('div')[2]).find('input').remove();
                                 let templateSelect = '';
 
                                 if (valueSelected == 'value2') {
                                     templateSelect = `
-										<select name="fundName[]" required>
+										<select name="fundName[]">
 											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($funds as $fund)
                                     <option value='{{$fund->fundName}}'>{{$fund->fundName}}</option>
@@ -377,7 +404,7 @@
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if (valueSelected == 'value3') {
                                     templateSelect = `
-										<select name="geoName[]" required>
+										<select name="geoName[]">
 											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($geo_indices as $geo)
                                     <option value='{{$geo->geoName}}'>{{$geo->geoName}}</option>
@@ -386,7 +413,7 @@
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if (valueSelected == 'value4'){
                                     templateSelect = `
-										<select name="typeName[]" required>
+										<select name="typeName[]">
 											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($document_types as $type)
                                     <option value='{{$type->typeName}}'>{{$type->typeName}}</option>
@@ -395,7 +422,7 @@
                                     $($($(line_search)[i]).find('div')[2]).find('select').remove();
                                 } else if(valueSelected == 'value5'){
                                     templateSelect = `
-										<select name="personName[]" required>
+										<select name="personName[]">
 											<option value="" disabled selected>- Выбрать -</option>
 											@foreach ($person_indices as $person)
                                     <option value='{{$person->personName}}'>{{$person->personName}}</option>

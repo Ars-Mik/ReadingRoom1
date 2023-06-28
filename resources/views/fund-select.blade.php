@@ -3,6 +3,11 @@
 @section('content')
     <div class="row">
         <div class="col">
+            <ul class="breadcrumb container">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/funds">Архивные фонды</a></li>
+                <li>№{{$Funds[0]->numberFund}}</li>
+            </ul>
             <div class="blockFond container-fluid">
                 <h3>Фонд №{{$Funds[0]->numberFund}}</h3>
                     <div class="blockFondInformation">

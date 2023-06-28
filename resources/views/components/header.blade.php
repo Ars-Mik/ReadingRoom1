@@ -7,7 +7,7 @@
             <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="/">Главная</a>
             <a class="nav-link fw-bold py-1 px-0" href="funds">Фонды</a>
             <a class="nav-link fw-bold py-1 px-0" href="documents">Документы</a>
-            <a class="nav-link fw-bold py-1 px-0" href="about">Помощь</a>
+            <a class="nav-link fw-bold py-1 px-0" href="help">Помощь</a>
           </nav>
       </header>
       </div>

@@ -71,7 +71,7 @@ Route::screen('history_applications', HistoryApplicationListScreen::class)
 ->name('platform.history_applications');
 
 // Main
-Route::screen('/main', PlatformScreen::class)
+Route::screen('/main', DocumentListScreen::class)
     ->name('platform.main');
 
 // Platform > Profile
