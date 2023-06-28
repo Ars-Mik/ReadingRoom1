@@ -84,7 +84,7 @@
                         <div class="row mt-2">
                             <div class="col-md-8">
                                 <div class="form-check">
-                                    <input class="form-check-input" required type="checkbox" name="personal_data" id="personal_data" {{ old('personal_data') ? 'checked' : '' }}>
+                                    <input class="form-check-input" onFocus="this.blur()" required type="checkbox" name="personal_data" id="personal_data" {{ old('personal_data') ? 'checked' : '' }}>
 
                                     <label class="form-check-label pt-1" style="font-size: 12px; font: -webkit-small-control" for="remember">Нажимая кнопку «Зарегистрироваться»,<br>
                                         вы даете согласие на обработку персональных данных. </label>

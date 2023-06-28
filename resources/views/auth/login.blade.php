@@ -39,8 +39,8 @@
 
                             <div class="row">
                                 <div class="col-md-8">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <div class="custom-checkbox">
+                                        <input class="form-check-input" onFocus="this.blur()" onchange='blur();' type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label pt-1" style="font-size: 12px; font: -webkit-small-control" for="remember">{{ __('Remember Me') }}</label>
                                     </div>
