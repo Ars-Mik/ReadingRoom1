@@ -351,11 +351,7 @@
                         let search = $(line_search[i]).find('div')[2];
                         $(search).find('input').val('');
 
-                        let select_fond = $(line_search[i]).find('div')[2];
-                        $(select_fond).find('select').val('value1');
 
-                        let select = $(line_search[i]).find('div')[0];
-                        $(select).find('select').val('value1');
                         // if ($(select).find('select').val() == 'value1') {
                         // 	$($($(line_search)[i]).find('div')[3]).find('select').remove();
                         // 	$($($(line_search)[i]).find('div')[3]).append(dictionaryNameDocument);
@@ -366,8 +362,8 @@
                         if (test.length == 0) {
                             $($($(line_search)[i]).find('div')[2]).find('select').remove();
                             $(appendDictionary).append(`
-						    <input name="documentName[]" type="search" placeholder="Поиск...">
-					    `);
+						        <input name="documentName[]" type="search" placeholder="Поиск...">
+					        `);
                         }
                         syncCriteria()
                     });

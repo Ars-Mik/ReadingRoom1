@@ -27,7 +27,8 @@ class AboutController extends Controller
                                 ->filter($request->all())
                                 ->distinct()
                                 ->with('documentInventory')
-                                ->paginate();
+                                ->paginate(perPage: 10);
+                                
 
         return view('documents', ['funds' => $funds, 'geo_indices' => $geo_indices, 'document_types' => $document_types, 'person_indices' => $person_indices, 'documentFilter' => $documentFilter]);
     }

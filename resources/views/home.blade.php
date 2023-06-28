@@ -41,56 +41,5 @@
         </div>
 
     </div>
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-              <section class="search-document-block">
-                  <h2>Поиск миллионов документов</h2>
-                  <p>
-                    Откройте для себя огромную коллекцию исторических записей - введите название документа, номер фонда или другие данные, чтобы найти необходимую информацию. Наши точные результаты помогут Вам найти больше информации, чем Вы могли себе представить.
-                  </p>
-                  <div class="img-document">
-                      <img src="{{ Vite::asset('resources/img/img_document/photo1.png') }}" alt="img_document">
-                      <img src="{{ Vite::asset('resources/img/img_document/docsphoto2.png') }}" alt="img_document">
-                      <img src="{{ Vite::asset('resources/img/img_document/letters3.png') }}" alt="img_document">
-                      <img src="{{ Vite::asset('resources/img/img_document/paperold4.png') }}" alt="img_document">
-                      <img src="{{ Vite::asset('resources/img/img_document/passport5.png') }}" alt="img_document">
-                      <img src="{{ Vite::asset('resources/img/img_document/letter 1.png') }}" alt="img_document">
-                      <img src="{{ Vite::asset('resources/img/img_document/doc6.png') }}" alt="img_document">
-                  </div>
-              </section>
-
-              <section class="does-electronic-archive">
-                <h3>Как работает электронный архив?</h3>
-
-                <div class="container does-container">
-                  <div class="does_block">
-                    <h4 class="fs-4">Оцифровка документов</h4>
-                    <p>Egestas id pretium phasellus ante ac facilisis ut massa. Enim risus integer nulla fermentum. Ac aliquet vitae sem quis turpis neque. Nec ut urna consectetur vitae nunc sed elit lacus.</p>
-                    <a href="#">ПОДРОБНЕЕ >></a>
-                  </div>
-                  <div class="does_block">
-                    <h4 class="fs-4">Поиск документов</h4>
-                    <p>Egestas id pretium phasellus ante ac facilisis ut massa. Enim risus integer nulla fermentum. Ac aliquet vitae sem quis turpis neque. Nec ut urna consectetur vitae nunc sed elit lacus.</p>
-                    <a href="#">ПОДРОБНЕЕ >></a>
-                  </div>
-                  <div class="does_block">
-                      <h4 class="fs-4">Закрытые документы</h4>
-                      <p>Egestas id pretium phasellus ante ac facilisis ut massa. Enim risus integer nulla fermentum. Ac aliquet vitae sem quis turpis neque. Nec ut urna consectetur vitae nunc sed elit lacus.</p>
-                      <a href="#">ПОДРОБНЕЕ >></a>
-                  </div>
-                </div>
-
-              </section>
-            </div>
-        </div>
-    </div>
-
-  <footer class="footer">
-    <x-footer/>
-  </footer>
-
   </body>
 </html>

@@ -21,7 +21,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::apiResource('orders', ApplicationController::class);
 });
 
-Route::get('/documents', [AboutController::class, 'index']);
+Route::get('/documents', [AboutController::class, 'index'])->name('documents.list');
 Route::get('/documents/{document}/file', [DocumentFileController::class, 'getFileContent'])->name('document-download');
 
 Route::get('/funds', [FundsController::class, 'index']);

@@ -37,10 +37,8 @@
           <a href="#" class="number active">1</a>
           <a href="#" class="number">2</a>
           <a href="#" class="number">3</a>
-          <a href="#" class="number">4</a>
-          <a href="#" class="number">5</a>
           <span href="#" class="dots number">...</span>
-          <a href="#" class="number">99</a>
+          <a href="#" class="number">3</a>
         </div>
       <a href="#" class="next-pagination number"><img src="{{ Vite::asset('resources/img/right.svg') }}" alt="right"></a>
     </div>
