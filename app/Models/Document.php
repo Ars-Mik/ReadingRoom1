@@ -28,7 +28,7 @@ class Document extends Model
     ];
 
     protected $allowedFilters = [
-        'documentName'
+        'documentName', 'year'
     ];
 
     public function documentInventory(): BelongsTo{
