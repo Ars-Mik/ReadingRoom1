@@ -1,9 +1,17 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center">
+    <img align="center" src="https://github.com/Ars-Mik/ReadingRoom1/blob/main/resources/img/logo.png" width="100" alt="Logo">
+</p>
+<h3 align="center">Электронный каталог архивных документов</h3>
+<br/>
+<p align="center">
+<img src="https://img.shields.io/github/contributors/Ars-Mik/ReadingRoom1?color=dark-green" alt="Contributors">
+<img src="https://img.shields.io/github/downloads/Ars-Mik/ReadingRoom1/total" alt="Total Downloads">
+<img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version">
+<img src="https://img.shields.io/packagist/l/laravel/framework" alt="License">
+</p>
 
 <p align="center">
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+      <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Ars-Mik&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=true" height="200" alt="languages graph"  />
 </p>
 
 ## Поиск миллионов документов
